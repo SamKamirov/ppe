@@ -10,6 +10,7 @@ enum AppRoutes {
     Reports = 'reports',
     Everything = '*',
     RuleCheck = 'norm-check',
+    Tools = 'tools'
 }
 
 export {AppRoutes};

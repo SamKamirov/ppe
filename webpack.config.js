@@ -76,12 +76,12 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(woff|ttf)$/,
-                use: 'file-loader',
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'asset/resource',
             },
         ],
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
-    },
+    }
 };

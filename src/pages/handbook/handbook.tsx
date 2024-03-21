@@ -1,28 +1,30 @@
-import React, {Fragment, ReactNode, useEffect, useRef} from 'react';
-import {HandbookHeaders} from '../../components/handbook/handbook-headers';
-import {ReportButtons} from '../../components/report-buttons';
+import React, { Fragment, useRef } from 'react';
+import { HandbookHeaders } from '../../components/handbook';
+import { ReportButtons } from '../../components/report/report-buttons';
+import { Preview } from '../../components/preview';
+import { useAppSelector } from '../../app/hooks';
+import { TableRow } from '../../components/table-row/table-row';
 
-export const Handbook = (): ReactNode => {
+export const Handbook = () => {
+    const ppes = useAppSelector((state) => state.ppes);
+    const selectedPPE = useAppSelector((state) => state.ppe);
+
     const contentTable = useRef<HTMLTableElement>(null);
-
-    useEffect(() => {
-        if (contentTable.current) {
-            contentTable.current.focus();
-        }
-    }, []);
 
     return (
         <Fragment>
             <div className='col'>
-                <h1>Справочник</h1>
                 <ReportButtons ref={contentTable} />
-                <table className='table' ref={contentTable}>
+                <table className='table table-striped' ref={contentTable}>
                     <HandbookHeaders />
-                    <tbody>
-                        <tr className='text-center'></tr>
+                    <tbody className='table-group-divider'>
+                        {ppes.map((ppe) => (
+                            <TableRow ppe={ppe} key={ppe.id} />
+                        ))}
                     </tbody>
                 </table>
             </div>
+            {selectedPPE && <Preview ppe={selectedPPE} />}
         </Fragment>
     );
 };
