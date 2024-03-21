@@ -1,12 +1,14 @@
-@import "bootstrap/scss/bootstrap";
+@import 'bootstrap/scss/bootstrap';
 
 @font-face {
-    font-family: 'Rosatom';
-    src: url('../fonts/RST45.ttf') format('woff2');
+    font-family: "rosatom";
+    src: url("../fonts/RST55.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 * {
-    font-family: 'Rosatom', Fallback, sans-serif;
+    font-family: "rosatom";
 }
 
 .wrapper {
@@ -25,7 +27,7 @@
 
 header,
 .sidebar {
-    background-color: #025EA1;
+    background-color: #025ea1;
 }
 
 .sidebar * {
@@ -33,13 +35,37 @@ header,
 }
 
 .sidebar {
-    max-width: 500px;
+    max-width: 400px;
 }
 
 .list-group * {
-    background-color: #025EA1;
+    background-color: #025ea1;
 }
 
 .menu > li {
     margin-bottom: 10px;
+}
+
+.table-row {
+    cursor: pointer;
+}
+
+.table-row:hover {
+    opacity: 0.5;
+}
+
+.sideview {
+    max-width: 500px;
+    background-color:  #6CACE4;
+    height: 100%;
+}
+
+#modal {
+    display: block;
+    background-color: rgb(127 127 127 / 40%);
+    backdrop-filter: blur(1px);
+}
+
+.hidden {
+    display: none;
 }

@@ -2,6 +2,6 @@ import React from "react";
 
 export const Sizes = () => {
     return (
-        <h1>Sizes</h1>
+        <h1>Размеры</h1>
     )
 }
