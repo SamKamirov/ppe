@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 import { SideBar } from '../../components/sidebar';
-import { Header } from '../../components/header';
+import { Header } from '../../components/header/header';
 import { FullHeight } from '../../components/full-height';
 import { RouteChildren } from '../../types/utils';
 

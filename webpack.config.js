@@ -2,15 +2,14 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const HtmlPlugin = require('html-webpack-plugin');
-const {template} = require('@babel/core');
+const { template } = require('@babel/core');
 
 module.exports = {
-    entry: '/src/index.tsx',
+    entry: './src/index.tsx',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'build'),
         clean: true,
-        publicPath: '/',
     },
     mode: 'development',
     devtool: 'inline-source-map',
