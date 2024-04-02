@@ -1,0 +1,71 @@
+@import 'bootstrap/scss/bootstrap';
+
+@font-face {
+    font-family: "rosatom";
+    src: url("../fonts/RST55.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: "rosatom";
+}
+
+.wrapper {
+    height: 100vh;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.layout,
+.full-height {
+    height: 100%;
+}
+
+header,
+.sidebar {
+    background-color: #025ea1;
+}
+
+.sidebar * {
+    color: #ffffff;
+}
+
+.sidebar {
+    max-width: 400px;
+}
+
+.list-group * {
+    background-color: #025ea1;
+}
+
+.menu > li {
+    margin-bottom: 10px;
+}
+
+.table-row {
+    cursor: pointer;
+}
+
+.table-row:hover {
+    opacity: 0.5;
+}
+
+.sideview {
+    max-width: 500px;
+    background-color:  #6CACE4;
+    height: 100%;
+}
+
+#modal {
+    display: block;
+    background-color: rgb(127 127 127 / 40%);
+    backdrop-filter: blur(1px);
+}
+
+.hidden {
+    display: none;
+}
