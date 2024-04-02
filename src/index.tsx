@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import '../public/css/index.scss';
 import * as bootstrap from 'bootstrap';
 import { App } from "./app/app/app";
-import { ppes } from './mocks/ppe';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 
