@@ -46782,18 +46782,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var AppRoutes;
 (function (AppRoutes) {
-    AppRoutes["Root"] = "/";
-    AppRoutes["Handbook"] = "/handbook";
-    AppRoutes["Periods"] = "/periods";
-    AppRoutes["Using"] = "/using";
-    AppRoutes["Ranges"] = "/ranges";
-    AppRoutes["Sizes"] = "/sizes";
-    AppRoutes["Give"] = "/give";
-    AppRoutes["SetRules"] = "/tools/set-rules";
-    AppRoutes["Reports"] = "/reports";
-    AppRoutes["Everything"] = "/*";
-    AppRoutes["RuleCheck"] = "/reports/norm-check";
-    AppRoutes["PersonCard"] = "/tools/person-card";
+    AppRoutes["Root"] = "/ppe";
+    AppRoutes["Handbook"] = "/ppe/handbook";
+    AppRoutes["Periods"] = "/ppe/periods";
+    AppRoutes["Using"] = "/ppe/using";
+    AppRoutes["Ranges"] = "/ppe/ranges";
+    AppRoutes["Sizes"] = "/ppe/sizes";
+    AppRoutes["Give"] = "/ppe/give";
+    AppRoutes["SetRules"] = "/ppe/tools/set-rules";
+    AppRoutes["Reports"] = "/ppe/reports";
+    AppRoutes["Everything"] = "/ppe/*";
+    AppRoutes["RuleCheck"] = "/ppe/reports/norm-check";
+    AppRoutes["PersonCard"] = "/ppe/tools/person-card";
 })(AppRoutes || (AppRoutes = {}));
 
 
@@ -46900,12 +46900,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/.pnpm/react@18.2.0/node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/.pnpm/react-router-dom@6.22.1_react-dom@18.2.0_react@18.2.0/node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/.pnpm/react-router-dom@6.22.1_react-dom@18.2.0_react@18.2.0/node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var _const__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../const */ "./const.ts");
+
 
 
 var NotFound = function () { return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
     "Not found",
-    react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, { to: '/' }, "Back to main"))); };
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, { to: _const__WEBPACK_IMPORTED_MODULE_1__.AppRoutes.Root }, "Back to main"))); };
 
 
 /***/ }),
