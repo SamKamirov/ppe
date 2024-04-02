@@ -5,14 +5,15 @@ const HtmlPlugin = require('html-webpack-plugin');
 const { template } = require('@babel/core');
 
 module.exports = {
+    mode: 'development',
+    devtool: 'inline-source-map',
     entry: './src/index.tsx',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'build'),
         clean: true,
+        publicPath: '/ppe/'
     },
-    mode: 'development',
-    devtool: 'inline-source-map',
     devServer: {
         historyApiFallback: true,
     },

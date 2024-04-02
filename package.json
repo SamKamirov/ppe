@@ -4,11 +4,15 @@
   "description": "Система учёта СИЗов",
   "main": "index.tsx",
   "private": "true",
+  "repository": {
+    "url": "git+https://github.com/SamKamirov/ppe.git"
+  },
+  "homepage": "http://samkamirov.github.io/ppe/",
   "scripts": {
     "build:tailwind": "tailwindcss build ./public/css/index.css -o ./public/css/output.css",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --mode development",
-    "build": "webpack --mode development",
+    "build": "webpack",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "gh-pages:404": "cp build/index.html build/404.html"
