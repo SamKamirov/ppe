@@ -1,20 +1,17 @@
 {
-  "name": "samkamirov.github.io",
+  "name": "ppe",
   "version": "1.0.0",
-  "homepage": "http://samkamirov.github.io/ppe",
+  "homepage": "http://ppe",
   "description": "Система учёта СИЗов",
   "main": "index.tsx",
   "private": "true",
-  "repository": {
-    "url": "git+https://github.com/SamKamirov/ppe.git"
-  },
   "scripts": {
     "build:tailwind": "tailwindcss build ./public/css/index.css -o ./public/css/output.css",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --mode development",
     "build": "webpack --mode development",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -b main -d build"
   },
   "author": "",
   "license": "ISC",
