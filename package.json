@@ -13,6 +13,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -b main -d build"
   },
+  "gh-pages:404": "cp build/index.html build/404.html"
   "author": "",
   "license": "ISC",
   "devDependencies": {
