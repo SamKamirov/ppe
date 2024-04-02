@@ -2,24 +2,24 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const HtmlPlugin = require('html-webpack-plugin');
-const { template } = require('@babel/core');
 
 module.exports = {
     mode: 'development',
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     entry: './src/index.tsx',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'build'),
         clean: true,
-        publicPath: '/ppe/'
+        publicPath: '/'
     },
     devServer: {
+        hot: true,
         historyApiFallback: true,
     },
     plugins: [
         new HtmlPlugin({
-            template: 'src/index.html',
+            template: './src/index.html',
         }),
         new CopyPlugin({
             patterns: [
@@ -35,12 +35,16 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(html)$/,
+                use: ['html-loader']
+            },
+            {
                 test: /\.js$/,
-                exclude: /(node_modules)/,
+                exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env'],
+                        cacheDirectory: true,
                     },
                 },
             },
@@ -76,7 +80,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                test: /\.(woff|woff2?|eot|ttf|otf)$/i,
                 type: 'asset/resource',
             },
         ],
