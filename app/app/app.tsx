@@ -16,7 +16,7 @@ import { AppProps } from '../../types/ppe';
 import { Tools } from '../../pages/tools/tools';
 
 export const App = () => (
-    <BrowserRouter>
+    <BrowserRouter basename={'https://samkamirov.github.io/ppe/'}>
         <Routes>
             <Route path={AppRoutes.Root} element={<RootLayout />}>
                 <Route index element={<Handbook />} />

@@ -46842,7 +46842,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var App = function () { return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.BrowserRouter, null,
+var App = function () { return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.BrowserRouter, { basename: 'https://samkamirov.github.io/ppe/' },
     react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Routes, null,
         react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, { path: _const__WEBPACK_IMPORTED_MODULE_6__.AppRoutes.Root, element: react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_pages_layout_layout__WEBPACK_IMPORTED_MODULE_1__.RootLayout, null) },
             react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, { index: true, element: react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_pages_handbook_handbook__WEBPACK_IMPORTED_MODULE_2__.Handbook, null) }),
