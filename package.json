@@ -1,7 +1,6 @@
 {
   "name": "ppe",
   "version": "1.0.0",
-  "homepage": "http://ppe",
   "description": "Система учёта СИЗов",
   "main": "index.tsx",
   "private": "true",
