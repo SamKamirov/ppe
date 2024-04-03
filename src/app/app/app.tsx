@@ -16,66 +16,64 @@ import { AppProps } from '../../types/ppe';
 import { Tools } from '../../pages/tools/tools';
 
 export const App = () => (
-    <BrowserRouter>
-        <Routes>
-            <Route
-                path={AppRoutes.Root}
-                element={
-                    <RootLayout>
-                        <Handbook />
-                    </RootLayout>}>
-            </Route>
-            <Route
-                path={AppRoutes.Using}
-                element={
-                    <RootLayout>
-                        <Using />
-                    </RootLayout>} />
-            <Route
-                path={AppRoutes.Periods}
-                element={
-                    <RootLayout>
-                        <Periods />
-                    </RootLayout>} />
-            <Route
-                path={AppRoutes.Ranges}
-                element={
-                    <RootLayout>
-                        <Ranges />
-                    </RootLayout>} />
-            <Route
-                path={AppRoutes.RuleCheck}
-                element={
-                    <ReportLayout>
-                        <RuleCheck />
-                    </ReportLayout>
-                } />
-            <Route
-                path={AppRoutes.Sizes}
-                element={
-                    <ReportLayout>
-                        <Sizes />
-                    </ReportLayout>
-                } />
-            <Route
-                path={AppRoutes.Give}
-                element={
-                    <ReportLayout>
-                        <Give />
-                    </ReportLayout>
-                } />
-            <Route />
-            <Route path={AppRoutes.SetRules} element={
+    <Routes>
+        <Route
+            path={AppRoutes.Root}
+            element={
                 <RootLayout>
-                    <SetRule />
-                </RootLayout>
-            } />
-            <Route path={AppRoutes.PersonCard} element={
+                    <Handbook />
+                </RootLayout>}>
+        </Route>
+        <Route
+            path={AppRoutes.Using}
+            element={
                 <RootLayout>
-                    <Tools />
-                </RootLayout>
+                    <Using />
+                </RootLayout>} />
+        <Route
+            path={AppRoutes.Periods}
+            element={
+                <RootLayout>
+                    <Periods />
+                </RootLayout>} />
+        <Route
+            path={AppRoutes.Ranges}
+            element={
+                <RootLayout>
+                    <Ranges />
+                </RootLayout>} />
+        <Route
+            path={AppRoutes.RuleCheck}
+            element={
+                <ReportLayout>
+                    <RuleCheck />
+                </ReportLayout>
             } />
-            <Route path={AppRoutes.Everything} element={<NotFound />} />
-        </Routes>
-    </BrowserRouter >
+        <Route
+            path={AppRoutes.Sizes}
+            element={
+                <ReportLayout>
+                    <Sizes />
+                </ReportLayout>
+            } />
+        <Route
+            path={AppRoutes.Give}
+            element={
+                <ReportLayout>
+                    <Give />
+                </ReportLayout>
+            } />
+        <Route />
+        <Route path={AppRoutes.SetRules} element={
+            <RootLayout>
+                <SetRule />
+            </RootLayout>
+        } />
+        <Route path={AppRoutes.PersonCard} element={
+            <RootLayout>
+                <Tools />
+            </RootLayout>
+        } />
+        <Route path={AppRoutes.Everything} element={<NotFound />} />
+    </Routes>
 );

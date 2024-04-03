@@ -7,16 +7,18 @@ import { RangesTableRow } from '../../components/ranges/ranges-table-row';
 export const Ranges = () => {
     // const ppesRanges = useAppSelector((state) => state)
     return (
-        <section className='using'>
-            <h1>Диапазоны роста</h1>
-            <table className='table table-striped'>
-                <RangesHeaders />
-                <tbody className='table-group-divider'>
-                    {ranges.map((range) => (
-                        <RangesTableRow range={range} key={range.fullTitle} />
-                    ))}
-                </tbody>
-            </table>
-        </section>
+        <div className='col px-0'>
+            <section className='using'>
+                <h1>Диапазоны роста</h1>
+                <table className='table table-striped'>
+                    <RangesHeaders />
+                    <tbody className='table-group-divider'>
+                        {ranges.map((range) => (
+                            <RangesTableRow range={range} key={range.fullTitle} />
+                        ))}
+                    </tbody>
+                </table>
+            </section>
+        </div>
     );
 };

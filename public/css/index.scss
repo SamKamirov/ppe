@@ -13,6 +13,7 @@
 
 .wrapper {
     height: 100vh;
+    padding: 0;
 }
 
 .layout {
@@ -68,4 +69,8 @@ header,
 
 .hidden {
     display: none;
+}
+
+.logo-image {
+    width: 80px;
 }

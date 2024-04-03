@@ -7,18 +7,16 @@ export const Periods = () => {
     const ppes = useAppSelector((state) => state.ppes);
 
     return (
-        <Fragment>
-            <div className="col">
-                <h2>Периодичность</h2>
-                <table className='table table-striped'>
-                    <PeriodsHeaders />
-                    <tbody className='table-group-divider'>
-                        {ppes.map((ppe) => (
-                            <PeriodsTableRow ppe={ppe} key={ppe.id} />
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </Fragment>
+        <div className="col px-0">
+            <h2>Периодичность</h2>
+            <table className='table table-striped'>
+                <PeriodsHeaders />
+                <tbody className='table-group-divider'>
+                    {ppes.map((ppe) => (
+                        <PeriodsTableRow ppe={ppe} key={ppe.id} />
+                    ))}
+                </tbody>
+            </table>
+        </div>
     )
 }

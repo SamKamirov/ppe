@@ -13,7 +13,7 @@ export const Handbook = () => {
 
     return (
         <Fragment>
-            <div className='col'>
+            <div className='col px-0'>
                 <ReportButtons ref={contentTable} />
                 <table className='table table-striped' ref={contentTable}>
                     <HandbookHeaders />
