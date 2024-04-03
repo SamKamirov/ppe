@@ -3,14 +3,14 @@ import { UsingHeaders } from "../../components/using-headers";
 
 export const Using = () => {
     return (
-        <Fragment>
+        <div className="col px-0">
             <section className="using">
                 <h1>Использование</h1>
                 <table className="table">
-                    <UsingHeaders/>
+                    <UsingHeaders />
                     <tbody></tbody>
                 </table>
             </section>
-        </Fragment>
+        </div>
     )
 }
