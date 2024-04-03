@@ -7,7 +7,7 @@ export const ToolsList = () => {
         <Fragment>
             <ul className="row list-unstyled list-group rounded-0">
                 <li className="list-group-item border-start-0 border-end-0">
-                    <Link to={AppRoutes.PersonCard}>Личная карточка сотрудника</Link>
+                    <Link to={AppRoutes.Tools}>Личная карточка сотрудника</Link>
                 </li>
             </ul>
         </Fragment>

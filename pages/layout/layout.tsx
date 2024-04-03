@@ -12,7 +12,7 @@ export const RootLayout: FC<RouteChildren> = ({ children }) => {
             <section className='row full-height'>
                 <SideBar />
                 <FullHeight>
-                    {children}
+                    <Outlet />
                 </FullHeight>
             </section>
         </section>
