@@ -1,16 +1,7 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { ppes } from "../mocks/ppe";
-import { selectPPE } from "./action";
-import { TInitialState } from "../types/state";
+import { combineReducers, createReducer } from "@reduxjs/toolkit";
+import { SliceNames } from "../../const";
+import { AppData } from "./app-data/app-data";
 
-const initialState: TInitialState = {
-    ppe: null,
-    ppes: ppes
-};
-
-export const reducer = createReducer(initialState, (builder) => {
-    builder
-    .addCase(selectPPE, (state, action) => {
-        state.ppe = action.payload.ppe
-    })
+export const rootReducer = combineReducers({
+    [SliceNames.AppData]: AppData.reducer
 })

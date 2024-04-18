@@ -2,9 +2,15 @@ import React, { Fragment } from "react";
 import { PeriodsHeaders } from "../../components/periods/periods-headers";
 import { useAppSelector } from "../../app/hooks";
 import { PeriodsTableRow } from "../../components/periods/periods-table-row";
+import { getPPES } from "../../store/app-data/app-data-selectors";
+import { HandbookEmpty } from "./handbook-empty";
 
 export const Periods = () => {
-    const ppes = useAppSelector((state) => state.ppes);
+    const ppes = useAppSelector(getPPES);
+
+    if (!ppes) {
+        return <HandbookEmpty />
+    }
 
     return (
         <div className="col px-0">

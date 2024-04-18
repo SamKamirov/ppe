@@ -1,13 +1,19 @@
 import { Nullable } from "vitest";
-import { store } from "../store/store";
-import { ppes } from "../mocks/ppe";
-import { PPE } from "./ppe";
+import { PPE, PPEFull } from "./ppe";
+import { AxiosInstance } from "axios";
+import { store } from "../store";
 
 export type AppDispatch = typeof store.dispatch;
 
 export type State = ReturnType<typeof store.getState>;
 
 export type TInitialState = {
-    ppe: Nullable<PPE>;
-    ppes: PPE[];
-}
+  ppes: Nullable<PPEFull[]>;
+  selectedPPE: Nullable<PPE>;
+};
+
+export type TAsyncThunk = {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+};

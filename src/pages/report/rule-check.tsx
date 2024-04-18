@@ -1,10 +1,11 @@
 import React, { Fragment, ReactNode } from 'react';
-import { Reports } from '../../components/report/reports';
-import { ReportButtons } from '../../components/report/report-buttons';
+import { RuleCheckHeaders } from '../../components/report/rule-check-headers';
 
 export const RuleCheck = (): ReactNode => (
-    <Fragment>
+    <div className='col px-0'>
         <h1>Проверка норм должностей</h1>
-        {/* <ReportButtons /> */}
-    </Fragment>
+        <table className='table table-striped'>
+            <RuleCheckHeaders />
+        </table>
+    </div>
 );

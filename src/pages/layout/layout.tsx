@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { Outlet } from 'react-router-dom';
 import { SideBar } from '../../components/sidebar';
 import { Header } from '../../components/header/header';
 import { FullHeight } from '../../components/full-height';
 import { RouteChildren } from '../../types/utils';
+import { TContainer } from '../../components/toast-container/toast-constainer';
 
 export const RootLayout: FC<RouteChildren> = ({ children }) => {
     return (
@@ -15,6 +15,7 @@ export const RootLayout: FC<RouteChildren> = ({ children }) => {
                     {children}
                 </FullHeight>
             </section>
+            <TContainer />
         </section>
     );
 };
