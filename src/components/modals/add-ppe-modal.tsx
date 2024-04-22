@@ -1,24 +1,23 @@
-import React, { ChangeEvent, FC, FormEvent, FormEventHandler, useRef, useState } from "react";
-import { TModalWindow } from "../../types/utils";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
-import { fetchPPEsAction, uploadPPEAction } from "../../api/api-actions";
+import { setModalType, uploadPPEAction } from "../../api/api-actions";
 import { TAddPPE } from "../../types/ppe";
+import { ContentTypes } from "./source/const";
 
-export const AddPpeModal: FC<TModalWindow> = ({ onClose }) => {
+export const AddPpeModal = () => {
   const dispatch = useAppDispatch();
   const [formState, setFormState] = useState<TAddPPE>({
     fullname: '',
     shortname: '',
-    sertificateid: 0,
-    startdate: new Date(),
-    enddate: new Date(),
-    tobereturned: 0,
+    sertificateId: 0,
+    lifeSpan: 0,
+    toBeReturned: 0,
     isKit: 0,
-    sizetype: 0,
-    unittype: ''
+    sizeType: 0,
+    unitType: ''
   });
 
-  const handleClose = () => onClose(false);
+  const handleClose = () => dispatch(setModalType(ContentTypes.UNKNOWN));
   const handleChange = (e: ChangeEvent<HTMLFormElement>) => {
     const { name, value } = e.target;
     setFormState({
@@ -29,9 +28,9 @@ export const AddPpeModal: FC<TModalWindow> = ({ onClose }) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(formState);
+
     dispatch(uploadPPEAction({ ppe: formState }));
-    dispatch(fetchPPEsAction());
-    handleClose();
   }
 
   return (
@@ -93,30 +92,16 @@ export const AddPpeModal: FC<TModalWindow> = ({ onClose }) => {
               </div>
               <div className="input-group">
                 <label
-                  htmlFor="startDate"
+                  htmlFor="lifeSpan"
                   className="input-group-text input-group-sm w-50"
                 >
-                  Дата начала эксплуатации
+                  Срок эксплуатации, мес
                 </label>
                 <input
-                  type="date"
+                  type="text"
                   className="form-control"
-                  id="startDate"
-                  name="startDate"
-                />
-              </div>
-              <div className="input-group">
-                <label
-                  htmlFor="endDate"
-                  className="input-group-text input-group-sm w-50"
-                >
-                  Дата окончания эксплуатации
-                </label>
-                <input
-                  type="date"
-                  className="form-control"
-                  id="endDate"
-                  name="endDate"
+                  id="lifeSpan"
+                  name="lifeSpan"
                 />
               </div>
               <div className="input-group">

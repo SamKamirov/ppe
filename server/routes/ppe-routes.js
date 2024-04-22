@@ -1,9 +1,9 @@
 const express = require("express");
-const { getPPEs, getPPE, insertPPE } = require("../queries/ppes");
+const { getPPEs, getPPE, insertPPE, deletePPE } = require("../controllers/ppes");
 const router = express.Router();
 
-router.get("/ppes", getPPEs);
-router.post("/ppes/upload", insertPPE);
-router.get("/ppes/:id", getPPE);
+router.route("/").get(getPPEs);
+router.route("/upload").post(insertPPE);
+router.route("/:id").get(getPPE).delete(deletePPE);
 
 module.exports = router;

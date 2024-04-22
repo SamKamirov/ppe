@@ -13,5 +13,6 @@ export const TContainer = () => (
         draggable
         pauseOnHover
         theme="light"
-        transition={Bounce} />
+        transition={Bounce}
+    />
 )

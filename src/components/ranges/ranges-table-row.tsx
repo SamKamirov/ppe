@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { TRange } from "../../types/ppe";
 import { useAppDispatch } from "../../app/hooks";
-import { selectPPE } from "../../store/action";
 
 export const RangesTableRow: FC<TRange> = ({ range }) => {
     const { fullTitle, min_size, max_size } = range;

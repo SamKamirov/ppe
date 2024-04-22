@@ -1,13 +1,16 @@
 const isValidPPE = (rest) => {
-  const { fullname, shortname, sertificateId, startDate, endDate, unitType } =
-    rest;
+  const {
+    fullname,
+    shortname,
+    sertificateId,
+    lifeSpan,
+    unitType } = rest;
 
   if (
     fullname &&
     shortname &&
-    sertificateId &&
-    startDate &&
-    endDate &&
+    Number(sertificateId) &&
+    lifeSpan > 0,
     unitType
   ) {
     return true;

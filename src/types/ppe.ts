@@ -1,22 +1,13 @@
 export type PPE = {
     id: number;
-    title: string;
-    fullTitle: string;
-    unit: string;
-    lifespan: number;
-};
-
-export type PPEFull = {
-    id: number;
     fullname: string;
     shortname: string;
-    sertificateid: number;
-    startdate: Date;
-    enddate: Date;
-    tobereturned: number;
+    sertificateId: number;
+    lifeSpan: number;
+    toBeReturned: number;
     isKit: number;
-    sizetype: number;
-    unittype: string;
+    sizeType: number;
+    unitType: string;
 }
 
 export type Range = {
@@ -31,6 +22,6 @@ export type TPreview = {ppe: PPE};
 
 export type AppProps = {ppes: PPE[]};
 
-export type TRow = {ppe: PPEFull};
+export type TRow = {ppe: PPE};
 
-export type TAddPPE = Omit<PPEFull, "id"> ;
+export type TAddPPE = Omit<PPE, "id"> ;

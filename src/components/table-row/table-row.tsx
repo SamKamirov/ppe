@@ -1,11 +1,10 @@
 import React, { FC } from "react";
 import { TRow } from "../../types/ppe";
 import { useAppDispatch } from "../../app/hooks";
-import { selectPPE } from "../../store/action";
 import { fetchPPEAction } from "../../api/api-actions";
 
 export const TableRow: FC<TRow> = ({ ppe }) => {
-    const { id, fullname, shortname, unittype: unitType } = ppe;
+    const { id, fullname, shortname, unitType } = ppe;
     const dispatch = useAppDispatch();
     const handleClick = () => dispatch(fetchPPEAction(id));
 
