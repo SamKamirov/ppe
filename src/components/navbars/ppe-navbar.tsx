@@ -1,10 +1,10 @@
-import React, { FC, forwardRef, MutableRefObject, useCallback } from "react"
-import { ContentTypes } from "../modals/source/const";
-import { setModalType } from "../../api/api-actions";
+import React, { forwardRef, MutableRefObject, useCallback } from "react";
 import { useAppDispatch } from "../../app/hooks";
+import { setModalType } from "../../api/api-actions";
+import { ContentTypes } from "../modals/source/const";
 import { utils, writeFile } from "xlsx";
 
-export const ControlButtons = forwardRef((_, ref?) => {
+export const PPENavbar = forwardRef((_, ref) => {
     const currentRef = ref as MutableRefObject<HTMLTableElement>;
     const dispatch = useAppDispatch();
     const handleClick = () => dispatch(setModalType(ContentTypes.AddPPE));

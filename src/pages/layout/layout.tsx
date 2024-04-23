@@ -27,8 +27,10 @@ export const RootLayout: FC<RouteChildren> = ({ children }) => {
             <section className='row full-height'>
                 <SideBar />
                 <FullHeight>
-                    {children}
-                    {selectedPPE && <Preview ppe={selectedPPE} />}
+                    <div className='col px-0'>
+                        {children}
+                        {selectedPPE && <Preview ppe={selectedPPE} />}
+                    </div>
                 </FullHeight>
             </section>
             <TContainer />

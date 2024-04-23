@@ -45,8 +45,5 @@ export const AppData = createSlice({
             state.selectedPPE = null;
             state.modalType = ContentTypes.UNKNOWN;
         })
-        // .addCase(setError.fulfilled, (state, action) => {
-        //     state.error = action.payload;
-        // })
     },    
 })

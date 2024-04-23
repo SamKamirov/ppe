@@ -73,9 +73,9 @@ export const App = () => (
     <Route
       path={AppRoutes.Give}
       element={
-        <ReportLayout>
+        <RootLayout>
           <Give />
-        </ReportLayout>
+        </RootLayout>
       }
     />
     <Route />

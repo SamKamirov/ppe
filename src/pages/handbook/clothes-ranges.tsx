@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RangesHeaders } from '../../components/ranges/ranges-headers';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ranges } from '../../mocks/ranges';
 import { RangesTableRow } from '../../components/ranges/ranges-table-row';
+import { fetchPPEAction } from '../../api/api-actions';
 
 export const Ranges = () => {
-    // const ppesRanges = useAppSelector((state) => state)
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(fetchPPEAction(null))
+    }, [dispatch])
+
     return (
         <div className='col px-0'>
             <section className='using'>

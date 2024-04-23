@@ -8,13 +8,12 @@ const getPPEs = async (req, res) => {
     const response = await pool.query("select * from ppe_list");
     res.status(200).json(response.rows);
   } catch (error) {
-    res.status(500).json({ message: 'Ошибка получения данных' })
+    res.status(500).json({ message: 'Ошибка получения данных', error: error })
   }
 };
 
 const insertPPE = async (req, res) => {
   const body = req.body;
-  console.log(body);
 
   if (!isValidPPE(body)) {
     res.status(400).json({ message: "Ошибка! Проверьте правильность введённых данных" });
