@@ -6,4 +6,6 @@ const getPPEQuery = (id) => `select * from ppe_list where id = ${id} limit 1`;
 
 const deletePPEQuery = (id) => `delete from ppe_list where id = ${id}`;
 
-module.exports = { insertPPEQuery, getPPEQuery, deletePPEQuery };
+const insertUsingAct = (body) => `INSERT INTO ppe_using(act_title, act_title_full) values('${body.actTitle}', '${body.actTitleFull}')`
+
+module.exports = { insertPPEQuery, getPPEQuery, deletePPEQuery, insertUsingAct };

@@ -2,23 +2,13 @@ import React, { forwardRef, MutableRefObject, useCallback } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { setModalType } from "../../api/api-actions";
 import { ContentTypes } from "../modals/source/const";
-import { utils, writeFile } from "xlsx";
+import { saveToFile } from "./source";
 
 export const PPENavbar = forwardRef((_, ref) => {
     const currentRef = ref as MutableRefObject<HTMLTableElement>;
     const dispatch = useAppDispatch();
     const handleClick = () => dispatch(setModalType(ContentTypes.AddPPE));
-
-    const saveToFile = useCallback(() => {
-        if (currentRef) {
-            const report = utils.table_to_book(currentRef.current);
-            // const max_width = report.reduce((w, r) => Math.max(w, r.name.length), 10);
-            // worksheet["!cols"] = [{ wch: max_width }];
-            writeFile(report, 'Отчёт «Список элементов справочника».xls');
-        }
-    }, []);
-
-    const handleReportClick = () => saveToFile();
+    const handleReportClick = () => saveToFile({ currentRef });
 
     return (
         <div>

@@ -9,3 +9,9 @@ export type TServerPPE = {
     sizetype: number;
     unittype: string;
 }
+
+export type TServerAct = {
+    id: number;
+    act_title: string;
+    act_title_full: string;
+}

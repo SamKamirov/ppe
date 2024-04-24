@@ -28,8 +28,6 @@ export const AddPpeModal = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formState);
-
     dispatch(uploadPPEAction({ ppe: formState }));
   }
 

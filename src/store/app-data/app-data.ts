@@ -1,18 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SliceNames } from "../../../const";
-import { Nullable } from "vitest";
-import { PPE } from "../../types/ppe";
-import { deletePPEAction, fetchPPEAction, fetchPPEsAction, setError, setModalType, uploadPPEAction } from "../../api/api-actions";
+import { deletePPEAction, fetchActsAction, fetchPPEAction, fetchPPEsAction, setModalType, uploadPPEAction } from "../../api/api-actions";
 import { TInitialState } from "../../types/state";
 import { ContentTypes } from "../../components/modals/source/const";
-import { toast } from "react-toastify";
 
 const initialState: TInitialState = {
     ppes: null,
     selectedPPE: null,
     isLoading: false,
     modalType: ContentTypes.UNKNOWN,
-    error: null
+    error: null,
+    acts: null
 }
 
 export const AppData = createSlice({
@@ -44,6 +42,16 @@ export const AppData = createSlice({
         .addCase(deletePPEAction.fulfilled, (state) => {
             state.selectedPPE = null;
             state.modalType = ContentTypes.UNKNOWN;
+        })
+        .addCase(fetchActsAction.pending, (state) => {
+            state.isLoading = true;
+        })
+        .addCase(fetchActsAction.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.acts = action.payload;
+        })
+        .addCase(fetchActsAction.rejected, (state, action) => {
+            state.isLoading = false;
         })
     },    
 })

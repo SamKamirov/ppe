@@ -1,7 +1,7 @@
 import { TAddPPE } from "../../types/ppe"
-import { TServerPPE } from "../../types/server"
+import { TServerAct, TServerPPE } from "../../types/server"
 
-export const adaptToServer = (data: TAddPPE) => {
+export const adaptPPEToServer = (data: TAddPPE) => {
     return {
         fullname: data.fullname,
         shortname: data.shortname,
@@ -15,7 +15,7 @@ export const adaptToServer = (data: TAddPPE) => {
     
 }
 
-export const adaptToClient = (data: TServerPPE) => {
+export const adaptPPEToClient = (data: TServerPPE) => {
     return {
         id: data.id,
         fullname: data.fullname,
@@ -28,3 +28,13 @@ export const adaptToClient = (data: TServerPPE) => {
         unitType: data.unittype
     }
 }
+
+export const adaptActToClient = (data: TServerAct) => {
+    return {
+        id: data.id,
+        actTitle: data.act_title,
+        actTitleFull: data.act_title_full
+    }
+}
+
+export const adaptActsToClients = (data: TServerAct[]) => data.map((item) => adaptActToClient(item));

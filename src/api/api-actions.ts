@@ -1,12 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SliceNames } from "../../const";
 import { TAsyncThunk } from "../types/state";
-import { PPE, TAddPPE } from "../types/ppe";
-import { adaptToClient } from "./source";
-import { TServerPPE } from "../types/server";
+import { PPE, TAct, TAddAct, TAddPPE, TUploadUsingAct } from "../types/ppe";
+import { adaptActsToClients, adaptActToClient, adaptPPEToClient } from "./source";
+import { TServerAct, TServerPPE } from "../types/server";
 import { ContentTypes } from "../components/modals/source/const";
 import { Nullable } from "vitest";
-import { toast } from "react-toastify";
 
 type TPPEData = {ppe: TAddPPE};
 type TUploadPPE = {message: string}
@@ -15,7 +14,7 @@ const fetchPPEsAction = createAsyncThunk<PPE[], undefined, TAsyncThunk>(
   `${SliceNames.AppData}/fetchPPEs`,
   async (_arg, { extra: api }) => {
     const { data } = await api.get("/ppes");
-    const adaptedToClient = Array.from(data, adaptToClient);
+    const adaptedToClient = Array.from(data, adaptPPEToClient);
     return adaptedToClient;
   },
 );
@@ -32,8 +31,9 @@ const uploadPPEAction = createAsyncThunk<TUploadPPE, TPPEData, TAsyncThunk>(
 const fetchPPEAction = createAsyncThunk<PPE, string | undefined | number, TAsyncThunk>(
   `${SliceNames.AppData}/fetchPPE`,
   async (ppeId: string | undefined, {extra: api}) => {
+    console.log(ppeId);  
     const { data } = await api.get<TServerPPE>(`/ppes/${ppeId}`)   
-    const adaptedToClient = data && adaptToClient(data);    
+    const adaptedToClient = data && adaptPPEToClient(data);    
     return adaptedToClient;
   }
 )
@@ -61,4 +61,22 @@ const setError = createAsyncThunk<Nullable<string>, Nullable<string>, TAsyncThun
   }
 )
 
-export { fetchPPEsAction, uploadPPEAction, fetchPPEAction, deletePPEAction, setModalType, setError };
+const uploadUsingAct = createAsyncThunk<TAddAct, TUploadUsingAct, TAsyncThunk>(
+  `${SliceNames.AppData}/uploadUsingAct`,
+  async ({act}, {extra: api}) => {   
+    console.log(act);
+    const {data} = await api.post(`/ppes/acts/act`, {...act});
+    return data
+  }
+)
+
+const fetchActsAction = createAsyncThunk<TAct[], undefined, TAsyncThunk>(
+  `${SliceNames.AppData}/fetchActs`,
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get<TServerAct[]>('/ppes/acts/act');
+    const adaptedActToClient = adaptActsToClients(data);
+    return adaptedActToClient;
+  }
+)
+
+export { fetchPPEsAction, uploadPPEAction, fetchPPEAction, deletePPEAction, setModalType, fetchActsAction, uploadUsingAct};

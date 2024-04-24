@@ -6,13 +6,14 @@ import { App } from "./app/app/app";
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import { store } from './store';
-import { fetchPPEsAction } from './api/api-actions';
+import { fetchActsAction, fetchPPEsAction } from './api/api-actions';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
 store.dispatch(fetchPPEsAction());
+store.dispatch(fetchActsAction());
 
 root.render(
     <React.StrictMode>

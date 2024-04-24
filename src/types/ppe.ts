@@ -24,4 +24,16 @@ export type AppProps = {ppes: PPE[]};
 
 export type TRow = {ppe: PPE};
 
-export type TAddPPE = Omit<PPE, "id"> ;
+export type TAddPPE = Omit<PPE, "id">;
+
+export type TAct = {
+    id: number;
+    actTitle: string;
+    actTitleFull: string;
+}
+
+export type TAddAct = Omit<TAct, 'id'>;
+
+export type TUploadUsingAct = {
+    act: TAddAct;
+}

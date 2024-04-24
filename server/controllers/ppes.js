@@ -1,18 +1,15 @@
+const asyncWrapper = require("../async");
 const connection = require("../connection");
 const { isValidPPE } = require("../utils/utils");
-const { insertPPEQuery, getPPEQuery, deletePPEQuery } = require('./queries/ppes');
+const { insertPPEQuery, getPPEQuery, deletePPEQuery, insertUsingAct } = require('./queries/ppes');
 const { pool } = connection;
 
-const getPPEs = async (req, res) => {
-  try {
-    const response = await pool.query("select * from ppe_list");
-    res.status(200).json(response.rows);
-  } catch (error) {
-    res.status(500).json({ message: 'Ошибка получения данных', error: error })
-  }
-};
+const getPPEs = asyncWrapper(async (req, res) => {
+  const response = await pool.query("select * from ppe_list");
+  res.status(200).json(response.rows);
+})
 
-const insertPPE = async (req, res) => {
+const insertPPE = asyncWrapper(async (req, res) => {
   const body = req.body;
 
   if (!isValidPPE(body)) {
@@ -20,33 +17,31 @@ const insertPPE = async (req, res) => {
     return
   }
 
-  try {
-    const response = await pool.query(insertPPEQuery(body));
-    res.status(201).json({ message: 'Успешно добавлено!' });
-  } catch (error) {
-    res.status(500).json({ message: error });
-  }
-};
+  const response = await pool.query(insertPPEQuery(body));
+  res.status(201).json({ message: 'Успешно добавлено!' });
+});
 
-const getPPE = async (req, res) => {
+const getPPE = asyncWrapper(async (req, res) => {
   const id = req.params.id;
+  const response = await pool.query(getPPEQuery(id));
+  res.status(200).json(response.rows[0]);
+})
 
-  try {
-    const response = await pool.query(getPPEQuery(id));
-    res.status(200).json(response.rows[0]);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-const deletePPE = async (req, res) => {
+const deletePPE = asyncWrapper(async (req, res) => {
   const id = req.params.id;
-  try {
-    const response = await pool.query(deletePPEQuery(id));
-    res.status(200).json(response);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-}
+  const response = await pool.query(deletePPEQuery(id));
+  res.status(200).json(response);
+})
 
-module.exports = { getPPEs, insertPPE, getPPE, deletePPE };
+const insertPPEUsingAct = asyncWrapper(async (req, res) => {
+  const body = req.body;
+  const response = await pool.query(insertUsingAct(body))
+  res.status(201).json(response);
+})
+
+const getActs = asyncWrapper(async (req, res) => {
+  const response = await pool.query('select * from ppe_using')
+  res.status(201).json(response.rows);
+})
+
+module.exports = { getPPEs, insertPPE, getPPE, deletePPE, getActs, insertPPEUsingAct };

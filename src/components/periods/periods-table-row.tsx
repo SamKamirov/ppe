@@ -6,7 +6,6 @@ import { fetchPPEAction } from "../../api/api-actions";
 export const PeriodsTableRow: FC<TRow> = ({ ppe }) => {
     const { id, fullname, lifeSpan } = ppe;
 
-
     const dispatch = useAppDispatch();
     const handleClick = () => dispatch(fetchPPEAction(id));
 

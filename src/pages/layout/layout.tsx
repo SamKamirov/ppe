@@ -29,8 +29,8 @@ export const RootLayout: FC<RouteChildren> = ({ children }) => {
                 <FullHeight>
                     <div className='col px-0'>
                         {children}
-                        {selectedPPE && <Preview ppe={selectedPPE} />}
                     </div>
+                    {selectedPPE && <Preview ppe={selectedPPE} />}
                 </FullHeight>
             </section>
             <TContainer />

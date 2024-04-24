@@ -1,15 +1,11 @@
-import React, { FC, forwardRef, MutableRefObject, useCallback } from "react"
-import { ContentTypes } from "../modals/source/const";
 import { setModalType } from "../../api/api-actions";
 import { useAppDispatch } from "../../app/hooks";
-import { saveToFile } from "../navbars/source";
+import { ContentTypes } from "../modals/source/const";
+import React from "react";
 
-export const ControlButtons = forwardRef((_, ref?) => {
-    const currentRef = ref as MutableRefObject<HTMLTableElement>;
+export const PPEUsingNavbar = () => {
     const dispatch = useAppDispatch();
-    const handleClick = () => dispatch(setModalType(ContentTypes.AddPPE));
-
-    const handleReportClick = () => saveToFile({ currentRef });
+    const handleClick = () => dispatch(setModalType(ContentTypes.AddPPEUsing));
 
     return (
         <div>
@@ -21,9 +17,6 @@ export const ControlButtons = forwardRef((_, ref?) => {
                                 <li className="nav-item">
                                     <button className="btn btn-primary" aria-current="page" onClick={handleClick}>Добавить</button>
                                 </li>
-                                <li className="nav-item">
-                                    <button className="btn btn-primary" aria-current="page" onClick={handleReportClick}>Выгрузить отчёт</button>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -31,4 +24,4 @@ export const ControlButtons = forwardRef((_, ref?) => {
             </div>
         </div>
     )
-})
+}

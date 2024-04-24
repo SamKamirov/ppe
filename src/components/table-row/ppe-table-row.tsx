@@ -3,8 +3,9 @@ import { TRow } from "../../types/ppe";
 import { useAppDispatch } from "../../app/hooks";
 import { fetchPPEAction } from "../../api/api-actions";
 
-export const TableRow: FC<TRow> = ({ ppe }) => {
+export const PPETableRow: FC<TRow> = ({ ppe }) => {
     const { id, fullname, shortname, unitType } = ppe;
+
     const dispatch = useAppDispatch();
     const handleClick = () => dispatch(fetchPPEAction(id));
 

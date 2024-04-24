@@ -1,5 +1,6 @@
 export enum ContentTypes {
     UNKNOWN = 'Unknown',
     AddPPE = 'AddPPE',
-    Confirm = 'Confirm'
+    Confirm = 'Confirm',
+    AddPPEUsing = 'AddPpeUsing'
 }

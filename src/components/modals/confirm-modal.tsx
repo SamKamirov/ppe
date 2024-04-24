@@ -5,8 +5,9 @@ import { getSelectedPPE } from "../../store/app-data/app-data-selectors";
 
 export const ConfirmModal = () => {
     const selectedPPE = useAppSelector(getSelectedPPE);
+    const { id, fullname } = selectedPPE;
     const dispatch = useAppDispatch();
-    const handleClose = () => dispatch(deletePPEAction(selectedPPE.id))
+    const handleClose = () => dispatch(deletePPEAction(id))
 
     return (
         <div className="modal fade show" role="dialog" id="modal">
@@ -17,7 +18,7 @@ export const ConfirmModal = () => {
                     </div>
                     <div className="modal-body">
                         <p>Удалить запись?</p>
-                        <p>Наименование: {selectedPPE.fullname}</p>
+                        <p>Наименование: {fullname}</p>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-danger" aria-label="Close" onClick={handleClose}>Удалить</button>

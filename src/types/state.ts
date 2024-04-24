@@ -1,8 +1,9 @@
 import { Nullable } from "vitest";
-import { PPE } from "./ppe";
+import { PPE, TAct } from "./ppe";
 import { AxiosInstance } from "axios";
 import { store } from "../store";
 import { ContentTypes } from "../components/modals/source/const";
+import { TServerAct } from "./server";
 
 export type AppDispatch = typeof store.dispatch;
 
@@ -14,6 +15,7 @@ export type TInitialState = {
   isLoading: boolean;
   modalType: ContentTypes;
   error: Nullable<string>;
+  acts: Nullable<TAct[]>
 };
 
 export type TAsyncThunk = {
@@ -21,3 +23,7 @@ export type TAsyncThunk = {
   state: State;
   extra: AxiosInstance;
 };
+
+export type User = {
+  username: string;
+}

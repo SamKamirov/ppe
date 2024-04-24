@@ -15,6 +15,7 @@ enum AppRoutes {
 
 export const SliceNames = {
   AppData: "AppData",
+  UserData: 'UserData'
 };
 
 export { AppRoutes };
