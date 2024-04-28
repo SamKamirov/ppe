@@ -1,6 +1,6 @@
 const express = require("express");
-const { getPPEs, getPPE, insertPPE, deletePPE, insertPPEUsingAct, getActs } = require("../controllers/ppes");
 const router = express.Router();
+const { getPPEs, getPPE, insertPPE, deletePPE, insertPPEUsingAct, getActs } = require("../controllers/ppes");
 
 router.route("/").get(getPPEs);
 router.route("/upload").post(insertPPE);

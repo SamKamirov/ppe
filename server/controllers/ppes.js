@@ -1,12 +1,13 @@
 const asyncWrapper = require("../async");
 const connection = require("../connection");
-const { isValidPPE } = require("../utils/utils");
-const { insertPPEQuery, getPPEQuery, deletePPEQuery, insertUsingAct } = require('./queries/ppes');
+const { isValidPPE, adaptPPEToClient } = require("../utils/utils");
+const { insertPPEQuery, getPPEQuery, deletePPEQuery, insertUsingAct, getPPEsQuery } = require('../queries/ppes');
 const { pool } = connection;
 
 const getPPEs = asyncWrapper(async (req, res) => {
-  const response = await pool.query("select * from ppe_list");
-  res.status(200).json(response.rows);
+  const response = await pool.query(getPPEsQuery());
+  const adaptedToClient = Array.from(response.rows, adaptPPEToClient);
+  res.status(200).json(adaptedToClient);
 })
 
 const insertPPE = asyncWrapper(async (req, res) => {
@@ -24,7 +25,8 @@ const insertPPE = asyncWrapper(async (req, res) => {
 const getPPE = asyncWrapper(async (req, res) => {
   const id = req.params.id;
   const response = await pool.query(getPPEQuery(id));
-  res.status(200).json(response.rows[0]);
+  const adaptedToClient = Array.from(response.rows, adaptPPEToClient);
+  res.status(200).json(adaptedToClient[0]);
 })
 
 const deletePPE = asyncWrapper(async (req, res) => {
@@ -35,12 +37,12 @@ const deletePPE = asyncWrapper(async (req, res) => {
 
 const insertPPEUsingAct = asyncWrapper(async (req, res) => {
   const body = req.body;
-  const response = await pool.query(insertUsingAct(body))
+  const response = await pool.query(insertUsingAct(body));
   res.status(201).json(response);
 })
 
 const getActs = asyncWrapper(async (req, res) => {
-  const response = await pool.query('select * from ppe_using')
+  const response = await pool.query('select * from ppe_using');
   res.status(201).json(response.rows);
 })
 
