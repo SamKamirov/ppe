@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SliceNames } from "../../../const";
-import { deletePPEAction, fetchHeightRanges, fetchPPEAction, fetchPPEsAction, fetchSertificates, setModalType, uploadPPEAction, uploadSertificate } from "../../api/api-actions";
+import { deletePPEAction, fetchEmployees, fetchHeightRanges, fetchPPEAction, fetchPPEsAction, fetchSertificates, fetchSetRuleAction, setModalType, setRuleAction, uploadPPEAction, uploadSertificate } from "../../api/api-actions";
 import { ContentTypes } from "../../components/modals/source/const";
 import { Nullable } from "vitest";
-import { HeightRanges, PPE, Sertificate} from "../../types/ppe";
+import { Employee, HeightRanges, Period, PPE, Sertificate} from "../../types/ppe";
 
 type AppDataInitialState = {
     ppes: Nullable<PPE[]>;
@@ -11,7 +11,10 @@ type AppDataInitialState = {
     isLoading: boolean;
     modalType: ContentTypes;
     sertificates: Nullable<Sertificate[]>;
-    heightRanges: Nullable<HeightRanges[]>
+    heightRanges: Nullable<HeightRanges[]>;
+    employees: Nullable<Employee[]>;
+    periods: Nullable<Period[]>;
+    // error: Nullable<string>;
 };
 
 const initialState: AppDataInitialState = {
@@ -20,7 +23,10 @@ const initialState: AppDataInitialState = {
     isLoading: false,
     modalType: ContentTypes.UNKNOWN,
     sertificates: null,
-    heightRanges: null
+    heightRanges: null,
+    employees: null,
+    periods: null,
+    // error: null
 };
 
 const appData = createSlice({
@@ -65,6 +71,19 @@ const appData = createSlice({
         })
         .addCase(fetchHeightRanges.fulfilled, (state, action) => {
             state.heightRanges = action.payload;
+        })
+        .addCase(fetchEmployees.fulfilled, (state, action) => {
+            state.employees = action.payload;
+        })
+        .addCase(fetchSetRuleAction.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.ppes = action.payload.ppes;
+            state.periods = action.payload.periods;
+            state.employees = action.payload.employees;
+            state.sertificates = action.payload.sertificates;
+        })
+        .addCase(setRuleAction.fulfilled, (state) => {
+            state.isLoading = false;
         })
     },    
 });

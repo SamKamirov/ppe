@@ -5,7 +5,7 @@ export const adaptPPEToServer = (data: TAddPPE) => {
     return {
         fullname: data.fullname,
         shortname: data.shortname,
-        sertificateid: data.sertificateId,
+        // sertificateid: data.sertificateId,
         lifespan: data.lifeSpan,
         tobereturned: data.toBeReturned,
         iskit: data.isKit,

@@ -2,19 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { SliceNames } from "../../../const";
 import { Nullable } from "vitest";
 import { fetchSizesReport } from "../../api/api-actions";
+import { Employee } from "../../types/ppe";
 
-type SizesReport = {
-    firstName: string,
-    middleName: string,
-    lastName: string,
-    personellNumber: number,
-    structuralUnit: string,
-    position: string,
-    clothesSize: string,
-    shoeSize: number,
-    headwearSize: string,
-    gasMaskSize: string
-};
+export type SizesReport = Omit<Employee, 'id'>
 
 type InitialState  = {
     sizesReport: Nullable<SizesReport[]>

@@ -15,7 +15,7 @@ export const AddPpeModal = () => {
   const [formState, setFormState] = useState<TAddPPE>({
     fullname: '',
     shortname: '',
-    sertificateId: 0,
+    // sertificateId: 0,
     lifeSpan: 0,
     toBeReturned: 0,
     isKit: 0,
@@ -57,12 +57,12 @@ export const AddPpeModal = () => {
                 <label htmlFor="shortname" className="input-group-text input-group-sm w-50">Наименование</label>
                 <input type="text" className="form-control" id="shortname" name="shortname" />
               </div>
-              <div className="input-group">
+              {/* <div className="input-group">
                 <label htmlFor="sertificateId" className="input-group-text input-group-sm w-50">Сертификат соответствия</label>
                 <select className="form-select form-control" id="sertificateId" name="sertificateId">
                   {sertificates && sertificates.map((sertificate) => <option value={sertificate.id} key={sertificate.id}>{sertificate.title}</option>)}
                 </select>
-              </div>
+              </div> */}
               <div className="input-group">
                 <label htmlFor="lifeSpan" className="input-group-text input-group-sm w-50">Срок эксплуатации, мес</label>
                 <input type="text" className="form-control" id="lifeSpan" name="lifeSpan" />

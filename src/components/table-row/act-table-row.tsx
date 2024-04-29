@@ -6,7 +6,7 @@ type Props = {
     sertificate: Sertificate;
 }
 
-export const ActTableRow: FC<Props> = ({ sertificate }) => {
+export const SertificateTableRow: FC<Props> = ({ sertificate }) => {
     const { id, title } = sertificate;
 
     return (

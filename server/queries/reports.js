@@ -3,4 +3,6 @@ const getSizesReport = () => ('select personell_number, first_name, middle_name,
     'inner join structural_units on employee.structural_unit = structural_units.id ' +
     'inner join positions on employee.position = positions.id; ');
 
+// const getRulesCheckReportData = () => ();
+
 module.exports = { getSizesReport };

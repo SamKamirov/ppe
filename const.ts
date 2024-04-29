@@ -16,7 +16,8 @@ enum AppRoutes {
 export const SliceNames = {
   AppData: "AppData",
   UserData: 'UserData',
-  ReportData: 'ReportData'
+  ReportData: 'ReportData',
+  ServiceData: 'ServiceData'
 } as const;
 
 export { AppRoutes };

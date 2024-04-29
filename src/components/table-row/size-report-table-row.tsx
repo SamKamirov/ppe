@@ -1,21 +1,10 @@
 import React, { FC } from "react";
 import { useAppDispatch } from "../../app/hooks";
-
-export type SizeItem = {
-    personellNumber: number;
-    firstName: string;
-    middleName: string;
-    lastName: string;
-    structuralUnit: string;
-    position: string;
-    clothesSize: string;
-    shoeSize: number;
-    headwearSize: string;
-    gasMaskSize: string;
-}
+import { Employee } from "../../types/ppe";
+import { SizesReport } from "../../store/report-data/report-data";
 
 type Props = {
-    sizeItem: SizeItem;
+    sizeItem: SizesReport;
 }
 
 export const SizeReportTableRow: FC<Props> = ({ sizeItem }) => {

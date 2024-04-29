@@ -1,15 +1,17 @@
 import React, { FC } from 'react';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { TPreview } from '../../types/ppe';
 import { fetchPPEAction, setModalType } from '../../api/api-actions';
 import { formatForUser } from './source';
 import { ConfirmModal } from '../modals/confirm-modal';
 import { ContentTypes } from '../modals/source/const';
+import { getHeightRanges } from '../../store/app-data/app-data-selectors';
 
 export const Preview: FC<TPreview> = ({ ppe }) => {
     const dispatch = useAppDispatch();
 
-    const { shortname, fullname, unitType, lifeSpan, isKit, sertificateId, sizeType, toBeReturned } = ppe;
+    const { fullname, unitType, lifeSpan, isKit, sizeType, toBeReturned } = ppe;
+    const { maxHeight, minHeight } = useAppSelector(getHeightRanges).find((item) => item.id === sizeType);
 
     const handleClose = () => dispatch(fetchPPEAction(null));
     const handleDelete = () => dispatch(setModalType(ContentTypes.Confirm));
@@ -26,12 +28,12 @@ export const Preview: FC<TPreview> = ({ ppe }) => {
                     <div className="modal-body">
                         <div className="input-group">
                             <label className="form-control">Полное наименование</label>
-                            <label className="form-control text-break">{shortname}</label>
+                            <label className="form-control text-break">{fullname}</label>
                         </div>
-                        <div className="input-group">
+                        {/* <div className="input-group">
                             <label className="form-control">Сертификат соответствия</label>
                             <label className="form-control text-break">{sertificateId}</label>
-                        </div>
+                        </div> */}
                         <div className="input-group">
                             <label className="form-control">Срок эксплуатации, мес</label>
                             <label className="form-control text-break">{lifeSpan}</label>
@@ -46,7 +48,7 @@ export const Preview: FC<TPreview> = ({ ppe }) => {
                         </div>
                         <div className="input-group">
                             <label className="form-control">Тип размера</label>
-                            <label className="form-control text-break">{sizeType}</label>
+                            <label className="form-control text-break">от {minHeight} до {maxHeight}</label>
                         </div>
                         <div className="input-group">
                             <label className="form-control">Единица измерения</label>

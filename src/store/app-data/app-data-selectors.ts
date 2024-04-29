@@ -7,6 +7,8 @@ const selectModalType = (state: State) => state[SliceNames.AppData].modalType;
 const selectLoadingState = (state: State) => state[SliceNames.AppData].isLoading;
 const selectSertificates = (state: State) => state[SliceNames.AppData].sertificates;
 const selectHeightRanges = (state: State) => state[SliceNames.AppData].heightRanges;
+const selectEmployees = (state: State) => state[SliceNames.AppData].employees;
+const selectPeriods = (state: State) => state[SliceNames.AppData].periods;
 
 export const getPPES = createSelector(
     [selectPPEs],
@@ -37,3 +39,13 @@ export const getHeightRanges = createSelector(
     [selectHeightRanges],
     (heightRanges) => heightRanges
 );
+
+export const getEmployees = createSelector(
+    [selectEmployees],
+    (employees) => employees
+);
+
+export const getPeriods = createSelector(
+    [selectPeriods],
+    (periods) => periods
+)

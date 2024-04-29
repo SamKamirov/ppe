@@ -1,12 +1,22 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SliceNames } from "../../const";
 import { TAsyncThunk } from "../types/state";
-import { AddSertificate, HeightRanges, PPE, Sertificate, TAddPPE } from "../types/ppe";
+import { AddSertificate, Employee, HeightRanges, Period, PPE, Rule, Sertificate, SetRule, TAddPPE } from "../types/ppe";
 import { ContentTypes } from "../components/modals/source/const";
-import { SizeItem } from "../components/table-row/size-report-table-row";
+import { SizesReport } from "../store/report-data/report-data";
 
 type TPPEData = {ppe: TAddPPE};
 type TUploadPPE = {message: string}
+type SetRuleData = {
+  ppes: PPE[],
+  periods: Period[],
+  employees: Employee[],
+  sertificates: Sertificate[]
+};
+
+type ReturnRule = {
+  message: string;
+};
 
 const fetchPPEsAction = createAsyncThunk<PPE[], undefined, TAsyncThunk>(
   `${SliceNames.AppData}/fetchPPEs`,
@@ -67,7 +77,7 @@ const uploadSertificate = createAsyncThunk<AddSertificate, AddSertificate, TAsyn
   }
 );
 
-const fetchSizesReport = createAsyncThunk<SizeItem[], undefined, TAsyncThunk>(
+const fetchSizesReport = createAsyncThunk<SizesReport[], undefined, TAsyncThunk>(
   `${SliceNames.ReportData}/fetchSizesReport`,
   async (_agr, {extra: api}) => {
     const {data} = await api.get('/sizes');
@@ -81,6 +91,31 @@ const fetchHeightRanges = createAsyncThunk<HeightRanges[], undefined, TAsyncThun
     const {data} = await api.get('/ppes/height-ranges');
     return data;
   }
+);
+
+const fetchEmployees = createAsyncThunk<Employee[], undefined, TAsyncThunk>(
+  `${SliceNames.AppData}/fetchEmployess`,
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get('/services');
+    return data;
+  }
+);
+
+const fetchSetRuleAction = createAsyncThunk<SetRuleData, undefined, TAsyncThunk>(
+  `${SliceNames.AppData}/fetchRuleSetData`,
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get('/services');
+    return data;
+  }
+);
+
+const setRuleAction = createAsyncThunk<void, SetRule, TAsyncThunk>(
+  `${SliceNames.AppData}/setRule`,
+  async ({setRuleItem}, {extra: api}) => {
+    await api.post('/services', {...setRuleItem})
+  }
 )
 
-export { fetchPPEsAction, uploadPPEAction, fetchPPEAction, deletePPEAction, setModalType, uploadSertificate, fetchSertificates, fetchSizesReport, fetchHeightRanges};
+export { fetchPPEsAction, uploadPPEAction, fetchPPEAction, 
+  deletePPEAction, setModalType, uploadSertificate, 
+  fetchSertificates, fetchSizesReport, fetchHeightRanges, fetchEmployees, fetchSetRuleAction, setRuleAction};
