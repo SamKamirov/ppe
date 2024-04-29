@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { UsingHeaders } from "../../components/using-headers";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { fetchActsAction, fetchPPEAction } from "../../api/api-actions";
+import { useAppSelector } from "../../app/hooks";
 import { Navbar } from "../../components/navbars/navbar";
 import { NavbarTypes } from "../../components/navbars/source";
-import { getActs } from "../../store/app-data/app-data-selectors";
+import { getSertificates } from "../../store/app-data/app-data-selectors";
 import { TableRow } from "../../components/table-row/table-row-layout";
 import { TableRowTypes } from "../../components/table-row/source";
 import { HandbookEmpty } from "./handbook-empty";
 
 export const Using = () => {
-    const acts = useAppSelector(getActs);
+    const acts = useAppSelector(getSertificates);
 
     if (!acts) {
         return <HandbookEmpty />

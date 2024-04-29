@@ -6,7 +6,6 @@ export const UsingHeaders = () => {
             <tr>
                 <th>Код</th>
                 <th>Наименование правового акта</th>
-                <th>Полное наименование</th>
             </tr>
         </thead>
     )

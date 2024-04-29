@@ -1,9 +1,5 @@
-import { Nullable } from "vitest";
-import { PPE, Sertificate, TAct } from "./ppe";
 import { AxiosInstance } from "axios";
 import { store } from "../store";
-import { ContentTypes } from "../components/modals/source/const";
-import { TServerAct } from "./server";
 
 export type AppDispatch = typeof store.dispatch;
 

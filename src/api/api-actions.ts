@@ -1,11 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SliceNames } from "../../const";
 import { TAsyncThunk } from "../types/state";
-import { PPE, Sertificate, TAct, TAddAct, TAddPPE, TUploadUsingAct } from "../types/ppe";
-import { adaptActsToClients, adaptActToClient, adaptPPEToClient } from "./source";
-import { TServerAct, TServerPPE } from "../types/server";
+import { AddSertificate, PPE, Sertificate, TAddPPE } from "../types/ppe";
 import { ContentTypes } from "../components/modals/source/const";
-import { Nullable } from "vitest";
 import { SizeItem } from "../components/table-row/size-report-table-row";
 
 type TPPEData = {ppe: TAddPPE};
@@ -52,28 +49,12 @@ const setModalType = createAsyncThunk<ContentTypes, ContentTypes, TAsyncThunk>(
   }
 );
 
-const setError = createAsyncThunk<Nullable<string>, Nullable<string>, TAsyncThunk>(
-  `${SliceNames.AppData}/setModalType`,
-  async (error: Nullable<string>) => {
-    return error;
-  }
-);
-
-const uploadUsingAct = createAsyncThunk<TAddAct, TUploadUsingAct, TAsyncThunk>(
-  `${SliceNames.AppData}/uploadUsingAct`,
-  async ({act}, {extra: api}) => {   
-    console.log(act);
-    const {data} = await api.post(`/ppes/acts/act`, {...act});
+const uploadSertificate = createAsyncThunk<AddSertificate, AddSertificate, TAsyncThunk>(
+  `${SliceNames.AppData}/uploadSertificate`,
+  async ({title}, {extra: api}) => {   
+    console.log(title);
+    const {data} = await api.post(`/sertificates`, {title});
     return data
-  }
-);
-
-const fetchActsAction = createAsyncThunk<TAct[], undefined, TAsyncThunk>(
-  `${SliceNames.AppData}/fetchActs`,
-  async (_arg, {extra: api}) => {
-    const {data} = await api.get<TServerAct[]>('/ppes/acts/act');
-    const adaptedActToClient = adaptActsToClients(data);
-    return adaptedActToClient;
   }
 );
 
@@ -93,4 +74,4 @@ const fetchSizesReport = createAsyncThunk<SizeItem[], undefined, TAsyncThunk>(
   }
 )
 
-export { fetchPPEsAction, uploadPPEAction, fetchPPEAction, deletePPEAction, setModalType, fetchActsAction, uploadUsingAct, fetchSertificates, fetchSizesReport};
+export { fetchPPEsAction, uploadPPEAction, fetchPPEAction, deletePPEAction, setModalType, uploadSertificate, fetchSertificates, fetchSizesReport};

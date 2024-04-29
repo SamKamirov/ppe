@@ -1,15 +1,14 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
-import { TAddAct } from "../../types/ppe";
-import { setModalType, uploadPPEAction, uploadUsingAct } from "../../api/api-actions";
+import { setModalType, uploadPPEAction, uploadSertificate } from "../../api/api-actions";
 import { ContentTypes } from "./source/const";
+import { AddSertificate } from "../../types/ppe";
 
 export const AddPPEUsingModal = () => {
     const dispatch = useAppDispatch();
 
-    const [formState, setFormState] = useState<TAddAct>({
-        actTitle: '',
-        actTitleFull: ''
+    const [formState, setFormState] = useState<AddSertificate>({
+        title: ''
     });
 
     const handleChange = (e: ChangeEvent<HTMLFormElement>) => {
@@ -24,7 +23,7 @@ export const AddPPEUsingModal = () => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(uploadUsingAct({ act: formState }))
+        dispatch(uploadSertificate({ title: formState.title }))
     }
 
     return (
@@ -43,32 +42,8 @@ export const AddPPEUsingModal = () => {
                     <form name="modal-form" id="modal-form" onChange={handleChange} onSubmit={handleSubmit} encType="multipart/form-data">
                         <div className="modal-body">
                             <div className="input-group">
-                                <label
-                                    htmlFor="actTitle"
-                                    className="input-group-text input-group-sm w-50"
-                                >
-                                    Наименование правового акта
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="actTitle"
-                                    name="actTitle"
-                                />
-                            </div>
-                            <div className="input-group">
-                                <label
-                                    htmlFor="actTitleFull"
-                                    className="input-group-text input-group-sm w-50"
-                                >
-                                    Полное наименование правового акта
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="actTitleFull"
-                                    name="actTitleFull"
-                                />
+                                <label htmlFor="title" className="input-group-text input-group-sm w-50">Наименование правового акта</label>
+                                <input type="text" className="form-control" id="title" name="title" />
                             </div>
                         </div>
                         <div className="modal-footer">

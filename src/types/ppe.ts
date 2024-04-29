@@ -26,19 +26,9 @@ export type TRow = {ppe: PPE};
 
 export type TAddPPE = Omit<PPE, "id">;
 
-export type TAct = {
-    id: number;
-    actTitle: string;
-    actTitleFull: string;
-}
-
-export type TAddAct = Omit<TAct, 'id'>;
-
-export type TUploadUsingAct = {
-    act: TAddAct;
-}
-
 export type Sertificate = {
     id: number;
     title: string;
 }
+
+export type AddSertificate = Omit<Sertificate, 'id'>;

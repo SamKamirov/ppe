@@ -1,4 +1,4 @@
-import { setModalType } from "../../api/api-actions";
+import { setModalType, uploadSertificate } from "../../api/api-actions";
 import { useAppDispatch } from "../../app/hooks";
 import { ContentTypes } from "../modals/source/const";
 import React from "react";

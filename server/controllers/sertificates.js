@@ -8,7 +8,7 @@ const getSertificates = asyncWrapper(async (req, res) => {
 
 const insertSertificate = asyncWrapper(async (req, res) => {
     const body = req.body;
-    const response = await pool.query(`insert into sertificates(title) values '${body.title}'`)
+    const response = await pool.query(`insert into sertificates(title) values ('${body.title}')`)
     res.status(200).json(response);
 })
 

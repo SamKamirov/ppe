@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SliceNames } from "../../../const";
-import { deletePPEAction, fetchActsAction, fetchPPEAction, fetchPPEsAction, fetchSertificates, setModalType, uploadPPEAction } from "../../api/api-actions";
+import { deletePPEAction, fetchPPEAction, fetchPPEsAction, fetchSertificates, setModalType, uploadPPEAction } from "../../api/api-actions";
 import { ContentTypes } from "../../components/modals/source/const";
 import { Nullable } from "vitest";
-import { PPE, Sertificate, TAct } from "../../types/ppe";
+import { PPE, Sertificate} from "../../types/ppe";
 
 type AppDataInitialState = {
     ppes: Nullable<PPE[]>;
@@ -11,7 +11,6 @@ type AppDataInitialState = {
     isLoading: boolean;
     modalType: ContentTypes;
     error: Nullable<string>;
-    acts: Nullable<TAct[]>;
     sertificates: Nullable<Sertificate[]>
 };
 
@@ -21,7 +20,6 @@ const initialState: AppDataInitialState = {
     isLoading: false,
     modalType: ContentTypes.UNKNOWN,
     error: null,
-    acts: null,
     sertificates: null
 };
 
@@ -54,16 +52,6 @@ const appData = createSlice({
         .addCase(deletePPEAction.fulfilled, (state) => {
             state.selectedPPE = null;
             state.modalType = ContentTypes.UNKNOWN;
-        })
-        .addCase(fetchActsAction.pending, (state) => {
-            state.isLoading = true;
-        })
-        .addCase(fetchActsAction.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.acts = action.payload;
-        })
-        .addCase(fetchActsAction.rejected, (state, action) => {
-            state.isLoading = false;
         })
         .addCase(fetchSertificates.fulfilled, (state, action) => {
             state.sertificates = action.payload;

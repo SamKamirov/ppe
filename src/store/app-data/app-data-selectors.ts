@@ -5,7 +5,6 @@ import { SliceNames } from "../../../const";
 const selectPPEs = (state: State) => state[SliceNames.AppData].ppes;
 const selectModalType = (state: State) => state[SliceNames.AppData].modalType;
 const selectLoadingState = (state: State) => state[SliceNames.AppData].isLoading;
-const selectActs = (state: State) => state[SliceNames.AppData].acts;
 const selectSertificates = (state: State) => state[SliceNames.AppData].sertificates;
 
 export const getPPES = createSelector(
@@ -26,11 +25,6 @@ export const getModalContentType = createSelector(
 export const getLoadingState = createSelector(
     [selectLoadingState],
     (isLoading) => isLoading
-)
-
-export const getActs = createSelector(
-    [selectActs],
-    (acts) => acts
 )
 
 export const getSertificates = createSelector(
