@@ -46,6 +46,19 @@ const adaptSizeReportToClient = (response) => {
     headwearSize: response.headwear_size,
     gasMaskSize: response.gas_mask_size
   }
+};
+
+const adaptHeightRangeToClient = (response) => {
+  return {
+    id: response.id,
+    minHeight: response.min_height,
+    maxHeight: response.max_height,
+    sex: response.sex
+  }
+};
+
+const sendErrorMessage = (res, message) => {
+  return res.status(400).json({ message })
 }
 
-module.exports = { isValidPPE, adaptPPEToClient, adaptSizeReportToClient };
+module.exports = { isValidPPE, adaptPPEToClient, adaptSizeReportToClient, adaptHeightRangeToClient, sendErrorMessage };

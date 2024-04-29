@@ -1,6 +1,6 @@
 const asyncWrapper = require("../async");
 const connection = require("../connection");
-const { isValidPPE, adaptPPEToClient } = require("../utils/utils");
+const { isValidPPE, adaptPPEToClient, adaptHeightRangeToClient } = require("../utils/utils");
 const { insertPPEQuery, getPPEQuery, deletePPEQuery, insertUsingAct, getPPEsQuery } = require('../queries/ppes');
 const { pool } = connection;
 
@@ -35,15 +35,11 @@ const deletePPE = asyncWrapper(async (req, res) => {
   res.status(200).json(response);
 })
 
-const insertPPEUsingAct = asyncWrapper(async (req, res) => {
-  const body = req.body;
-  const response = await pool.query(insertUsingAct(body));
-  res.status(201).json(response);
+const getHeightRanges = asyncWrapper(async (req, res) => {
+  const response = await pool.query('select * from height_ranges');
+  const adapted = response.rows.map((item) => adaptHeightRangeToClient(item));
+  res.status(200).json(adapted);
 })
 
-const getActs = asyncWrapper(async (req, res) => {
-  const response = await pool.query('select * from ppe_using');
-  res.status(201).json(response.rows);
-})
 
-module.exports = { getPPEs, insertPPE, getPPE, deletePPE, getActs, insertPPEUsingAct };
+module.exports = { getPPEs, insertPPE, getPPE, deletePPE, getHeightRanges };

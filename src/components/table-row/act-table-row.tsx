@@ -3,11 +3,11 @@ import { useAppDispatch } from "../../app/hooks";
 import { Sertificate } from "../../types/ppe";
 
 type Props = {
-    act: Sertificate;
+    sertificate: Sertificate;
 }
 
-export const ActTableRow: FC<Props> = ({ act }) => {
-    const { id, title } = act;
+export const ActTableRow: FC<Props> = ({ sertificate }) => {
+    const { id, title } = sertificate;
 
     return (
         <tr className='text-start table-row'>

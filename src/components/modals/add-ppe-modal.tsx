@@ -1,16 +1,16 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { fetchSertificates, setModalType, uploadPPEAction } from "../../api/api-actions";
+import { setModalType, uploadPPEAction } from "../../api/api-actions";
 import { TAddPPE } from "../../types/ppe";
 import { ContentTypes } from "./source/const";
-import { getSertificates } from "../../store/app-data/app-data-selectors";
+import { getHeightRanges, getSertificates } from "../../store/app-data/app-data-selectors";
 
 export const AddPpeModal = () => {
   const dispatch = useAppDispatch();
+  const heightRanges = useAppSelector(getHeightRanges);
 
-  useEffect(() => {
-    dispatch(fetchSertificates());
-  }, [dispatch]);
+  console.log(heightRanges);
+
 
   const [formState, setFormState] = useState<TAddPPE>({
     fullname: '',
@@ -85,8 +85,7 @@ export const AddPpeModal = () => {
               <div className="input-group">
                 <label htmlFor="sizeType" className="input-group-text input-group-sm w-50">Тип размера</label>
                 <select className="form-select form-control" aria-label="Default select example" name="sizeType">
-                  <option value={1}>1</option>
-                  <option value={0}>2</option>
+                  {heightRanges && heightRanges.map((range) => <option key={range.id}>от {range.minHeight} до {range.maxHeight}</option>)}
                   <option value={"no-size"}>Без размера</option>
                 </select>
                 <input type="text" className="form-control hidden" id="sizeType" name="sizeType" />

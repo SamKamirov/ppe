@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SliceNames } from "../../const";
 import { TAsyncThunk } from "../types/state";
-import { AddSertificate, PPE, Sertificate, TAddPPE } from "../types/ppe";
+import { AddSertificate, HeightRanges, PPE, Sertificate, TAddPPE } from "../types/ppe";
 import { ContentTypes } from "../components/modals/source/const";
 import { SizeItem } from "../components/table-row/size-report-table-row";
 
@@ -10,8 +10,9 @@ type TUploadPPE = {message: string}
 
 const fetchPPEsAction = createAsyncThunk<PPE[], undefined, TAsyncThunk>(
   `${SliceNames.AppData}/fetchPPEs`,
-  async (_arg, { extra: api }) => {
+  async (_arg, {dispatch, extra: api }) => {
     const { data } = await api.get("/ppes");
+    dispatch(fetchHeightRanges());
     return data;
   },
 );
@@ -49,20 +50,20 @@ const setModalType = createAsyncThunk<ContentTypes, ContentTypes, TAsyncThunk>(
   }
 );
 
-const uploadSertificate = createAsyncThunk<AddSertificate, AddSertificate, TAsyncThunk>(
-  `${SliceNames.AppData}/uploadSertificate`,
-  async ({title}, {extra: api}) => {   
-    console.log(title);
-    const {data} = await api.post(`/sertificates`, {title});
-    return data
-  }
-);
-
 const fetchSertificates = createAsyncThunk<Sertificate[], undefined, TAsyncThunk>(
   `${SliceNames.AppData}/fetchSertificates`,
   async (_arg, {extra: api}) => {
     const {data} = await api.get('/sertificates')
     return data;
+  }
+);
+
+const uploadSertificate = createAsyncThunk<AddSertificate, AddSertificate, TAsyncThunk>(
+  `${SliceNames.AppData}/uploadSertificate`,
+  async ({title}, {dispatch, extra: api}) => {   
+    const {data} = await api.post(`/sertificates`, {title});
+    dispatch(fetchSertificates());
+    return data
   }
 );
 
@@ -72,6 +73,14 @@ const fetchSizesReport = createAsyncThunk<SizeItem[], undefined, TAsyncThunk>(
     const {data} = await api.get('/sizes');
     return data
   }
+);
+
+const fetchHeightRanges = createAsyncThunk<HeightRanges[], undefined, TAsyncThunk>(
+  `${SliceNames.AppData}/fetchHeightRanges`,
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get('/ppes/height-ranges');
+    return data;
+  }
 )
 
-export { fetchPPEsAction, uploadPPEAction, fetchPPEAction, deletePPEAction, setModalType, uploadSertificate, fetchSertificates, fetchSizesReport};
+export { fetchPPEsAction, uploadPPEAction, fetchPPEAction, deletePPEAction, setModalType, uploadSertificate, fetchSertificates, fetchSizesReport, fetchHeightRanges};

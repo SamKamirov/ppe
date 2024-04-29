@@ -23,7 +23,8 @@ export const AddPPEUsingModal = () => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(uploadSertificate({ title: formState.title }))
+        dispatch(uploadSertificate({ title: formState.title }));
+        dispatch(setModalType(ContentTypes.UNKNOWN));
     }
 
     return (

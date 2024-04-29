@@ -32,3 +32,10 @@ export type Sertificate = {
 }
 
 export type AddSertificate = Omit<Sertificate, 'id'>;
+
+export type HeightRanges = {
+    id: number;
+    minHeight: number;
+    maxHeight: number;
+    sex: string;
+}

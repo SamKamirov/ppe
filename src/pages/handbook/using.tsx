@@ -9,9 +9,9 @@ import { TableRowTypes } from "../../components/table-row/source";
 import { HandbookEmpty } from "./handbook-empty";
 
 export const Using = () => {
-    const acts = useAppSelector(getSertificates);
+    const sertificates = useAppSelector(getSertificates);
 
-    if (!acts) {
+    if (!sertificates) {
         return <HandbookEmpty />
     }
 
@@ -22,7 +22,7 @@ export const Using = () => {
             <table className="table">
                 <UsingHeaders />
                 <tbody>
-                    {acts.map((act) => <TableRow type={TableRowTypes.ACT} act={act} key={act.id} />)}
+                    {sertificates.map((sertificate) => <TableRow type={TableRowTypes.ACT} sertificate={sertificate} key={sertificate.id} />)}
                 </tbody>
             </table>
         </section>
