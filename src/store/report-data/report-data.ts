@@ -1,17 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SliceNames } from "../../../const";
 import { Nullable } from "vitest";
-import { fetchSizesReport } from "../../api/api-actions";
-import { Employee } from "../../types/ppe";
+import { fetchRulesReport, fetchSizesReport } from "../../api/api-actions";
+import { Employee, RuleReport } from "../../types/ppe";
 
 export type SizesReport = Omit<Employee, 'id'>
 
 type InitialState  = {
-    sizesReport: Nullable<SizesReport[]>
+    sizes: Nullable<SizesReport[]>,
+    rules: Nullable<RuleReport[]>
 };
 
 const initialState: InitialState = {
-    sizesReport: null
+    sizes: null,
+    rules: null
 };
 
 const reportData = createSlice({
@@ -21,7 +23,10 @@ const reportData = createSlice({
     extraReducers(builder) {
         builder
         .addCase(fetchSizesReport.fulfilled, (state, action) => {
-            state.sizesReport = action.payload;
+            state.sizes = action.payload;
+        })
+        .addCase(fetchRulesReport.fulfilled, (state, action) => {
+            state.rules = action.payload;
         })
     },
 });

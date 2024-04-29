@@ -81,6 +81,26 @@ const adaptEmployeeToClient = (response) => {
   }
 };
 
+const adaptRuleToClient = (response) => {
+  return {
+    firstName: response.first_name,
+    middleName: response.middle_name,
+    lastName: response.last_name,
+    structuralUnit: response.structural_unit,
+    position: response.position,
+    fullname: response.fullname,
+  }
+}
+
 const isValidRuleData = (body) => body.ppe && body.period && body.amount && body.dateStart && body.dateEnd && body.employee && body.sertificate;
 
-module.exports = { isValidPPE, adaptPPEToClient, adaptSizeReportToClient, adaptHeightRangeToClient, sendErrorMessage, adaptEmployeeToClient, isValidRuleData };
+module.exports = {
+  isValidPPE,
+  adaptPPEToClient,
+  adaptSizeReportToClient,
+  adaptHeightRangeToClient,
+  sendErrorMessage,
+  adaptEmployeeToClient,
+  isValidRuleData,
+  adaptRuleToClient
+};

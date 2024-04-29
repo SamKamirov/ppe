@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SliceNames } from "../../../const";
-import { deletePPEAction, fetchEmployees, fetchHeightRanges, fetchPPEAction, fetchPPEsAction, fetchSertificates, fetchSetRuleAction, setModalType, setRuleAction, uploadPPEAction, uploadSertificate } from "../../api/api-actions";
+import { deletePPEAction, fetchEmployees, fetchHeightRanges, fetchPPEAction, fetchPPEsAction, fetchRulesReport, fetchSertificates, fetchSetRuleAction, setModalType, setRuleAction, uploadPPEAction, uploadSertificate } from "../../api/api-actions";
 import { ContentTypes } from "../../components/modals/source/const";
 import { Nullable } from "vitest";
-import { Employee, HeightRanges, Period, PPE, Sertificate} from "../../types/ppe";
+import { Employee, HeightRanges, Period, PPE, Rule, RuleReport, Sertificate} from "../../types/ppe";
 
 type AppDataInitialState = {
     ppes: Nullable<PPE[]>;
@@ -14,7 +14,6 @@ type AppDataInitialState = {
     heightRanges: Nullable<HeightRanges[]>;
     employees: Nullable<Employee[]>;
     periods: Nullable<Period[]>;
-    // error: Nullable<string>;
 };
 
 const initialState: AppDataInitialState = {
@@ -26,7 +25,6 @@ const initialState: AppDataInitialState = {
     heightRanges: null,
     employees: null,
     periods: null,
-    // error: null
 };
 
 const appData = createSlice({

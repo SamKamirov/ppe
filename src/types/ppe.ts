@@ -75,3 +75,12 @@ export type Employee = {
     headwearSize: string;
     gasMaskSize: string;
 };
+
+export type RuleReport = {
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    structuralUnit: number;
+    position: number;
+    fullname: string;   
+};

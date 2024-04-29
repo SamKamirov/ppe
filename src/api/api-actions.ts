@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SliceNames } from "../../const";
 import { TAsyncThunk } from "../types/state";
-import { AddSertificate, Employee, HeightRanges, Period, PPE, Rule, Sertificate, SetRule, TAddPPE } from "../types/ppe";
+import { AddSertificate, Employee, HeightRanges, Period, PPE, Rule, RuleReport, Sertificate, SetRule, TAddPPE } from "../types/ppe";
 import { ContentTypes } from "../components/modals/source/const";
 import { SizesReport } from "../store/report-data/report-data";
 
@@ -80,7 +80,7 @@ const uploadSertificate = createAsyncThunk<AddSertificate, AddSertificate, TAsyn
 const fetchSizesReport = createAsyncThunk<SizesReport[], undefined, TAsyncThunk>(
   `${SliceNames.ReportData}/fetchSizesReport`,
   async (_agr, {extra: api}) => {
-    const {data} = await api.get('/sizes');
+    const {data} = await api.get('/reports/sizes');
     return data
   }
 );
@@ -114,8 +114,28 @@ const setRuleAction = createAsyncThunk<void, SetRule, TAsyncThunk>(
   async ({setRuleItem}, {extra: api}) => {
     await api.post('/services', {...setRuleItem})
   }
-)
+);
 
-export { fetchPPEsAction, uploadPPEAction, fetchPPEAction, 
-  deletePPEAction, setModalType, uploadSertificate, 
-  fetchSertificates, fetchSizesReport, fetchHeightRanges, fetchEmployees, fetchSetRuleAction, setRuleAction};
+const fetchRulesReport = createAsyncThunk<RuleReport[], undefined, TAsyncThunk>(
+  `${SliceNames.ReportData}/fetchRulesReport`,
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get('/reports/rules');    
+    return data;
+  }
+);
+
+export { 
+  fetchPPEsAction, 
+  uploadPPEAction,
+  fetchPPEAction, 
+  deletePPEAction,
+  setModalType,
+  uploadSertificate, 
+  fetchSertificates, 
+  fetchSizesReport,
+  fetchHeightRanges,
+  fetchEmployees,
+  fetchSetRuleAction,
+  setRuleAction,
+  fetchRulesReport
+};
