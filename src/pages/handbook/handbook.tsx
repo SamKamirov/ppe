@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useRef } from 'react';
 import { HandbookHeaders } from '../../components/handbook';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { PPETableRow } from '../../components/table-row/ppe-table-row';
-import { ControlButtons } from '../../components/handbook/handbook-control-buttons';
 import { getPPES } from '../../store/app-data/app-data-selectors';
 import { HandbookEmpty } from './handbook-empty';
 import { fetchPPEAction } from '../../api/api-actions';
@@ -25,7 +24,7 @@ export const Handbook = () => {
     }
 
     return (
-        <Fragment>
+        <section>
             <Navbar type={NavbarTypes.Index} tableRef={contentTable} />
             <table className='table table-striped' ref={contentTable}>
                 <HandbookHeaders />
@@ -33,6 +32,6 @@ export const Handbook = () => {
                     {ppes.map((ppe) => <TableRow type={TableRowTypes.PPE} ppe={ppe} key={ppe.id} />)}
                 </tbody>
             </table>
-        </Fragment >
+        </section >
     );
 };

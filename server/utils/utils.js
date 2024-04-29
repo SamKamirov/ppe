@@ -31,6 +31,21 @@ const adaptPPEToClient = (response) => {
     sizeType: response.size_type,
     unitType: response.unit_type
   }
+};
+
+const adaptSizeReportToClient = (response) => {
+  return {
+    firstName: response.first_name,
+    middleName: response.middle_name,
+    lastName: response.last_name,
+    personellNumber: response.personell_number,
+    structuralUnit: response.structural_unit,
+    position: response.position,
+    clothesSize: response.clothes_size,
+    shoeSize: response.shoe_size,
+    headwearSize: response.headwear_size,
+    gasMaskSize: response.gas_mask_size
+  }
 }
 
-module.exports = { isValidPPE, adaptPPEToClient };
+module.exports = { isValidPPE, adaptPPEToClient, adaptSizeReportToClient };

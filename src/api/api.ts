@@ -27,10 +27,6 @@ export const createApi = (): AxiosInstance => {
 
   api.interceptors.response.use(
     (response: AxiosResponse<TDetailMessageType>) => {
-      if (response.data.message && shouldDisplayMessage(response)) {
-        const detailMessage = (response.data);   
-        toast.success(detailMessage.message);
-      }
       return response
     },
     (error: AxiosError<TDetailMessageType>) => {  

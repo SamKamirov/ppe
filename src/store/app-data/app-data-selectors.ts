@@ -1,4 +1,4 @@
-import { createSelector } from "@reduxjs/toolkit";
+import { $CombinedState, createSelector } from "@reduxjs/toolkit";
 import { State } from "../../types/state";
 import { SliceNames } from "../../../const";
 
@@ -6,6 +6,7 @@ const selectPPEs = (state: State) => state[SliceNames.AppData].ppes;
 const selectModalType = (state: State) => state[SliceNames.AppData].modalType;
 const selectLoadingState = (state: State) => state[SliceNames.AppData].isLoading;
 const selectActs = (state: State) => state[SliceNames.AppData].acts;
+const selectSertificates = (state: State) => state[SliceNames.AppData].sertificates;
 
 export const getPPES = createSelector(
     [selectPPEs],
@@ -29,5 +30,10 @@ export const getLoadingState = createSelector(
 
 export const getActs = createSelector(
     [selectActs],
+    (acts) => acts
+)
+
+export const getSertificates = createSelector(
+    [selectSertificates],
     (acts) => acts
 )

@@ -1,11 +1,17 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
-import { useAppDispatch } from "../../app/hooks";
-import { setModalType, uploadPPEAction } from "../../api/api-actions";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { fetchSertificates, setModalType, uploadPPEAction } from "../../api/api-actions";
 import { TAddPPE } from "../../types/ppe";
 import { ContentTypes } from "./source/const";
+import { getSertificates } from "../../store/app-data/app-data-selectors";
 
 export const AddPpeModal = () => {
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchSertificates());
+  }, [dispatch]);
+
   const [formState, setFormState] = useState<TAddPPE>({
     fullname: '',
     shortname: '',
@@ -31,170 +37,66 @@ export const AddPpeModal = () => {
     dispatch(uploadPPEAction({ ppe: formState }));
   }
 
+  const sertificates = useAppSelector(getSertificates);
+
   return (
     <div className="modal fade show" role="dialog" id="modal">
       <div className="modal-dialog modal-lg">
         <div className="modal-content">
           <div className="modal-header">
             <h1 className="modal-title fs-5">Добавление записи</h1>
-            <button
-              type="button"
-              className="btn-close"
-              aria-label="Close"
-              onClick={handleClose}
-            ></button>
+            <button type="button" className="btn-close" aria-label="Close" onClick={handleClose}></button>
           </div>
           <div className="modal-body">
             <form name="modal-form" id="modal-form" onChange={handleChange} onSubmit={handleSubmit} encType="multipart/form-data">
               <div className="input-group">
-                <label
-                  htmlFor="fullname"
-                  className="input-group-text input-group-sm w-50"
-                >
-                  Наименование полное
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="fullname"
-                  name="fullname"
-                />
+                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Наименование полное</label>
+                <input type="text" className="form-control" id="fullname" name="fullname" />
               </div>
               <div className="input-group">
-                <label
-                  htmlFor="shortname"
-                  className="input-group-text input-group-sm w-50"
-                >
-                  Наименование
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="shortname"
-                  name="shortname"
-                />
+                <label htmlFor="shortname" className="input-group-text input-group-sm w-50">Наименование</label>
+                <input type="text" className="form-control" id="shortname" name="shortname" />
               </div>
               <div className="input-group">
-                <label
-                  htmlFor="sertificateId"
-                  className="input-group-text input-group-sm w-50"
-                >
-                  № сертификата или декларации соответствия
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="sertificateId"
-                  name="sertificateId"
-                />
+                <label htmlFor="sertificateId" className="input-group-text input-group-sm w-50">Сертификат соответствия</label>
+                <select className="form-select form-control" id="sertificateId" name="sertificateId">
+                  {sertificates && sertificates.map((sertificate) => <option value={sertificate.id} key={sertificate.id}>{sertificate.title}</option>)}
+                </select>
               </div>
               <div className="input-group">
-                <label
-                  htmlFor="lifeSpan"
-                  className="input-group-text input-group-sm w-50"
-                >
-                  Срок эксплуатации, мес
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="lifeSpan"
-                  name="lifeSpan"
-                />
+                <label htmlFor="lifeSpan" className="input-group-text input-group-sm w-50">Срок эксплуатации, мес</label>
+                <input type="text" className="form-control" id="lifeSpan" name="lifeSpan" />
               </div>
               <div className="input-group">
-                <label
-                  htmlFor="toBeReturned"
-                  className="input-group-text input-group-sm w-50"
-                >
-                  Подлежит возврату
-                </label>
-                <select
-                  className="form-select form-control"
-                  aria-label="Default select example"
-                  name="toBeReturned"
-                  defaultValue={0}
-                >
-                  <option value={1}>
-                    Да
-                  </option>
+                <label htmlFor="toBeReturned" className="input-group-text input-group-sm w-50">Подлежит возврату</label>
+                <select className="form-select form-control" aria-label="Default select example" name="toBeReturned" defaultValue={0}>
                   <option value={0}>Нет</option>
                 </select>
-                <input
-                  type="type"
-                  className="form-control hidden"
-                  id="toBeReturned"
-                  name="toBeReturned"
-                />
+                <input type="type" className="form-control hidden" id="toBeReturned" name="toBeReturned" />
               </div>
               <div className="input-group">
-                <label
-                  htmlFor="is-kit"
-                  className="input-group-text input-group-sm w-50"
-                >
-                  Комплект
-                </label>
-                <select
-                  className="form-select form-control"
-                  aria-label="Default select example"
-                  name="isKit"
-                  defaultValue={0}
-                >
-                  <option value={1}>
-                    Да
-                  </option>
+                <label htmlFor="is-kit" className="input-group-text input-group-sm w-50">Комплект</label>
+                <select className="form-select form-control" aria-label="Default select example" name="isKit" defaultValue={0}>
+                  <option value={1}>Да</option>
                   <option value={0}>Нет</option>
                 </select>
-                <input
-                  type="text"
-                  className="form-control hidden"
-                  id="isKit"
-                  name="isKit"
-                />
+                <input type="text" className="form-control hidden" id="isKit" name="isKit" />
               </div>
               <div className="input-group">
-                <label
-                  htmlFor="sizeType"
-                  className="input-group-text input-group-sm w-50"
-                >
-                  Тип размера
-                </label>
-                <select
-                  className="form-select form-control"
-                  aria-label="Default select example"
-                  name="sizeType"
-                >
-                  <option value={1}>
-                    1
-                  </option>
+                <label htmlFor="sizeType" className="input-group-text input-group-sm w-50">Тип размера</label>
+                <select className="form-select form-control" aria-label="Default select example" name="sizeType">
+                  <option value={1}>1</option>
                   <option value={0}>2</option>
                   <option value={"no-size"}>Без размера</option>
                 </select>
-                <input
-                  type="text"
-                  className="form-control hidden"
-                  id="sizeType"
-                  name="sizeType"
-                />
+                <input type="text" className="form-control hidden" id="sizeType" name="sizeType" />
               </div>
               <div className="input-group">
-                <label
-                  htmlFor="unitType"
-                  className="input-group-text input-group-sm w-50"
-                >
-                  Единица измерения
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="unitType"
-                  name="unitType"
-                />
+                <label htmlFor="unitType" className="input-group-text input-group-sm w-50">Единица измерения</label>
+                <input type="text" className="form-control" id="unitType" name="unitType" />
               </div>
               <div className="modal-footer">
-                <button type="submit" className="btn btn-primary">
-                  Сохранить
-                </button>
+                <button type="submit" className="btn btn-primary">Сохранить</button>
               </div>
             </form>
           </div>

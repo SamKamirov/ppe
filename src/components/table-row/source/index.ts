@@ -1,4 +1,5 @@
 export enum TableRowTypes {
     PPE = 'PPE',
-    ACT = 'ACT'
+    ACT = 'ACT',
+    SizeReport = 'SizeReport'
 }

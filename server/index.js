@@ -10,6 +10,6 @@ app.use(cors());
 
 app.use("/api/v1/ppes", ppes_route);
 app.use('/api/v1/sertificates', sertificates);
-app.use('/api/sizes', sizes);
+app.use('/api/v1/sizes', sizes);
 
 app.listen(3000, () => console.log("from server"));

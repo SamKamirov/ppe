@@ -1,11 +1,9 @@
-import { setModalType } from "../../api/api-actions";
-import { useAppDispatch } from "../../app/hooks";
-import { ContentTypes } from "../modals/source/const";
-import React from "react";
+import React, { forwardRef, MutableRefObject } from "react";
+import { saveToFile } from "./source";
 
-export const PPEUsingNavbar = () => {
-    const dispatch = useAppDispatch();
-    const handleClick = () => dispatch(setModalType(ContentTypes.AddPPEUsing));
+export const SizesReportNavbar = forwardRef((_, ref) => {
+    const currentRef = ref as MutableRefObject<HTMLTableElement>;
+    const handleReportClick = () => saveToFile({ currentRef, title: 'Отчёт "Размеры"' });
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -13,11 +11,11 @@ export const PPEUsingNavbar = () => {
                 <div className="mx-0 ps-2 pe-2 d-flex flex-row justify-content-between gap-2" id="navbarSupportedContent">
                     <ul className="nav d-flex gap-2">
                         <li className="nav-item">
-                            <button className="btn btn-primary" aria-current="page" onClick={handleClick}>Добавить</button>
+                            <button className="btn btn-primary" aria-current="page" onClick={handleReportClick}>Выгрузить отчёт</button>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     )
-}
+})

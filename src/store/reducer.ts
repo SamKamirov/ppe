@@ -1,7 +1,12 @@
 import { combineReducers, createReducer } from "@reduxjs/toolkit";
 import { SliceNames } from "../../const";
-import { AppData } from "./app-data/app-data";
+import appData from './app-data/app-data';
+import reportData from './report-data/report-data'
 
-export const rootReducer = combineReducers({
-    [SliceNames.AppData]: AppData.reducer
-})
+const rootReducer = combineReducers({
+    [SliceNames.AppData]: appData,
+    [SliceNames.ReportData]: reportData
+});
+
+export default rootReducer;
+

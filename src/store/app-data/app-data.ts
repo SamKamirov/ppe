@@ -1,19 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SliceNames } from "../../../const";
-import { deletePPEAction, fetchActsAction, fetchPPEAction, fetchPPEsAction, setModalType, uploadPPEAction } from "../../api/api-actions";
-import { TInitialState } from "../../types/state";
+import { deletePPEAction, fetchActsAction, fetchPPEAction, fetchPPEsAction, fetchSertificates, setModalType, uploadPPEAction } from "../../api/api-actions";
 import { ContentTypes } from "../../components/modals/source/const";
+import { Nullable } from "vitest";
+import { PPE, Sertificate, TAct } from "../../types/ppe";
 
-const initialState: TInitialState = {
+type AppDataInitialState = {
+    ppes: Nullable<PPE[]>;
+    selectedPPE: Nullable<PPE>;
+    isLoading: boolean;
+    modalType: ContentTypes;
+    error: Nullable<string>;
+    acts: Nullable<TAct[]>;
+    sertificates: Nullable<Sertificate[]>
+};
+
+const initialState: AppDataInitialState = {
     ppes: null,
     selectedPPE: null,
     isLoading: false,
     modalType: ContentTypes.UNKNOWN,
     error: null,
-    acts: null
-}
+    acts: null,
+    sertificates: null
+};
 
-export const AppData = createSlice({
+const appData = createSlice({
     name: SliceNames.AppData,
     initialState: initialState,
     reducers: {},
@@ -53,5 +65,11 @@ export const AppData = createSlice({
         .addCase(fetchActsAction.rejected, (state, action) => {
             state.isLoading = false;
         })
+        .addCase(fetchSertificates.fulfilled, (state, action) => {
+            state.sertificates = action.payload;
+        })
     },    
-})
+});
+
+const {reducer} = appData;
+export default reducer;

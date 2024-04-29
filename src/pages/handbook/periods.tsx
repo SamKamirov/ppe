@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { PeriodsHeaders } from "../../components/periods/periods-headers";
 import { useAppSelector } from "../../app/hooks";
 import { PeriodsTableRow } from "../../components/periods/periods-table-row";

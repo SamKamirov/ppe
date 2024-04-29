@@ -3,19 +3,22 @@ import { SliceNames } from "../../../const";
 import { Nullable } from "vitest";
 import { User } from "../../types/state";
 
-type InitialState = {
+type UserDataInitialState = {
     user: Nullable<User>
 }
 
-const initialState: InitialState = {
+const UserDataInitialState: UserDataInitialState = {
     user: null
 }
 
-export const UserData = createSlice({
+const userData = createSlice({
     name: SliceNames.UserData,
-    initialState: initialState,
+    initialState: UserDataInitialState,
     reducers: {},
     extraReducers(builder) {
         
     },
 })
+
+const {reducer} = userData;
+export default reducer;

@@ -37,3 +37,8 @@ export type TAddAct = Omit<TAct, 'id'>;
 export type TUploadUsingAct = {
     act: TAddAct;
 }
+
+export type Sertificate = {
+    id: number;
+    title: string;
+}
