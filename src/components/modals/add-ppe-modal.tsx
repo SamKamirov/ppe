@@ -15,7 +15,6 @@ export const AddPpeModal = () => {
   const [formState, setFormState] = useState<TAddPPE>({
     fullname: '',
     shortname: '',
-    // sertificateId: 0,
     lifeSpan: 0,
     toBeReturned: 0,
     isKit: 0,
@@ -57,12 +56,6 @@ export const AddPpeModal = () => {
                 <label htmlFor="shortname" className="input-group-text input-group-sm w-50">Наименование</label>
                 <input type="text" className="form-control" id="shortname" name="shortname" />
               </div>
-              {/* <div className="input-group">
-                <label htmlFor="sertificateId" className="input-group-text input-group-sm w-50">Сертификат соответствия</label>
-                <select className="form-select form-control" id="sertificateId" name="sertificateId">
-                  {sertificates && sertificates.map((sertificate) => <option value={sertificate.id} key={sertificate.id}>{sertificate.title}</option>)}
-                </select>
-              </div> */}
               <div className="input-group">
                 <label htmlFor="lifeSpan" className="input-group-text input-group-sm w-50">Срок эксплуатации, мес</label>
                 <input type="text" className="form-control" id="lifeSpan" name="lifeSpan" />
@@ -85,8 +78,8 @@ export const AddPpeModal = () => {
               <div className="input-group">
                 <label htmlFor="sizeType" className="input-group-text input-group-sm w-50">Тип размера</label>
                 <select className="form-select form-control" aria-label="Default select example" name="sizeType">
+                  <option value={''}>Без размера</option>
                   {heightRanges && heightRanges.map((range) => <option key={range.id}>от {range.minHeight} до {range.maxHeight}</option>)}
-                  <option value={"no-size"}>Без размера</option>
                 </select>
                 <input type="text" className="form-control hidden" id="sizeType" name="sizeType" />
               </div>

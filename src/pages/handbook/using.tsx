@@ -23,7 +23,7 @@ export const Using = () => {
 
     return (
         <section className="using">
-            <h1>Обоснование использования СИЗ</h1>
+            <h1 className='mx-2 my-2'>Обоснование использования СИЗ</h1>
             <Navbar type={NavbarTypes.PPEUsing} />
             <table className="table">
                 <UsingHeaders />

@@ -25,7 +25,7 @@ export const Sizes = () => {
 
     return (
         <section>
-            <h1>Размеры</h1>
+            <h1 className='mx-2 my-2'>Размеры</h1>
             <Navbar type={NavbarTypes.SizesReport} tableRef={tableRef} />
             <table className='table table-striped' ref={tableRef}>
                 <thead className="content-headers">

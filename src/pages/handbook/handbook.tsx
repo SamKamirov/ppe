@@ -25,7 +25,7 @@ export const Handbook = () => {
 
     return (
         <section>
-            <h1>CИЗ</h1>
+            <h1 className='mx-2 my-2'>CИЗ</h1>
             <Navbar type={NavbarTypes.Index} tableRef={contentTable} />
             <table className='table table-striped' ref={contentTable}>
                 <HandbookHeaders />

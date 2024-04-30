@@ -9,7 +9,9 @@ type TSaveToFile = {
 export enum NavbarTypes {
     Index = 'Index',
     PPEUsing = 'PPEUsing',
-    SizesReport = 'SizesReport'
+    SizesReport = 'SizesReport',
+    RuleCheck = 'RuleCheck',
+    Give = 'Give'
 }
 
 export const saveToFile = ({currentRef, title}: TSaveToFile) => {

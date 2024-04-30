@@ -1,12 +1,11 @@
 import React, { FC } from 'react';
-import { SideBar } from '../../components/sidebar';
+import { SideBar } from '../../components/sidebar/sidebar';
 import { Header } from '../../components/header/header';
 import { FullHeight } from '../../components/full-height';
 import { RouteChildren } from '../../types/utils';
 import { useAppSelector } from '../../app/hooks';
 import { getLoadingState, getModalContentType, getSelectedPPE } from '../../store/app-data/app-data-selectors';
 import { Loading } from '../../components/loading/loading';
-import { toast } from 'react-toastify';
 import { TContainer } from '../../components/toast-container/toast-constainer';
 import { isModal } from '../handbook/source';
 import { ModalLayout } from '../../components/modals/modal-layout';
@@ -29,8 +28,8 @@ export const RootLayout: FC<RouteChildren> = ({ children }) => {
                 <FullHeight>
                     <div className='col px-0 d-flex flex-column justify-content-between'>
                         {children}
-                        {selectedPPE && <Preview ppe={selectedPPE} />}
                     </div>
+                    {selectedPPE && <Preview ppe={selectedPPE} />}
                 </FullHeight>
             </section>
             <TContainer />

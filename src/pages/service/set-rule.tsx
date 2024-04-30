@@ -41,10 +41,8 @@ export const SetRule = () => {
 
     return (
         <section>
-            <div className="container">
-                <div className="modal-header">
-                    <h1>Установка норм</h1>
-                </div>
+            <div className="container set-rule">
+                <h1 className='my-2 fs-1'>Установка норм</h1>
                 <div className="modal-body">
                     <form onChange={handleChange} onSubmit={handleSubmit}>
                         <div className="mb-3">

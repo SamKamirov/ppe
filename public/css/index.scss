@@ -25,7 +25,6 @@
     height: 100%;
 }
 
-header,
 .sidebar {
     background-color: #025ea1;
 }
@@ -36,6 +35,7 @@ header,
 
 .sidebar {
     max-width: 400px;
+    
 }
 
 .list-group * {
@@ -70,5 +70,35 @@ header,
 }
 
 .logo-image {
-    width: 80px;
+    width: 60px;
+    margin: 10px 0;
+}
+
+.btn-enter {
+    --bs-btn-color: #333333;
+    --bs-btn-border-color: #333333;
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: #025EA1;
+    --bs-btn-active-bg: #003274;
+    --bs-btn-active-border-color: transparent;
+    --bs-btn-hover-border-color: transparent;
+}
+
+.set-rule * {
+    font-size: 16pt;
+}
+
+.section {
+    background-color: #6CACE4;
+    padding: 0;
+    margin: 0;
+}
+
+.subsection-item:hover .subsection-link {
+    --bs-list-group-hover-color: #ffffff;
+}
+
+.subsection-link {
+    font-size: 14pt;
+    text-decoration: none;
 }

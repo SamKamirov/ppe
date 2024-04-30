@@ -11,7 +11,7 @@ export const TContainer = () => (
         rtl={false}
         pauseOnFocusLoss
         draggable
-        pauseOnHover
+        pauseOnHover={false}
         theme="light"
         transition={Bounce}
     />

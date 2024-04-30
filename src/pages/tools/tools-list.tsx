@@ -5,9 +5,9 @@ import { AppRoutes } from "../../../const"
 export const ToolsList = () => {
     return (
         <Fragment>
-            <ul className="row list-unstyled list-group rounded-0">
+            <ul className="list-group rounded-0">
                 <li className="list-group-item border-start-0 border-end-0">
-                    <Link to={AppRoutes.PersonCard}>Личная карточка сотрудника</Link>
+                    <Link to={AppRoutes.PersonCard} className='subsection-link'>Личная карточка сотрудника</Link>
                 </li>
             </ul>
         </Fragment>
