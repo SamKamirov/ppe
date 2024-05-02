@@ -12,12 +12,13 @@ import { NavbarTypes } from '../../components/navbars/source';
 export const RuleCheck = () => {
     const dispatch = useAppDispatch()
     const ref = useRef(null);
+    const rules = useAppSelector(getRulesReport);
 
     useEffect(() => {
         dispatch(fetchRulesReport());
     }, [dispatch]);
 
-    const rules = useAppSelector(getRulesReport);
+
     if (!rules) {
         return <HandbookEmpty />
     }

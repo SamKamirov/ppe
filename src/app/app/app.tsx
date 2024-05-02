@@ -19,6 +19,7 @@ import { Sizes } from "../../pages/report/sizes";
 import { Give } from "../../pages/report/give";
 import { ReportLayout } from "../../pages/layout/report-layout";
 import { Tools } from "../../pages/tools/tools";
+import { Login } from "../../components/login/login";
 
 export const App = () => (
   <Routes>
@@ -29,7 +30,11 @@ export const App = () => (
           <Handbook />
         </RootLayout>
       }
-    ></Route>
+    />
+    <Route
+      path={AppRoutes.Login}
+      element={<Login />}
+    />
     <Route
       path={AppRoutes.Using}
       element={

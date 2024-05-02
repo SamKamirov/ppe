@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import { TRange } from "../../types/ppe";
 import { useAppDispatch } from "../../app/hooks";
-import { selectPPE } from "../../store/action";
+import { fetchPPEAction } from "../../api/api-actions";
 
 export const RangesTableRow: FC<TRange> = ({ range }) => {
     const { fullTitle, min_size, max_size } = range;
     // const dispatch = useAppDispatch();
-    // const handleClick = () => dispatch(selectPPE({ ppe }));
+    // const handleClick = () => dispatch(fetchPPEAction({ range }));
 
     return (
         <tr className='text-start table-row'>

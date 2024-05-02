@@ -11,13 +11,20 @@ enum AppRoutes {
   Everything = "/*",
   RuleCheck = "/reports/norm-check",
   PersonCard = "/tools/person-card",
+  Login = "/login"
 }
 
 export const SliceNames = {
-  AppData: "AppData",
-  UserData: 'UserData',
+  AppData: 'AppData',
+  UserProcess: 'UserProcess',
   ReportData: 'ReportData',
   ServiceData: 'ServiceData'
 } as const;
+
+export enum SortTypes {
+  DEFAULT = 'DEFAULT',
+  ID = 'ID',
+  Alphabet = 'Alphabet'
+}
 
 export { AppRoutes };

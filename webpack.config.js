@@ -8,10 +8,10 @@ module.exports = {
     devtool: 'source-map',
     entry: './src/index.tsx',
     output: {
-        filename: 'bundle.js',
+        filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'build'),
         clean: true,
-        publicPath: '/ppe/'
+        publicPath: '/'
     },
     devServer: {
         hot: true,

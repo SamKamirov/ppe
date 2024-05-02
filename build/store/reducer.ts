@@ -1,16 +1,14 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { ppes } from "../mocks/ppe";
-import { selectPPE } from "./action";
-import { TInitialState } from "../types/state";
+import { combineReducers, createReducer } from "@reduxjs/toolkit";
+import { SliceNames } from "../../const";
+import appData from './app-data/app-data';
+import reportData from './report-data/report-data'
+import serviceData from './service-data/service-data';
 
-const initialState: TInitialState = {
-    ppe: null,
-    ppes: ppes
-};
+const rootReducer = combineReducers({
+    [SliceNames.AppData]: appData,
+    [SliceNames.ReportData]: reportData,
+    [SliceNames.ServiceData]: serviceData
+});
 
-export const reducer = createReducer(initialState, (builder) => {
-    builder
-    .addCase(selectPPE, (state, action) => {
-        state.ppe = action.payload.ppe
-    })
-})
+export default rootReducer;
+

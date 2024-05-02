@@ -3,7 +3,7 @@ import { saveToFile } from "./source";
 
 export const CommonNavbar = forwardRef((_, ref) => {
     const currentRef = ref as MutableRefObject<HTMLTableElement>;
-    const handleReportClick = () => saveToFile({ currentRef, title: 'Отчёт "Размеры"' });
+    const handleReportClick = () => saveToFile({ currentRef, title: `Отчёт "Проверка норм должностей" на ${new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'numeric', year: 'numeric' })}` });
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">

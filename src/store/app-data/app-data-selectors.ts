@@ -9,6 +9,7 @@ const selectSertificates = (state: State) => state[SliceNames.AppData].sertifica
 const selectHeightRanges = (state: State) => state[SliceNames.AppData].heightRanges;
 const selectEmployees = (state: State) => state[SliceNames.AppData].employees;
 const selectPeriods = (state: State) => state[SliceNames.AppData].periods;
+const selectSortType = (state: State) => state[SliceNames.AppData].sortingType;
 
 export const getPPES = createSelector(
     [selectPPEs],
@@ -48,4 +49,9 @@ export const getEmployees = createSelector(
 export const getPeriods = createSelector(
     [selectPeriods],
     (periods) => periods
+);
+
+export const getSortType = createSelector(
+    [selectSortType],
+    (type) => type
 )

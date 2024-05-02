@@ -14,6 +14,7 @@ const insertSertificate = asyncWrapper(async (req, res) => {
         sendErrorMessage(res, 'Ошибка, проверьте правильность введённых данных');
         return
     }
+
     const response = await pool.query(`insert into sertificates(title) values ('${body.title}')`)
     res.status(200).json(response);
 })

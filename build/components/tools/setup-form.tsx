@@ -1,7 +1,7 @@
 import React, { FC, Fragment, useRef, useState } from "react";
-import { TSetupForm } from "../../types/utils";
+import { TModalWindow } from "../../types/utils";
 
-export const SetupForm: FC<TSetupForm> = ({ onClose }) => {
+export const SetupForm: FC<TModalWindow> = ({ onClose }) => {
     const handleClose = () => onClose(false);
     return (
         <Fragment>

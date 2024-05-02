@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { SliceNames } from "../../const";
+import { SliceNames, SortTypes } from "../../const";
 import { TAsyncThunk } from "../types/state";
 import { AddSertificate, Employee, HeightRanges, Period, PPE, Rule, RuleReport, Sertificate, SetRule, TAddPPE } from "../types/ppe";
 import { ContentTypes } from "../components/modals/source/const";
@@ -17,6 +17,10 @@ type SetRuleData = {
 type ReturnRule = {
   message: string;
 };
+
+type Sorting = {
+  type: SortTypes;
+}
 
 const fetchPPEsAction = createAsyncThunk<PPE[], undefined, TAsyncThunk>(
   `${SliceNames.AppData}/fetchPPEs`,
@@ -124,6 +128,14 @@ const fetchRulesReport = createAsyncThunk<RuleReport[], undefined, TAsyncThunk>(
   }
 );
 
+const setSorting = createAsyncThunk<SortTypes, SortTypes>(
+  `${SliceNames.AppData}/setSorting`,
+  async (type) => {
+    // console.log(type);
+    return type
+  }
+)
+
 export { 
   fetchPPEsAction, 
   uploadPPEAction,
@@ -137,5 +149,6 @@ export {
   fetchEmployees,
   fetchSetRuleAction,
   setRuleAction,
-  fetchRulesReport
+  fetchRulesReport,
+  setSorting
 };

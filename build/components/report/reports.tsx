@@ -6,21 +6,15 @@ import { NavLink } from 'react-router-dom';
 export const Reports = () => {
     return (
         <Fragment>
-            <ul className='row list-unstyled list-group rounded-0'>
+            <ul className='list-group rounded-0 border-end-0'>
                 <li className='list-group-item border-start-0 border-end-0'>
-                    <Link to={AppRoutes.RuleCheck}>
-                        Проверка норм должностей
-                    </Link>
+                    <Link to={AppRoutes.RuleCheck} className='link-underline-opacity-0'>Проверка норм должностей</Link>
                 </li>
                 <li className='list-group-item border-start-0 border-end-0'>
-                    <Link to={AppRoutes.Sizes}>
-                        Размеры
-                    </Link>
+                    <Link to={AppRoutes.Sizes} className='link-underline-opacity-0'>Размеры</Link>
                 </li>
                 <li className='list-group-item border-start-0 border-end-0'>
-                    <Link to={AppRoutes.Give}>
-                        Выдача
-                    </Link>
+                    <Link to={AppRoutes.Give} className='link-underline-opacity-0'>Выдача</Link>
                 </li>
             </ul>
         </Fragment>

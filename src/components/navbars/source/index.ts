@@ -1,5 +1,6 @@
 import { MutableRefObject, useCallback } from "react";
 import { utils, writeFile } from "xlsx";
+import { SortTypes } from "../../../../const";
 
 type TSaveToFile = {
     currentRef: MutableRefObject<HTMLTableElement>;
@@ -22,3 +23,19 @@ export const saveToFile = ({currentRef, title}: TSaveToFile) => {
         writeFile(report, `${title}.xls`);
     }
 };
+
+export type PPESortingElement = {
+    title: string;
+    type: SortTypes;
+}
+
+export const PPESortingElements: PPESortingElement[] = [
+    {
+        title: 'Код',
+        type: SortTypes.Alphabet
+    },
+    {
+        title: 'По алфавиту',
+        type: SortTypes.ID
+    },
+]

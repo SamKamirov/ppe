@@ -16,6 +16,6 @@ export type CreateBtn = {
     onClick: Dispatch<SetStateAction<boolean>>
 }
 
-export type TSetupForm = {
+export type TModalWindow = {
     onClose: Dispatch<SetStateAction<boolean>>
 }

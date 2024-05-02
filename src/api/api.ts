@@ -1,8 +1,10 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import { StatusCodes } from "http-status-codes";
 import { toast } from "react-toastify";
+import { getToken } from "../components/login/source";
 
-const BASE_URL = "http://localhost:3000/api/v1";
+// const BASE_URL = "http://91.201.54.62:3000/api/v1";
+const BASE_URL = 'http://localhost:3000/api/v1';
 const SERVER_TIMEOUT = 5000;
 
 type TDetailMessageType = {
@@ -23,7 +25,15 @@ export const createApi = (): AxiosInstance => {
     timeout: SERVER_TIMEOUT,
   });
 
-  api.interceptors.request.use((config) => config);
+  api.interceptors.request.use((config) => {
+    const token = getToken(); 
+
+    if (token && config.headers) {
+      config.headers['x-token'] = token;
+    };
+    
+    return config;
+  });
 
   api.interceptors.response.use(
     (response: AxiosResponse<TDetailMessageType>) => {

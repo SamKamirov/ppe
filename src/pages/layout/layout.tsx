@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { SideBar } from '../../components/sidebar/sidebar';
 import { Header } from '../../components/header/header';
 import { FullHeight } from '../../components/full-height';
@@ -10,11 +10,23 @@ import { TContainer } from '../../components/toast-container/toast-constainer';
 import { isModal } from '../handbook/source';
 import { ModalLayout } from '../../components/modals/modal-layout';
 import { Preview } from '../../components/preview';
+import { Login } from '../../components/login/login';
+import { getUser } from '../../store/user-process/user-process-selectors';
+import { useNavigate } from 'react-router-dom';
+import { AppRoutes } from '../../../const';
 
 export const RootLayout: FC<RouteChildren> = ({ children }) => {
+    const navigate = useNavigate();
     const isLoading = useAppSelector(getLoadingState);
     const modalContentType = useAppSelector(getModalContentType);
     const selectedPPE = useAppSelector(getSelectedPPE);
+    const user = useAppSelector(getUser);
+
+    // useEffect(() => {
+    //     if (!user) {
+    //         navigate(AppRoutes.Login);
+    //     }
+    // }, [user, navigate]);
 
     if (isLoading) {
         return <Loading />

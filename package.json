@@ -14,7 +14,6 @@
     "start": "webpack serve --mode development",
     "pm2": "pm2 start ./build/bundle.js --watch=true",
     "build": "webpack --mode development",
-    "deploy": "gh-pages -d build -b main",
     "gh-pages:404": "cp build/index.html build/404.html"
   },
   "author": "",

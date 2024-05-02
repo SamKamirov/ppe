@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SliceNames } from "../../../const";
-import { deletePPEAction, fetchEmployees, fetchHeightRanges, fetchPPEAction, fetchPPEsAction, fetchRulesReport, fetchSertificates, fetchSetRuleAction, setModalType, setRuleAction, uploadPPEAction, uploadSertificate } from "../../api/api-actions";
+import { SliceNames, SortTypes } from "../../../const";
+import { deletePPEAction, fetchEmployees, fetchHeightRanges, fetchPPEAction, fetchPPEsAction, fetchRulesReport, fetchSertificates, fetchSetRuleAction, setModalType, setRuleAction, setSorting, uploadPPEAction, uploadSertificate } from "../../api/api-actions";
 import { ContentTypes } from "../../components/modals/source/const";
 import { Nullable } from "vitest";
 import { Employee, HeightRanges, Period, PPE, Rule, RuleReport, Sertificate} from "../../types/ppe";
@@ -14,6 +14,7 @@ type AppDataInitialState = {
     heightRanges: Nullable<HeightRanges[]>;
     employees: Nullable<Employee[]>;
     periods: Nullable<Period[]>;
+    sortingType: SortTypes 
 };
 
 const initialState: AppDataInitialState = {
@@ -25,6 +26,7 @@ const initialState: AppDataInitialState = {
     heightRanges: null,
     employees: null,
     periods: null,
+    sortingType: SortTypes.DEFAULT
 };
 
 const appData = createSlice({
@@ -82,6 +84,9 @@ const appData = createSlice({
         })
         .addCase(setRuleAction.fulfilled, (state) => {
             state.isLoading = false;
+        })
+        .addCase(setSorting.fulfilled, (state, action) => {
+            state.sortingType = action.payload;
         })
     },    
 });
