@@ -27,4 +27,10 @@ export enum SortTypes {
   Alphabet = 'Alphabet'
 }
 
+export enum AuthorizationStatus {
+  AUTH = "AUTH",
+  NO_AUTH = "NO_AUTH",
+  UNKNOWN = "UNKNOWN"
+}
+
 export { AppRoutes };

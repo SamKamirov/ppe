@@ -11,7 +11,13 @@ export type TAsyncThunk = {
   extra: AxiosInstance;
 };
 
-export type User = {
+export type LoginData = {
   username: string;
   password: string;
 }
+
+export type User = {
+  id: number;
+  username: string;
+  token: string;
+};

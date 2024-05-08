@@ -10,15 +10,23 @@ import { TContainer } from '../../components/toast-container/toast-constainer';
 import { isModal } from '../handbook/source';
 import { ModalLayout } from '../../components/modals/modal-layout';
 import { Preview } from '../../components/preview';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { AppRoutes, AuthorizationStatus } from '../../../const';
+import { getAuthStatus, getUser } from '../../store/user-process/user-process-selectors';
 
 export const RootLayout: FC<RouteChildren> = ({ children }) => {
     const isLoading = useAppSelector(getLoadingState);
     const modalContentType = useAppSelector(getModalContentType);
     const selectedPPE = useAppSelector(getSelectedPPE);
+    const authStatus = useAppSelector(getAuthStatus);
+
+    if (authStatus != AuthorizationStatus.AUTH) {
+        <Navigate to={AppRoutes.Login} />
+    }
 
     if (isLoading) {
         return <Loading />
-    }
+    };
 
     return (
         <section className='layout'>

@@ -1,9 +1,14 @@
 import React, { ChangeEvent, FormEvent, useState } from "react"
 import { useAppDispatch } from "../../app/hooks";
 import { loginAction } from "../../store/user-process/user-process-api-actions";
+import { useNavigate } from "react-router-dom";
+import { AppRoutes } from "../../../const";
+import { getToken } from "./source";
 
 export const Login = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
     const [loginState, setLoginState] = useState({
         login: '',
         password: ''
@@ -19,8 +24,9 @@ export const Login = () => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(loginState);
         dispatch(loginAction({ username: loginState.login, password: loginState.password }));
+
+        navigate(AppRoutes.Root);
     };
 
 
