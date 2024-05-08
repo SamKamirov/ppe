@@ -1,15 +1,14 @@
-import React, { Fragment, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { HandbookHeaders } from '../../components/handbook';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { PPETableRow } from '../../components/table-row/ppe-table-row';
 import { getPPES, getSortType } from '../../store/app-data/app-data-selectors';
-import { HandbookEmpty } from './handbook-empty';
-import { fetchPPEAction, fetchPPEsAction } from '../../api/api-actions';
+import { fetchPPEAction } from '../../api/api-actions';
 import { Navbar } from '../../components/navbars/navbar';
 import { NavbarTypes } from '../../components/navbars/source';
 import { TableRow } from '../../components/table-row/table-row-layout';
 import { TableRowTypes } from '../../components/table-row/source';
 import { sortPPES } from './source';
+import { Loading } from '../../components/loading/loading';
 
 export const Handbook = () => {
     const dispatch = useAppDispatch()
@@ -24,7 +23,7 @@ export const Handbook = () => {
     }, [dispatch]);
 
     if (!sortedPPEs) {
-        return <HandbookEmpty />
+        return <Loading />
     };
 
     return (

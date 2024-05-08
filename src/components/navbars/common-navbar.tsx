@@ -1,9 +1,29 @@
-import React, { forwardRef, MutableRefObject } from "react";
-import { saveToFile } from "./source";
+import React, { forwardRef, MutableRefObject, Ref } from "react";
+import { NavbarTypes, saveToFile } from "./source";
 
-export const CommonNavbar = forwardRef((_, ref) => {
+type Props = {
+    type?: NavbarTypes;
+}
+
+type forwardRefProps = {
+    _ref: Ref<HTMLTableElement>;
+    type?: NavbarTypes;
+}
+
+const getReportTitle = ({ type }: Props) => {
+    switch (type) {
+        case NavbarTypes.SizesReport: return 'Размеры';
+        case NavbarTypes.RuleCheck: return 'Проверка норм должностей'
+    }
+}
+
+
+export const CommonNavbar = forwardRef(({ type }: Props, ref) => {
     const currentRef = ref as MutableRefObject<HTMLTableElement>;
-    const handleReportClick = () => saveToFile({ currentRef, title: `Отчёт "Проверка норм должностей" на ${new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'numeric', year: 'numeric' })}` });
+    const handleReportClick = () => {
+        const reportTitle = getReportTitle({ type });
+        saveToFile({ currentRef, title: `Отчёт "${reportTitle}" на ${new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'numeric', year: 'numeric' })}` });
+    }
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">

@@ -3,8 +3,8 @@ import { StatusCodes } from "http-status-codes";
 import { toast } from "react-toastify";
 import { getToken } from "../components/login/source";
 
-// const BASE_URL = "http://91.201.54.62:3000/api/v1";
-const BASE_URL = 'http://localhost:3000/api/v1';
+const BASE_URL = "http://91.201.54.62:3000/api/v1";
+// const BASE_URL = 'http://localhost:3000/api/v1';
 const SERVER_TIMEOUT = 5000;
 
 type TDetailMessageType = {

@@ -3,13 +3,13 @@ import { PeriodsHeaders } from "../../components/periods/periods-headers";
 import { useAppSelector } from "../../app/hooks";
 import { PeriodsTableRow } from "../../components/periods/periods-table-row";
 import { getPPES } from "../../store/app-data/app-data-selectors";
-import { HandbookEmpty } from "./handbook-empty";
+import { Loading } from "../../components/loading/loading";
 
 export const Periods = () => {
     const ppes = useAppSelector(getPPES);
 
     if (!ppes) {
-        return <HandbookEmpty />
+        return <Loading />
     }
 
     return (

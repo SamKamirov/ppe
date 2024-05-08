@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { RuleCheckHeaders } from '../../components/report/rule-check-headers';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { fetchPPEAction, fetchRulesReport } from '../../api/api-actions';
+import { fetchRulesReport } from '../../api/api-actions';
 import { getRulesReport } from '../../store/report-data/report-data-selectors';
-import { HandbookEmpty } from '../handbook/handbook-empty';
 import { TableRow } from '../../components/table-row/table-row-layout';
 import { TableRowTypes } from '../../components/table-row/source';
 import { Navbar } from '../../components/navbars/navbar';
 import { NavbarTypes } from '../../components/navbars/source';
+import { Loading } from '../../components/loading/loading';
 
 export const RuleCheck = () => {
     const dispatch = useAppDispatch()
@@ -20,7 +20,7 @@ export const RuleCheck = () => {
 
 
     if (!rules) {
-        return <HandbookEmpty />
+        return <Loading />
     }
 
     return (

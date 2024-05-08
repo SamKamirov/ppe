@@ -3,9 +3,9 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { fetchPPEAction, fetchSizesReport } from "../../api/api-actions";
 import { getSizesReport } from "../../store/report-data/report-data-selectors";
 import { SizeReportTableRow } from "../../components/table-row/size-report-table-row";
-import { HandbookEmpty } from "../handbook/handbook-empty";
 import { Navbar } from "../../components/navbars/navbar";
 import { NavbarTypes } from "../../components/navbars/source";
+import { Loading } from "../../components/loading/loading";
 
 export const Sizes = () => {
     const dispatch = useAppDispatch();
@@ -20,7 +20,7 @@ export const Sizes = () => {
 
 
     if (!sizes) {
-        return <HandbookEmpty />
+        return <Loading />
     };
 
     return (

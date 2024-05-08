@@ -7,15 +7,14 @@ import { CommonNavbar } from "./common-navbar";
 type Props = {
     type: string;
     tableRef?: Ref<HTMLTableElement>;
-
 }
 
 export const Navbar: FC<Props> = ({ type, tableRef }) => {
     switch (type) {
         case NavbarTypes.Index: return <PPENavbar />
         case NavbarTypes.PPEUsing: return <PPEUsingNavbar />
-        case NavbarTypes.SizesReport: return <CommonNavbar ref={tableRef} />
-        case NavbarTypes.RuleCheck: return <CommonNavbar ref={tableRef} />
+        case NavbarTypes.SizesReport: return <CommonNavbar type={NavbarTypes.SizesReport} ref={tableRef} />
+        case NavbarTypes.RuleCheck: return <CommonNavbar type={NavbarTypes.RuleCheck} ref={tableRef} />
         case NavbarTypes.Give: return <CommonNavbar ref={tableRef} />
     }
 }

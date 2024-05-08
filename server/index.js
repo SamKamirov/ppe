@@ -17,6 +17,6 @@ app.use('/api/v1/ppes', ppes);
 app.use('/api/v1/sertificates', sertificates);
 app.use('/api/v1/reports', reports)
 app.use('/api/v1/services', services)
-app.use('/api/v1/login', users);
+// app.use('/api/v1/login', users);
 
 app.listen(PORT, () => console.log(`Server is listening from port ${PORT}`));
