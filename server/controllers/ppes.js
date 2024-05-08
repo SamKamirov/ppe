@@ -14,7 +14,7 @@ const insertPPE = asyncWrapper(async (req, res) => {
   const body = req.body;
 
   if (!isValidPPE(body)) {
-    res.status(400).json({ message: "Ошибка! Проверьте правильность введённых данных" });
+    res.status(400).json({ message: "Ошибка добавления записи" });
     return
   }
 

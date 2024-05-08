@@ -3,9 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { getEmployees, getPeriods, getPPES, getSertificates } from "../../store/app-data/app-data-selectors";
 import { fetchSetRuleAction, setRuleAction } from "../../api/api-actions";
 import { Rule } from "../../types/ppe";
-import { toast } from "react-toastify";
-import { sendErrorMessage } from "../../../server/utils/utils";
-import { sendClientErrorMessage } from "../../utils/send-error-message";
+import { Errors, sendClientErrorMessage } from "../../utils/send-error-message";
 
 export const SetRule = () => {
     const dispatch = useAppDispatch();
@@ -39,12 +37,12 @@ export const SetRule = () => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (ruleState.dateStart < ruleState.dateEnd) {
-            dispatch(setRuleAction({ setRuleItem: ruleState }))
+        if (ruleState.dateStart > ruleState.dateEnd) {
+            sendClientErrorMessage({ type: 'wrongDate' })
             return;
-        }
+        };
 
-        sendClientErrorMessage({ type: 'wrongDate' })
+        dispatch(setRuleAction({ setRuleItem: ruleState }))
     }
 
     return (

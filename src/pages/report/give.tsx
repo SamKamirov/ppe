@@ -1,21 +1,20 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef } from 'react';
+import { GiveReportHeaders } from '../../components/report/give-report-headers';
+import { Navbar } from '../../components/navbars/navbar';
+import { NavbarTypes } from '../../components/navbars/source';
 
 export const Give = () => {
+    const tableRef = useRef(null);
     return (
-        <Fragment>
-            <table className='table table-striped'>
-                <thead className="content-headers">
-                    <tr>
-                        <th scope="col">Наименование</th>
-                        <th scope="col">Код</th>
-                        <th scope="col">Наименование полное</th>
-                        <th scope="col">Единица измерения</th>
-                    </tr>
-                </thead>
+        <section>
+            <h1 className='mx-2 my-2'>Выдача</h1>
+            <Navbar type={NavbarTypes.Give} tableRef={tableRef} />
+            <table className='table table-striped' ref={tableRef}>
+                <GiveReportHeaders />
                 <tbody className='table-group-divider'>
 
                 </tbody>
             </table>
-        </Fragment>
+        </section>
     );
 };

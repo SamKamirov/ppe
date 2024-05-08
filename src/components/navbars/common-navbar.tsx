@@ -13,7 +13,8 @@ type forwardRefProps = {
 const getReportTitle = ({ type }: Props) => {
     switch (type) {
         case NavbarTypes.SizesReport: return 'Размеры';
-        case NavbarTypes.RuleCheck: return 'Проверка норм должностей'
+        case NavbarTypes.RuleCheck: return 'Проверка норм должностей';
+        case NavbarTypes.Give: return 'Выдача';
     }
 }
 

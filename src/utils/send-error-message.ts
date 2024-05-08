@@ -1,13 +1,14 @@
 import { toast } from "react-toastify"
 
 
-const errors = {
-    wrongDate: 'Ошибка, проверьте правильность введённой даты'
+export const Errors = {
+    wrongDate: 'Ошибка, проверьте правильность введённой даты',
+    notValidPPE: 'Ошибка, не все поля заполнены корректно'
 };
 
 type Props = {
-    type: keyof typeof errors;
+    type: keyof typeof Errors;
 };
 
 
-export const sendClientErrorMessage = ({type}: Props) => toast.error(errors[type]);
+export const sendClientErrorMessage = ({type}: Props) => toast.error(Errors[type]);

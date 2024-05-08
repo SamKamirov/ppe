@@ -4,6 +4,8 @@ import { setModalType, uploadPPEAction } from "../../api/api-actions";
 import { TAddPPE } from "../../types/ppe";
 import { ContentTypes } from "./source/const";
 import { getHeightRanges } from "../../store/app-data/app-data-selectors";
+import { isValidPPE } from "./source";
+import { sendClientErrorMessage } from "../../utils/send-error-message";
 
 export const AddPpeModal = () => {
   const dispatch = useAppDispatch();
@@ -30,6 +32,11 @@ export const AddPpeModal = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!isValidPPE({ ppe: formState })) {
+      sendClientErrorMessage({ type: 'notValidPPE' });
+      return;
+    };
+
     dispatch(uploadPPEAction({ ppe: formState }));
   }
 
@@ -48,7 +55,7 @@ export const AddPpeModal = () => {
                 <input type="text" className="form-control" id="fullname" name="fullname" />
               </div>
               <div className="input-group">
-                <label htmlFor="shortname" className="input-group-text input-group-sm w-50">Наименование</label>
+                <label htmlFor="shortname" className="input-group-text input-group-sm w-50">Наименование краткое</label>
                 <input type="text" className="form-control" id="shortname" name="shortname" />
               </div>
               <div className="input-group">

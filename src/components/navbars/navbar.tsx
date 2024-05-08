@@ -5,9 +5,13 @@ import { PPEUsingNavbar } from "./ppe-using-navbar";
 import { CommonNavbar } from "./common-navbar";
 
 type Props = {
-    type: string;
+    type: keyof typeof NavbarTypes;
     tableRef?: Ref<HTMLTableElement>;
 }
+
+// const navbars = {
+//     NavbarTypes:  
+// };
 
 export const Navbar: FC<Props> = ({ type, tableRef }) => {
     switch (type) {
@@ -15,6 +19,6 @@ export const Navbar: FC<Props> = ({ type, tableRef }) => {
         case NavbarTypes.PPEUsing: return <PPEUsingNavbar />
         case NavbarTypes.SizesReport: return <CommonNavbar type={NavbarTypes.SizesReport} ref={tableRef} />
         case NavbarTypes.RuleCheck: return <CommonNavbar type={NavbarTypes.RuleCheck} ref={tableRef} />
-        case NavbarTypes.Give: return <CommonNavbar ref={tableRef} />
+        case NavbarTypes.Give: return <CommonNavbar type={NavbarTypes.Give} ref={tableRef} />
     }
 }
