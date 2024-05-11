@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import { StatusCodes } from "http-status-codes";
 import { toast } from "react-toastify";
 import { getToken } from "../components/login/source";
+import { sendClientErrorMessage } from "../utils/send-error-message";
 
 // const BASE_URL = "http://91.201.54.62:3000/api/v1";
 const BASE_URL = 'http://localhost:3000/api/v1';
@@ -26,7 +27,7 @@ export const createApi = (): AxiosInstance => {
   });
 
   api.interceptors.request.use((config) => {
-    const token = getToken();
+    const token = getToken();  
 
     if (token && config.headers) {
       config.headers['x-token'] = token;
@@ -39,10 +40,10 @@ export const createApi = (): AxiosInstance => {
     (response: AxiosResponse<TDetailMessageType>) => {
       return response
     },
-    (error: AxiosError<TDetailMessageType>) => {  
+    (error: AxiosError<TDetailMessageType>) => {
       if (error.response && shouldDisplayMessage(error.response)) {
-        const detailMessage = (error.response.data);   
-        toast.error(detailMessage.message)
+        const detailMessage = (error.response.data);
+        sendClientErrorMessage({type: "emptyLoginData"})
       }
       throw error
     },

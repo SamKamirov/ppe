@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AuthorizationStatus, SliceNames } from "../../../const";
+import { AppRoutes, AuthorizationStatus, SliceNames } from "../../../const";
 import { Nullable } from "vitest";
 import { User } from "../../types/state";
-import { checkAuthAction, loginAction } from "./user-process-api-actions";
+import { checkAuthAction, loginAction, logoutAction } from "./user-process-api-actions";
+import browserHistory from "../../browser-history";
 
 type UserDataInitialState = {
     user: Nullable<User>,
@@ -23,6 +24,15 @@ const userProcess = createSlice({
         .addCase(loginAction.fulfilled, (state, action) => {
             state.user = action.payload;
             state.authStatus = AuthorizationStatus.AUTH;
+            browserHistory.push(AppRoutes.Root);
+        })
+        .addCase(loginAction.rejected, (state) => {
+            state.user = null;
+            state.authStatus = AuthorizationStatus.NO_AUTH;
+        })
+        .addCase(logoutAction.fulfilled, (state) => {
+            state.user = null;
+            state.authStatus = AuthorizationStatus.NO_AUTH;
         })
         .addCase(checkAuthAction.fulfilled, (state, action) => {
             state.user = action.payload;
@@ -30,7 +40,7 @@ const userProcess = createSlice({
         })
         .addCase(checkAuthAction.rejected, (state) => {
             state.user = null;
-            state.authStatus = AuthorizationStatus.UNKNOWN;
+            state.authStatus = AuthorizationStatus.NO_AUTH;
         })
     },
 })

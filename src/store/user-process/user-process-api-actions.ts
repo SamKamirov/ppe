@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AppRoutes, SliceNames } from "../../../const";
 import { LoginData, TAsyncThunk, User } from "../../types/state";
-import { saveToken } from "../../components/login/source";
+import { dropToken, saveToken } from "../../components/login/source";
+import browserHistory from "../../browser-history";
 
 
 export const loginAction = createAsyncThunk<User, LoginData, TAsyncThunk>(
@@ -20,3 +21,10 @@ export const checkAuthAction = createAsyncThunk<User, undefined, TAsyncThunk>(
         return data;
     }
 );
+
+export const logoutAction = createAsyncThunk<void, undefined, TAsyncThunk>(
+    `${SliceNames.UserProcess}/logout`,
+    async (_arg) => {
+        dropToken();
+    }
+)

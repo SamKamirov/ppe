@@ -3,7 +3,8 @@ import { toast } from "react-toastify"
 
 export const Errors = {
     wrongDate: 'Ошибка, проверьте правильность введённой даты',
-    notValidPPE: 'Ошибка, не все поля заполнены корректно'
+    notValidPPE: 'Ошибка, не все поля заполнены корректно',
+    emptyLoginData: 'Ошибка, часть полей пустые'
 };
 
 type Props = {

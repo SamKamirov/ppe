@@ -4,6 +4,7 @@ import { deletePPEAction, fetchEmployees, fetchHeightRanges, fetchPPEAction, fet
 import { ContentTypes } from "../../components/modals/source/const";
 import { Nullable } from "vitest";
 import { Employee, HeightRanges, Period, PPE, Rule, RuleReport, Sertificate} from "../../types/ppe";
+import { checkAuthAction, loginAction } from "../user-process/user-process-api-actions";
 
 type AppDataInitialState = {
     ppes: Nullable<PPE[]>;
@@ -87,6 +88,24 @@ const appData = createSlice({
         })
         .addCase(setSorting.fulfilled, (state, action) => {
             state.sortingType = action.payload;
+        })
+        .addCase(loginAction.fulfilled, (state) => {
+            state.isLoading = false;
+        })
+        .addCase(loginAction.pending, (state) => {
+            state.isLoading = true;
+        })
+        .addCase(loginAction.rejected, (state) => {
+            state.isLoading = false;
+        })
+        .addCase(checkAuthAction.fulfilled, (state) => {
+            state.isLoading = false;
+        })
+        .addCase(checkAuthAction.pending, (state) => {
+            state.isLoading = true;
+        })
+        .addCase(checkAuthAction.rejected, (state) => {
+            state.isLoading = false;
         })
     },    
 });

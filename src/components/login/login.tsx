@@ -1,32 +1,32 @@
-import React, { ChangeEvent, FormEvent, useState } from "react"
-import { useAppDispatch } from "../../app/hooks";
+import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react"
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { loginAction } from "../../store/user-process/user-process-api-actions";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { AppRoutes } from "../../../const";
-import { getToken } from "./source";
+import browserHistory from "../../browser-history";
+import { getUser } from "../../store/user-process/user-process-selectors";
 
 export const Login = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const user = useAppSelector(getUser);
 
-    const [loginState, setLoginState] = useState({
-        login: '',
-        password: ''
-    });
+    useEffect(() => {
+        if (user) {
+            browserHistory.push(AppRoutes.Root);
+            navigate(AppRoutes.Root);
+        }
+    }, [user, navigate])
 
-    const handleChange = (e: ChangeEvent<HTMLFormElement>) => {
-        const { name, value } = e.target;
-        setLoginState({
-            ...loginState,
-            [name]: value
-        })
-    };
+    const loginRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(loginAction({ username: loginState.login, password: loginState.password }));
-
-        navigate(AppRoutes.Root);
+        if (loginRef.current && passwordRef.current) {
+            dispatch(loginAction({ username: loginRef.current.value, password: passwordRef.current.value }));
+        };
+        browserHistory.push(AppRoutes.Root);
     };
 
 
@@ -39,14 +39,14 @@ export const Login = () => {
                 <div>
                     <h1>Вход</h1>
                 </div>
-                <form onChange={handleChange} onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="login" className="form-label">Логин</label>
-                        <input type="text" className="form-control" id="login" name="login" aria-describedby="emailHelp" />
+                        <input type="text" className="form-control" id="login" name="login" aria-describedby="login" required ref={loginRef} />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Пароль</label>
-                        <input type="password" className="form-control" id="password" name="password" />
+                        <input type="password" className="form-control" id="password" name="password" required ref={passwordRef} />
                     </div>
                     <div className="d-grid gap-2">
                         <button type="submit" className="btn btn-primary">Войти</button>

@@ -17,89 +17,25 @@ import { Periods } from "../../pages/handbook/periods";
 import { Ranges } from "../../pages/handbook/clothes-ranges";
 import { Sizes } from "../../pages/report/sizes";
 import { Give } from "../../pages/report/give";
-import { ReportLayout } from "../../pages/layout/report-layout";
 import { Tools } from "../../pages/tools/tools";
 import { Login } from "../../components/login/login";
+import { Profile } from "../../pages/profile/profile";
 
 export const App = () => (
   <Routes>
-    <Route
-      path={AppRoutes.Root}
-      element={
-        <RootLayout>
-          <Handbook />
-        </RootLayout>
-      }
-    />
-    <Route
-      path={AppRoutes.Login}
-      element={<Login />}
-    />
-    <Route
-      path={AppRoutes.Using}
-      element={
-        <RootLayout>
-          <Using />
-        </RootLayout>
-      }
-    />
-    <Route
-      path={AppRoutes.Periods}
-      element={
-        <RootLayout>
-          <Periods />
-        </RootLayout>
-      }
-    />
-    <Route
-      path={AppRoutes.Ranges}
-      element={
-        <RootLayout>
-          <Ranges />
-        </RootLayout>
-      }
-    />
-    <Route
-      path={AppRoutes.RuleCheck}
-      element={
-        <ReportLayout>
-          <RuleCheck />
-        </ReportLayout>
-      }
-    />
-    <Route
-      path={AppRoutes.Sizes}
-      element={
-        <ReportLayout>
-          <Sizes />
-        </ReportLayout>
-      }
-    />
-    <Route
-      path={AppRoutes.Give}
-      element={
-        <RootLayout>
-          <Give />
-        </RootLayout>
-      }
-    />
-    <Route />
-    <Route
-      path={AppRoutes.SetRules}
-      element={
-        <RootLayout>
-          <SetRule />
-        </RootLayout>
-      }
-    />
-    <Route
-      path={AppRoutes.PersonCard}
-      element={
-        <RootLayout>
-          <Tools />
-        </RootLayout>
-      }
-    />
+    <Route path={AppRoutes.Login} element={<Login />} />
+    <Route path={AppRoutes.Root} element={<RootLayout />} >
+      <Route index element={<Handbook />} />
+      <Route path={AppRoutes.Using} element={<Using />} />
+      <Route path={AppRoutes.Periods} element={<Periods />} />
+      <Route path={AppRoutes.Ranges} element={<Ranges />} />
+      <Route path={AppRoutes.RuleCheck} element={<RuleCheck />} />
+      <Route path={AppRoutes.Sizes} element={<Sizes />} />
+      <Route path={AppRoutes.Give} element={<Give />} />
+      <Route path={AppRoutes.SetRules} element={<SetRule />} />
+      <Route path={AppRoutes.PersonCard} element={<Tools />} />
+      <Route path={AppRoutes.Profile} element={<Profile />} />
+    </Route>
     <Route path={AppRoutes.Everything} element={<NotFound />} />
   </Routes>
 );
