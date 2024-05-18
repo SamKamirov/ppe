@@ -24,23 +24,22 @@ const userProcess = createSlice({
         .addCase(loginAction.fulfilled, (state, action) => {
             state.user = action.payload;
             state.authStatus = AuthorizationStatus.AUTH;
-            browserHistory.push(AppRoutes.Root);
         })
         .addCase(loginAction.rejected, (state) => {
             state.user = null;
             state.authStatus = AuthorizationStatus.NO_AUTH;
         })
         .addCase(logoutAction.fulfilled, (state) => {
-            state.user = null;
             state.authStatus = AuthorizationStatus.NO_AUTH;
+            state.user = null;
         })
         .addCase(checkAuthAction.fulfilled, (state, action) => {
-            state.user = action.payload;
             state.authStatus = AuthorizationStatus.AUTH;
+            state.user = action.payload;
         })
         .addCase(checkAuthAction.rejected, (state) => {
-            state.user = null;
             state.authStatus = AuthorizationStatus.NO_AUTH;
+            state.user = null;
         })
     },
 })

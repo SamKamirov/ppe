@@ -5,7 +5,7 @@ import browserHistory from "../../browser-history";
 
 export const LoginButton = () => {
     const navigate = useNavigate();
-    const handleClick = () => browserHistory.push(AppRoutes.Login);
+    const handleClick = () => navigate(AppRoutes.Login);
 
     return (
         <div className="d-flex" role="search">

@@ -20,22 +20,33 @@ import { Give } from "../../pages/report/give";
 import { Tools } from "../../pages/tools/tools";
 import { Login } from "../../components/login/login";
 import { Profile } from "../../pages/profile/profile";
+import { Main } from "../../pages/main/main";
+import { PrivateRoute } from "../../pages/private-route/private-route";
+import { useAppSelector } from "../hooks";
+import { getAuthStatus, getUser } from "../../store/user-process/user-process-selectors";
 
-export const App = () => (
-  <Routes>
-    <Route path={AppRoutes.Login} element={<Login />} />
-    <Route path={AppRoutes.Root} element={<RootLayout />} >
-      <Route index element={<Handbook />} />
-      <Route path={AppRoutes.Using} element={<Using />} />
-      <Route path={AppRoutes.Periods} element={<Periods />} />
-      <Route path={AppRoutes.Ranges} element={<Ranges />} />
-      <Route path={AppRoutes.RuleCheck} element={<RuleCheck />} />
-      <Route path={AppRoutes.Sizes} element={<Sizes />} />
-      <Route path={AppRoutes.Give} element={<Give />} />
-      <Route path={AppRoutes.SetRules} element={<SetRule />} />
-      <Route path={AppRoutes.PersonCard} element={<Tools />} />
-      <Route path={AppRoutes.Profile} element={<Profile />} />
-    </Route>
-    <Route path={AppRoutes.Everything} element={<NotFound />} />
-  </Routes>
-);
+export const App = () => {
+  const user = useAppSelector(getUser);
+
+  return (
+    <Routes>
+      <Route path={AppRoutes.Root} element={
+        <PrivateRoute user={user}>
+          <Main />
+        </PrivateRoute>}>
+        <Route index element={<Handbook />} />
+        <Route path={AppRoutes.Using} element={<Using />} />
+        <Route path={AppRoutes.Periods} element={<Periods />} />
+        <Route path={AppRoutes.Ranges} element={<Ranges />} />
+        <Route path={AppRoutes.RuleCheck} element={<RuleCheck />} />
+        <Route path={AppRoutes.Sizes} element={<Sizes />} />
+        <Route path={AppRoutes.Give} element={<Give />} />
+        <Route path={AppRoutes.SetRules} element={<SetRule />} />
+        <Route path={AppRoutes.PersonCard} element={<Tools />} />
+        <Route path={AppRoutes.Profile} element={<Profile />} />
+      </Route>
+      <Route path={AppRoutes.Everything} element={<NotFound />} />
+      <Route path={AppRoutes.Login} element={<Login />} />
+    </Routes>
+  )
+}

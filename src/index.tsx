@@ -13,18 +13,18 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
+store.dispatch(checkAuthAction());
 store.dispatch(fetchPPEsAction());
 store.dispatch(fetchSertificates());
-store.dispatch(checkAuthAction());
 
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            {/* <HashRouter> */}
-            <BrowserRouter>
+            <HashRouter>
+                {/* <BrowserRouter> */}
                 <App />
-            </BrowserRouter>
-            {/* </HashRouter> */}
+                {/* </BrowserRouter> */}
+            </HashRouter>
         </Provider>
     </React.StrictMode>
 );

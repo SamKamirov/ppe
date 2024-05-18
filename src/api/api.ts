@@ -37,13 +37,12 @@ export const createApi = (): AxiosInstance => {
   });
 
   api.interceptors.response.use(
-    (response: AxiosResponse<TDetailMessageType>) => {
-      return response
-    },
+    (response) => response,
     (error: AxiosError<TDetailMessageType>) => {
       if (error.response && shouldDisplayMessage(error.response)) {
         const detailMessage = (error.response.data);
-        sendClientErrorMessage({type: "emptyLoginData"})
+        
+        toast.warn(detailMessage.message);
       }
       throw error
     },

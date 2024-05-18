@@ -8,33 +8,28 @@ const { SECRET_KEY } = require("../const");
 const loginController = asyncWrapper(async (req, res) => {
     const { username, password } = req.body;
 
-    console.log(username, password);
-
     // const cipherText = crypto.AES.encrypt(password, SECRET_KEY).toString();
     // const token = crypto.AES.encrypt(`${password}${username}`, SECRET_KEY).toString();
 
-    const users = (await pool.query('select * from users')).rows;
-    const DBuser = users.find((item) => {
+    const users = (await pool.query(`select users.id, password, token, first_name || ' ' || middle_name as username from users inner join employee on users.employee = employee.id`)).rows;
+
+    const currentUser = users.find((item) => {
         const userPassword = crypto.AES.decrypt(item.password, SECRET_KEY).toString(crypto.enc.Utf8);
         return userPassword === password;
     });
 
-    if (!DBuser) {
-        sendErrorMessage(res, 'Такого пользователя не существует.')
+    if (!currentUser) {
+        // sendErrorMessage(res, 'Такого пользователя не существует.')
+        res.status(400).json({ message: 'Такого пользователя не существует.' })
         return;
-    }
+    };
 
-    const currentUser = await pool.query(`select users.id, token, first_name || ' ' || middle_name as username from users inner join employee on users.employee = employee.id where first_name || ' ' || middle_name = 'Камиров Семён'`)
-    const userRows = currentUser.rows[0];
-    console.log({ ...userRows });
-    res.status(200).json({ ...userRows });
+    res.status(200).json({ ...currentUser });
 });
 
 const checkAuthAction = asyncWrapper(async (req, res) => {
     const token = req.headers['x-token'];
-    console.log(token);
     const user = await pool.query(`select users.id, token, first_name || ' ' || middle_name as username from users inner join employee on users.employee = employee.id where token='${token}'`)
-    console.log(user.rows);
     if (user.rows.length > 0) res.status(200).json({ ...user.rows[0] });
 });
 

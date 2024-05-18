@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { loginAction } from "../../store/user-process/user-process-api-actions";
 import { redirect, useNavigate } from "react-router-dom";
 import { AppRoutes } from "../../../const";
-import browserHistory from "../../browser-history";
 import { getUser } from "../../store/user-process/user-process-selectors";
 
 export const Login = () => {
@@ -13,7 +12,6 @@ export const Login = () => {
 
     useEffect(() => {
         if (user) {
-            browserHistory.push(AppRoutes.Root);
             navigate(AppRoutes.Root);
         }
     }, [user, navigate])
@@ -26,7 +24,7 @@ export const Login = () => {
         if (loginRef.current && passwordRef.current) {
             dispatch(loginAction({ username: loginRef.current.value, password: passwordRef.current.value }));
         };
-        browserHistory.push(AppRoutes.Root);
+        navigate(AppRoutes.Root);
     };
 
 
