@@ -1,8 +1,11 @@
+import { Nullable } from "vitest";
+
 export type PPE = {
     id: number;
     fullname: string;
     shortname: string;
     lifeSpan: number;
+    period: number;
     toBeReturned: number;
     isKit: number;
     sizeType: number;
@@ -84,3 +87,20 @@ export type RuleReport = {
     position: number;
     fullname: string;   
 };
+
+export type SizeType = {
+    id: number;
+    title: string;
+}
+
+export type Size = {
+    id: number;
+    chestSize: Nullable<string>;
+    waistSize: Nullable<string>;
+    neckSize: Nullable<string>;
+    letterReference: Nullable<string>;
+    localSize: Nullable<string>;
+    chestInterval: Nullable<string>;
+    waistInterval: Nullable<string>;
+    type: string;
+}

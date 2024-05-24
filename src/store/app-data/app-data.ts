@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SliceNames, SortTypes } from "../../../const";
-import { deletePPEAction, fetchEmployees, fetchHeightRanges, fetchPPEAction, fetchPPEsAction, fetchRulesReport, fetchSertificates, fetchSetRuleAction, setModalType, setRuleAction, setSorting, uploadPPEAction, uploadSertificate } from "../../api/api-actions";
+import { deletePPEAction, fetchEmployees, fetchHeightRanges, fetchPeriods, fetchPPEAction, fetchPPEsAction, fetchRulesReport, fetchSertificates, fetchSetRuleAction, fetchSizesTypes, setModalType, setRuleAction, setSorting, uploadPPEAction, uploadSertificate } from "../../api/api-actions";
 import { ContentTypes } from "../../components/modals/source/const";
 import { Nullable } from "vitest";
-import { Employee, HeightRanges, Period, PPE, Rule, RuleReport, Sertificate} from "../../types/ppe";
+import { Employee, HeightRanges, Period, PPE, Sertificate, Size, SizeType} from "../../types/ppe";
 import { checkAuthAction, loginAction } from "../user-process/user-process-api-actions";
 
 type AppDataInitialState = {
@@ -15,7 +15,8 @@ type AppDataInitialState = {
     heightRanges: Nullable<HeightRanges[]>;
     employees: Nullable<Employee[]>;
     periods: Nullable<Period[]>;
-    sortingType: SortTypes 
+    sortingType: SortTypes,
+    sizeTypes: Nullable<SizeType[]>
 };
 
 const initialState: AppDataInitialState = {
@@ -27,7 +28,8 @@ const initialState: AppDataInitialState = {
     heightRanges: null,
     employees: null,
     periods: null,
-    sortingType: SortTypes.DEFAULT
+    sortingType: SortTypes.DEFAULT,
+    sizeTypes: null
 };
 
 const appData = createSlice({
@@ -106,6 +108,12 @@ const appData = createSlice({
         })
         .addCase(checkAuthAction.rejected, (state) => {
             state.isLoading = false;
+        })
+        .addCase(fetchPeriods.fulfilled, (state, action) => {
+            state.periods = action.payload;
+        })
+        .addCase(fetchSizesTypes.fulfilled, (state, action) => {
+            state.sizeTypes = action.payload;
         })
     },    
 });

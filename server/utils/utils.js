@@ -94,6 +94,20 @@ const adaptRuleToClient = (response) => {
 
 const isValidRuleData = (body) => body.ppe && body.period && body.amount && body.dateStart && body.dateEnd && body.employee && body.sertificate;
 
+const adaptSizesTypesToClient = (response) => {
+  return {
+    id: response.id,
+    chestSize: response.chest_size,
+    waistSize: response.waist_size,
+    neckSize: response.neck_size,
+    letterReference: response.letter_reference,
+    localSize: response.local_size,
+    chestInterval: response.chest_interval,
+    waistInterval: response.waist_interval,
+    type: response.type
+  }
+};
+
 module.exports = {
   isValidPPE,
   adaptPPEToClient,
@@ -102,5 +116,6 @@ module.exports = {
   sendErrorMessage,
   adaptEmployeeToClient,
   isValidRuleData,
-  adaptRuleToClient
+  adaptRuleToClient,
+  adaptSizesTypesToClient
 };

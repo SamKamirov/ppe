@@ -10,6 +10,7 @@ const selectHeightRanges = (state: State) => state[SliceNames.AppData].heightRan
 const selectEmployees = (state: State) => state[SliceNames.AppData].employees;
 const selectPeriods = (state: State) => state[SliceNames.AppData].periods;
 const selectSortType = (state: State) => state[SliceNames.AppData].sortingType;
+const selectSizeType = (state: State) => state[SliceNames.AppData].sizeTypes;
 
 export const getPPES = createSelector(
     [selectPPEs],
@@ -54,4 +55,9 @@ export const getPeriods = createSelector(
 export const getSortType = createSelector(
     [selectSortType],
     (type) => type
-)
+);
+
+export const getSizeTypes = createSelector(
+    [selectSizeType],
+    (sizeTypes) => sizeTypes
+);

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SliceNames, SortTypes } from "../../const";
 import { TAsyncThunk } from "../types/state";
-import { AddSertificate, Employee, HeightRanges, Period, PPE, Rule, RuleReport, Sertificate, SetRule, TAddPPE } from "../types/ppe";
+import { AddSertificate, Employee, HeightRanges, Period, PPE, Rule, RuleReport, Sertificate, SetRule, Size, SizeType, TAddPPE } from "../types/ppe";
 import { ContentTypes } from "../components/modals/source/const";
 import { SizesReport } from "../store/report-data/report-data";
 
@@ -131,10 +131,25 @@ const fetchRulesReport = createAsyncThunk<RuleReport[], undefined, TAsyncThunk>(
 const setSorting = createAsyncThunk<SortTypes, SortTypes>(
   `${SliceNames.AppData}/setSorting`,
   async (type) => {
-    // console.log(type);
     return type
   }
-)
+);
+
+const fetchPeriods = createAsyncThunk<Period[], undefined, TAsyncThunk>(
+  `${SliceNames.AppData}/fetchPeriods`,
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get('/periods')
+    return data;
+  }
+);
+
+const fetchSizesTypes = createAsyncThunk<SizeType[], undefined, TAsyncThunk>(
+  `${SliceNames.AppData}/fetchSizesTypes`,
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get('/sizes');
+    return data
+  }
+);
 
 export { 
   fetchPPEsAction, 
@@ -150,5 +165,7 @@ export {
   fetchSetRuleAction,
   setRuleAction,
   fetchRulesReport,
-  setSorting
+  setSorting,
+  fetchPeriods,
+  fetchSizesTypes
 };

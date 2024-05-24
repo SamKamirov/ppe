@@ -1,7 +1,7 @@
 const asyncWrapper = require("../async");
 const { pool } = require("../connection");
 const { getSizesReport } = require("../queries/reports");
-const { adaptSizeReportToClient } = require("../utils/utils");
+const { adaptSizeReportToClient, adaptSizesTypesToClient } = require("../utils/utils");
 
 const getSinglePPESizes = asyncWrapper(async (req, res) => {
     const response = await pool.query(getSizesReport());
@@ -9,4 +9,9 @@ const getSinglePPESizes = asyncWrapper(async (req, res) => {
     res.status(201).json(adapted);
 })
 
-module.exports = { getSinglePPESizes };
+const getSizesTypes = asyncWrapper(async (req, res) => {
+    const response = await pool.query('select * from size_types');
+    res.status(201).json([...response.rows]);
+});
+
+module.exports = { getSizesTypes };
