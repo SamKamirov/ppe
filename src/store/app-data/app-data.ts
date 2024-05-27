@@ -129,11 +129,11 @@ const appData = createSlice({
             .addCase(loginAction.rejected, (state) => {
                 state.isLoading = false;
             })
-            .addCase(checkAuthAction.fulfilled, (state) => {
-                state.isLoading = false;
-            })
             .addCase(checkAuthAction.pending, (state) => {
                 state.isLoading = true;
+            })
+            .addCase(checkAuthAction.fulfilled, (state) => {
+                state.isLoading = false;
             })
             .addCase(checkAuthAction.rejected, (state) => {
                 state.isLoading = false;
@@ -146,7 +146,6 @@ const appData = createSlice({
             })
             .addCase(fetchSizeRanges.fulfilled, (state, action) => {
                 state.sizeRanges = action.payload;
-                console.log(action.payload);
             });
     },
 });

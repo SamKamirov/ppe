@@ -5,6 +5,7 @@ export type PPE = {
     fullname: string;
     shortname: string;
     lifeSpan: number;
+    sertificateID: number;
     period: number;
     toBeReturned: number;
     isKit: number;

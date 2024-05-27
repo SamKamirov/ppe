@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setModalType, uploadPPEAction } from "../../api/api-actions";
 import { TAddPPE } from "../../types/ppe";
 import { ContentTypes } from "./source/const";
-import { getHeightRanges, getPeriods, getSizeTypes } from "../../store/app-data/app-data-selectors";
+import { getHeightRanges, getPeriods, getSertificates, getSizeTypes } from "../../store/app-data/app-data-selectors";
 import { isValidPPE } from "./source";
 import { sendClientErrorMessage } from "../../utils/send-error-message";
 
@@ -11,15 +11,17 @@ export const AddPpeModal = () => {
   const dispatch = useAppDispatch();
   const periods = useAppSelector(getPeriods);
   const sizeTypes = useAppSelector(getSizeTypes);
+  const sertificates = useAppSelector(getSertificates);
 
   const [formState, setFormState] = useState<TAddPPE>({
     fullname: '',
     shortname: '',
     lifeSpan: 0,
-    period: 0,
+    sertificateID: 1,
+    period: 1,
     toBeReturned: 0,
     isKit: 0,
-    sizeType: 0,
+    sizeType: 1,
     unitType: ''
   });
 
@@ -34,12 +36,6 @@ export const AddPpeModal = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formState)
-    if (!isValidPPE({ ppe: formState })) {
-      sendClientErrorMessage({ type: 'notValidPPE' });
-      return;
-    };
-
     dispatch(uploadPPEAction({ ppe: formState }));
   }
 
@@ -66,8 +62,15 @@ export const AddPpeModal = () => {
                 <input type="text" className="form-control" id="lifeSpan" name="lifeSpan" />
               </div>
               <div className="input-group">
+                <label htmlFor="sertificateID" className="input-group-text input-group-sm w-50">Сертификат соответствия</label>
+                <select className="form-select form-control" name="sertificateID" defaultValue={1}>
+                  {sertificates && sertificates.map((sertificate) => <option key={sertificate.id} value={Number(sertificate.id)}>{sertificate.title}</option>)}
+                </select>
+                <input type="type" className="form-control hidden" id="sertificateID" name="sertificateID" />
+              </div>
+              <div className="input-group">
                 <label htmlFor="period" className="input-group-text input-group-sm w-50">Периодичность</label>
-                <select className="form-select form-control">
+                <select className="form-select form-control" name="period" defaultValue={1}>
                   {periods && periods.map((period) => <option key={period.id} value={Number(period.id)}>{period.frequency}</option>)}
                 </select>
                 <input type="type" className="form-control hidden" id="period" name="period" />

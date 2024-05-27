@@ -7,12 +7,16 @@ import browserHistory from "../../browser-history";
 
 type UserDataInitialState = {
     user: Nullable<User>,
-    authStatus: Nullable<AuthorizationStatus>
+    authStatus: Nullable<AuthorizationStatus>,
+    currentPage: number,
+    perPage: number
 }
 
 const UserDataInitialState: UserDataInitialState = {
     user: null,
-    authStatus: null
+    authStatus: null,
+    currentPage: 1,
+    perPage: 14
 }
 
 const userProcess = createSlice({
@@ -21,6 +25,14 @@ const userProcess = createSlice({
     reducers: {},
     extraReducers(builder) {
         builder
+        .addCase(checkAuthAction.fulfilled, (state, action) => {
+            state.authStatus = AuthorizationStatus.AUTH;
+            state.user = action.payload;
+        })
+        .addCase(checkAuthAction.rejected, (state) => {
+            state.authStatus = AuthorizationStatus.NO_AUTH;
+            state.user = null;
+        })
         .addCase(loginAction.fulfilled, (state, action) => {
             state.user = action.payload;
             state.authStatus = AuthorizationStatus.AUTH;
@@ -30,14 +42,6 @@ const userProcess = createSlice({
             state.authStatus = AuthorizationStatus.NO_AUTH;
         })
         .addCase(logoutAction.fulfilled, (state) => {
-            state.authStatus = AuthorizationStatus.NO_AUTH;
-            state.user = null;
-        })
-        .addCase(checkAuthAction.fulfilled, (state, action) => {
-            state.authStatus = AuthorizationStatus.AUTH;
-            state.user = action.payload;
-        })
-        .addCase(checkAuthAction.rejected, (state) => {
             state.authStatus = AuthorizationStatus.NO_AUTH;
             state.user = null;
         })

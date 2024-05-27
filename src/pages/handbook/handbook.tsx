@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { HandbookHeaders } from '../../components/handbook';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getPPES, getSortType } from '../../store/app-data/app-data-selectors';
-import { fetchPeriods, fetchPPEAction, fetchSizesTypes } from '../../api/api-actions';
+import { fetchPeriods, fetchPPEAction, fetchSertificates, fetchSizesTypes } from '../../api/api-actions';
 import { Navbar } from '../../components/navbars/navbar';
 import { NavbarTypes } from '../../components/navbars/source';
 import { TableRow } from '../../components/table-row/table-row-layout';
