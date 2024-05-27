@@ -3,14 +3,23 @@ import { RangesHeaders } from '../../components/ranges/ranges-headers';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 // import { ranges } from '../../mocks/ranges';
 import { RangesTableRow } from '../../components/ranges/ranges-table-row';
-import { fetchPPEAction } from '../../api/api-actions';
+import { fetchPPEAction, fetchSizeRanges } from '../../api/api-actions';
+import { getSizeRanges } from '../../store/app-data/app-data-selectors';
+import { HandbookEmpty } from './handbook-empty';
 
 export const Ranges = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(fetchPPEAction(null));
-    }, [dispatch])
+        dispatch(fetchSizeRanges());
+    }, [dispatch]);
+
+    const ranges = useAppSelector(getSizeRanges);
+
+    if (!ranges) {
+        return <HandbookEmpty />
+    }
 
     return (
         <section className='using'>
@@ -18,9 +27,9 @@ export const Ranges = () => {
             <table className='table table-striped'>
                 <RangesHeaders />
                 <tbody className='table-group-divider'>
-                    {/* {ranges.map((range) => (
-                        <RangesTableRow range={range} key={range.fullTitle} />
-                    ))} */}
+                    {ranges.map((range) => (
+                        <RangesTableRow range={range} key={range.id} />
+                    ))}
                 </tbody>
             </table>
         </section>

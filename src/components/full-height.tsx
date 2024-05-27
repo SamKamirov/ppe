@@ -8,7 +8,7 @@ type Props = {
 export const FullHeight: FC<Props> = ({ children }) => {
     return (
         <section className='col full-height'>
-            <div className='row full-height'>
+            <div className='row full-height overflow-y-scroll'>
                 {children}
             </div>
         </section>

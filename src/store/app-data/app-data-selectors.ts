@@ -1,6 +1,6 @@
-import { $CombinedState, createSelector } from "@reduxjs/toolkit";
-import { State } from "../../types/state";
-import { SliceNames } from "../../../const";
+import {$CombinedState, createSelector} from '@reduxjs/toolkit';
+import {State} from '../../types/state';
+import {SliceNames} from '../../../const';
 
 const selectPPEs = (state: State) => state[SliceNames.AppData].ppes;
 const selectModalType = (state: State) => state[SliceNames.AppData].modalType;
@@ -11,53 +11,27 @@ const selectEmployees = (state: State) => state[SliceNames.AppData].employees;
 const selectPeriods = (state: State) => state[SliceNames.AppData].periods;
 const selectSortType = (state: State) => state[SliceNames.AppData].sortingType;
 const selectSizeType = (state: State) => state[SliceNames.AppData].sizeTypes;
+const selectSizeRanges = (state: State) => state[SliceNames.AppData].sizeRanges;
+const selectPPE = (state: State) => state[SliceNames.AppData].selectedPPE;
 
-export const getPPES = createSelector(
-    [selectPPEs],
-    (ppes) => ppes
-);
+export const getPPES = createSelector([selectPPEs], (ppes) => ppes);
 
-export const getSelectedPPE = createSelector(
-    (state: State) => state[SliceNames.AppData].selectedPPE,
-    (selectedPPE) => selectedPPE
-);
+export const getSelectedPPE = createSelector([selectPPE],(selectedPPE) => selectedPPE);
 
-export const getModalContentType = createSelector(
-    [selectModalType],
-    (selectedModalType) => selectedModalType
-);
+export const getModalContentType = createSelector([selectModalType],(selectedModalType) => selectedModalType);
 
-export const getLoadingState = createSelector(
-    [selectLoadingState],
-    (isLoading) => isLoading
-);
+export const getLoadingState = createSelector([selectLoadingState],(isLoading) => isLoading);
 
-export const getSertificates = createSelector(
-    [selectSertificates],
-    (acts) => acts
-);
+export const getSertificates = createSelector([selectSertificates],(acts) => acts);
 
-export const getHeightRanges = createSelector(
-    [selectHeightRanges],
-    (heightRanges) => heightRanges
-);
+export const getHeightRanges = createSelector([selectHeightRanges],(heightRanges) => heightRanges);
 
-export const getEmployees = createSelector(
-    [selectEmployees],
-    (employees) => employees
-);
+export const getEmployees = createSelector([selectEmployees],(employees) => employees);
 
-export const getPeriods = createSelector(
-    [selectPeriods],
-    (periods) => periods
-);
+export const getPeriods = createSelector([selectPeriods], (periods) => periods);
 
-export const getSortType = createSelector(
-    [selectSortType],
-    (type) => type
-);
+export const getSortType = createSelector([selectSortType], (type) => type);
 
-export const getSizeTypes = createSelector(
-    [selectSizeType],
-    (sizeTypes) => sizeTypes
-);
+export const getSizeTypes = createSelector([selectSizeType],(sizeTypes) => sizeTypes);
+
+export const getSizeRanges = createSelector([selectSizeRanges],(sizeRanges) => sizeRanges);

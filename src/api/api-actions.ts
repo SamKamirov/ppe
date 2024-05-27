@@ -182,10 +182,10 @@ const fetchSizesTypes = createAsyncThunk<SizeType[], undefined, TAsyncThunk>(
     }
 );
 
-const fetchSizeRanges = createAsyncThunk<Range[], undefined, TAsyncThunk>(
+const fetchSizeRanges = createAsyncThunk<Size[], undefined, TAsyncThunk>(
     `${SliceNames.AppData}/fetchSizeRanges`,
     async (_arg, {extra: api}) => {
-        const {data} = await api.get('/sizeRanges');
+        const {data} = await api.get('/sizes/ranges');
         return data;
     }
 );

@@ -108,6 +108,20 @@ const adaptSizesTypesToClient = (response) => {
   }
 };
 
+const adaptSizeRangeToClient = (response) => {
+  return {
+    id: response.id,
+    chestSize: response.chest_size,
+    waistSize: response.waist_size,
+    newckSize: response.neck_size,
+    letterReference: response.letter_reference,
+    localSize: response.local_size,
+    chestInterval: response.chest_interval,
+    waistSize: response.waist_interval,
+    sizeType: response.size_type
+  }
+}
+
 module.exports = {
   isValidPPE,
   adaptPPEToClient,
@@ -117,5 +131,6 @@ module.exports = {
   adaptEmployeeToClient,
   isValidRuleData,
   adaptRuleToClient,
-  adaptSizesTypesToClient
+  adaptSizesTypesToClient,
+  adaptSizeRangeToClient
 };

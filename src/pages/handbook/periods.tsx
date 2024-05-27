@@ -14,7 +14,7 @@ export const Periods = () => {
 
     return (
         <div className="col px-0">
-            <h2 className='mx-2 my-2'>Периодичность</h2>
+            <h1 className='mx-2 my-2'>Периодичность</h1>
             <table className='table table-striped'>
                 <PeriodsHeaders />
                 <tbody className='table-group-divider'>

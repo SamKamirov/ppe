@@ -107,5 +107,5 @@ export type Size = {
     localSize: Nullable<string>;
     chestInterval: Nullable<string>;
     waistInterval: Nullable<string>;
-    type: string;
+    sizeType: Nullable<string>;
 };
