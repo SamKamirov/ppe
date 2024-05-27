@@ -1,4 +1,4 @@
-import { Nullable } from "vitest";
+import {Nullable} from 'vitest';
 
 export type PPE = {
     id: number;
@@ -13,26 +13,31 @@ export type PPE = {
 };
 
 export type Range = {
-    fullTitle: string;
-    min_size: string;
-    max_size: string;
+    chestSize: string;
+    waistSize: string;
+    neckSize: string;
+    letterReference: string;
+    localSize: string;
+    chestInterval: string;
+    waistInterval: string;
+    sizeType: string;
 };
 
 export type SetRule = {
-    setRuleItem: Rule
-}
+    setRuleItem: Rule;
+};
 
 export type Rule = {
     ppe: string;
     period: string;
-    amount: number,
+    amount: number;
     dateStart: Date;
-    dateEnd: Date,
-    employee: string,
+    dateEnd: Date;
+    employee: string;
     sertificate: string;
 };
 
-export type TRange = { range: Range };
+export type TRange = {range: Range};
 
 export type TPreview = {ppe: PPE};
 
@@ -40,12 +45,12 @@ export type AppProps = {ppes: PPE[]};
 
 export type TRow = {ppe: PPE};
 
-export type TAddPPE = Omit<PPE, "id">;
+export type TAddPPE = Omit<PPE, 'id'>;
 
 export type Sertificate = {
     id: number;
     title: string;
-}
+};
 
 export type AddSertificate = Omit<Sertificate, 'id'>;
 
@@ -59,7 +64,7 @@ export type HeightRanges = {
 export type Period = {
     id: number;
     frequency: string;
-}
+};
 
 export type Employee = {
     id: number;
@@ -85,13 +90,13 @@ export type RuleReport = {
     lastName: string;
     structuralUnit: number;
     position: number;
-    fullname: string;   
+    fullname: string;
 };
 
 export type SizeType = {
     id: number;
     title: string;
-}
+};
 
 export type Size = {
     id: number;
@@ -103,4 +108,4 @@ export type Size = {
     chestInterval: Nullable<string>;
     waistInterval: Nullable<string>;
     type: string;
-}
+};
