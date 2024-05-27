@@ -23,6 +23,7 @@ import {
     HeightRanges,
     Period,
     PPE,
+    Preview,
     Range,
     Sertificate,
     Size,
@@ -35,7 +36,7 @@ import {
 
 type AppDataInitialState = {
     ppes: Nullable<PPE[]>;
-    selectedPPE: Nullable<PPE>;
+    selectedPPE: Nullable<Preview>;
     isLoading: boolean;
     modalType: ContentTypes;
     sertificates: Nullable<Sertificate[]>;

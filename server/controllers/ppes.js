@@ -27,8 +27,8 @@ const insertPPE = asyncWrapper(async (req, res) => {
 const getPPE = asyncWrapper(async (req, res) => {
   const id = req.params.id;
   const response = await pool.query(getPPEQuery(id));
-  const adaptedToClient = Array.from(response.rows, adaptPPEToClient);
-  res.status(200).json(adaptedToClient[0]);
+  const adapted = response.rows.map(adaptPPEToClient);
+  res.status(200).json(adapted[0]);
 })
 
 const deletePPE = asyncWrapper(async (req, res) => {

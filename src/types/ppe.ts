@@ -13,6 +13,20 @@ export type PPE = {
     unitType: string;
 };
 
+export type Preview = {
+    id: number;
+    fullname: string;
+    shortname: string;
+    lifeSpan: number;
+    sertificate: string;
+    frequency: string;
+    period: string;
+    toBeReturned: number;
+    isKit: number;
+    sizeType: string;
+    unitType: string;
+}
+
 export type Range = {
     chestSize: string;
     waistSize: string;
@@ -40,7 +54,7 @@ export type Rule = {
 
 export type TRange = {range: Range};
 
-export type TPreview = {ppe: PPE};
+export type TPreview = {ppe: Preview};
 
 export type AppProps = {ppes: PPE[]};
 

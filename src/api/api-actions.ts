@@ -7,6 +7,7 @@ import {
     HeightRanges,
     Period,
     PPE,
+    Preview,
     Range,
     Rule,
     RuleReport,
@@ -55,11 +56,7 @@ const uploadPPEAction = createAsyncThunk<TUploadPPE, TPPEData, TAsyncThunk>(
     }
 );
 
-const fetchPPEAction = createAsyncThunk<
-    PPE,
-    string | undefined | number,
-    TAsyncThunk
->(
+const fetchPPEAction = createAsyncThunk<Preview, string | undefined | number, TAsyncThunk>(
     `${SliceNames.AppData}/fetchPPE`,
     async (ppeId: string | undefined, {extra: api}) => {
         const {data} = await api.get(`/ppes/${ppeId}`);
