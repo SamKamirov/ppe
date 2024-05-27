@@ -3,9 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setModalType, uploadPPEAction } from "../../api/api-actions";
 import { TAddPPE } from "../../types/ppe";
 import { ContentTypes } from "./source/const";
-import { getHeightRanges, getPeriods, getSertificates, getSizeTypes } from "../../store/app-data/app-data-selectors";
-import { isValidPPE } from "./source";
-import { sendClientErrorMessage } from "../../utils/send-error-message";
+import { getPeriods, getSertificates, getSizeTypes } from "../../store/app-data/app-data-selectors";
 
 export const AddPpeModal = () => {
   const dispatch = useAppDispatch();

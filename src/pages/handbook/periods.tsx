@@ -2,15 +2,16 @@ import React from "react";
 import { PeriodsHeaders } from "../../components/periods/periods-headers";
 import { useAppSelector } from "../../app/hooks";
 import { PeriodsTableRow } from "../../components/periods/periods-table-row";
-import { getPPES } from "../../store/app-data/app-data-selectors";
+import { getPeriods, getPPES } from "../../store/app-data/app-data-selectors";
 import { Loading } from "../../components/loading/loading";
+import { HandbookEmpty } from "./handbook-empty";
 
 export const Periods = () => {
-    const ppes = useAppSelector(getPPES);
+    const periods = useAppSelector(getPeriods);
 
-    if (!ppes) {
-        return <Loading />
-    }
+    if (!periods) {
+        return <HandbookEmpty />
+    };
 
     return (
         <div className="col px-0">
@@ -18,8 +19,8 @@ export const Periods = () => {
             <table className='table table-striped'>
                 <PeriodsHeaders />
                 <tbody className='table-group-divider'>
-                    {ppes.map((ppe) => (
-                        <PeriodsTableRow ppe={ppe} key={ppe.id} />
+                    {periods.map((period) => (
+                        <PeriodsTableRow period={period} key={period.id} />
                     ))}
                 </tbody>
             </table>

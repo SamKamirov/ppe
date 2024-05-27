@@ -46,6 +46,8 @@ export type AppProps = {ppes: PPE[]};
 
 export type TRow = {ppe: PPE};
 
+export type TPeriodsTableRow = {period: Period}
+
 export type TAddPPE = Omit<PPE, 'id'>;
 
 export type Sertificate = {
