@@ -24,14 +24,31 @@ export const Ranges = () => {
     return (
         <section className='using'>
             <h1 className='mx-2 my-2'>Диапазоны роста</h1>
-            <table className='table table-striped'>
+            <table className='table table-striped table-responsive'>
                 <RangesHeaders />
                 <tbody className='table-group-divider'>
                     {ranges.map((range) => (
                         <RangesTableRow range={range} key={range.id} />
-                    ))}
+                    )).slice(0, 13)}
                 </tbody>
             </table>
+            <nav>
+                <ul className="pagination justify-content-center">
+                    <li className="page-item">
+                        <button className="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </button>
+                    </li>
+                    <li className="page-item"><button className="page-link">1</button></li>
+                    <li className="page-item"><button className="page-link">2</button></li>
+                    <li className="page-item"><button className="page-link">3</button></li>
+                    <li className="page-item">
+                        <button className="page-link" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
         </section>
     );
 };
