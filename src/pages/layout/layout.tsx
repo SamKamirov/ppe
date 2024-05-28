@@ -9,6 +9,7 @@ import { TContainer } from '../../components/toast-container/toast-constainer';
 import { isModal } from '../handbook/source';
 import { ModalLayout } from '../../components/modals/modal-layout';
 import { Preview } from '../../components/preview';
+import { OffCanvas } from '../../components/off-canvas/off-canvas';
 
 type Props = {
     children: ReactNode;
@@ -37,6 +38,7 @@ export const RootLayout: FC<Props> = ({ children }) => {
             </section>
             <TContainer />
             {isModal(modalContentType) && <ModalLayout contentType={modalContentType} />}
+            {<OffCanvas />}
         </section>
     );
 };

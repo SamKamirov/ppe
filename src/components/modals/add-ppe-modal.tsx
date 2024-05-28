@@ -35,7 +35,7 @@ export const AddPpeModal = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(uploadPPEAction({ ppe: formState }));
-  }
+  };
 
   return (
     <div className="modal fade show" role="dialog" id="modal">

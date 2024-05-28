@@ -43,8 +43,8 @@ export const App = () => {
         <Route path={AppRoutes.Give} element={<Give />} />
         <Route path={AppRoutes.SetRules} element={<SetRule />} />
         <Route path={AppRoutes.PersonCard} element={<Tools />} />
-        <Route path={AppRoutes.Profile} element={<Profile />} />
       </Route>
+      <Route path={AppRoutes.Profile} element={<Profile />} />
       <Route path={AppRoutes.Everything} element={<NotFound />} />
       <Route path={AppRoutes.Login} element={<Login />} />
     </Routes>

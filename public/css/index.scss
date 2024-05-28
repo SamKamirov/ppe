@@ -106,3 +106,27 @@
 .table-responsive {
     max-height: 100%;
 }
+
+.side-menu-wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: brightness(60%);
+}
+
+.side-menu {
+    width: 300px;
+    background-color: #ffffff;
+}
+
+.side-menu-header {
+
+}
+
+.side-menu-body {
+
+}
