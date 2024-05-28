@@ -1,22 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AppRoutes, AuthorizationStatus, SliceNames } from "../../../const";
+import { AuthorizationStatus, SliceNames } from "../../../const";
 import { Nullable } from "vitest";
 import { User } from "../../types/state";
-import { checkAuthAction, loginAction, logoutAction } from "./user-process-api-actions";
-import browserHistory from "../../browser-history";
+import { checkAuthAction, loginAction, logoutAction, setMenuOpened } from "./user-process-api-actions";
 
 type UserDataInitialState = {
     user: Nullable<User>,
     authStatus: Nullable<AuthorizationStatus>,
     currentPage: number,
-    perPage: number
-}
+    perPage: number,
+    menuOpened: boolean;
+};
 
 const UserDataInitialState: UserDataInitialState = {
     user: null,
     authStatus: null,
     currentPage: 1,
-    perPage: 14
+    perPage: 14,
+    menuOpened: false
 }
 
 const userProcess = createSlice({
@@ -44,6 +45,9 @@ const userProcess = createSlice({
         .addCase(logoutAction.fulfilled, (state) => {
             state.authStatus = AuthorizationStatus.NO_AUTH;
             state.user = null;
+        })
+        .addCase(setMenuOpened.fulfilled, (state, action) => {
+            state.menuOpened = action.payload;
         })
     },
 })
