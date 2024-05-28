@@ -7,8 +7,6 @@ import { ContentTypes } from '../modals/source/const';
 
 export const Preview: FC<TPreview> = ({ ppe }) => {
     const dispatch = useAppDispatch();
-    console.log(ppe);
-
 
     const { fullname, unitType, lifeSpan, isKit, frequency, sizeType, toBeReturned } = ppe;
 

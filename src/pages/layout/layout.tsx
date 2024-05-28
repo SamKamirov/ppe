@@ -9,8 +9,11 @@ import { TContainer } from '../../components/toast-container/toast-constainer';
 import { isModal } from '../handbook/source';
 import { ModalLayout } from '../../components/modals/modal-layout';
 import { Preview } from '../../components/preview';
-import { getMenuStatus } from '../../store/user-process/user-process-selectors';
+import { getMenuStatus, getUser } from '../../store/user-process/user-process-selectors';
 import { SideMenu } from '../../components/side-menu/side-menu';
+import { Navigate, useLocation } from 'react-router-dom';
+import { AppRoutes } from '../../../const';
+import { getIsProfile } from './source';
 
 type Props = {
     children: ReactNode;
@@ -21,16 +24,29 @@ export const RootLayout: FC<Props> = ({ children }) => {
     const modalContentType = useAppSelector(getModalContentType);
     const selectedPPE = useAppSelector(getSelectedPPE);
     const menuOpened = useAppSelector(getMenuStatus);
+    const user = useAppSelector(getUser);
+    const location = useLocation();
+
+    console.log(location.pathname);
+
 
     if (isLoading) {
         return <Loading />
+    };
+
+    if (!user) {
+        return <Loading />
+    };
+
+    if (!user) {
+        return <Navigate to={AppRoutes.Login} />
     };
 
     return (
         <section className='layout'>
             <Header />
             <section className='row full-height'>
-                <SideBar />
+                {!getIsProfile(location.pathname) && <SideBar />}
                 <FullHeight>
                     <div className='col px-0 d-flex flex-column justify-content-between'>
                         {children}

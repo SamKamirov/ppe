@@ -12,7 +12,7 @@ export const SideMenu = () => {
         <section className="side-menu-wrapper">
             <div className="side-menu">
                 <div className="side-menu-header d-flex justify-content-end p-3">
-                    <button className="btn-close" onClick={handleClick}></button>
+                    <button className="btn btn-close btn-lg" onClick={handleClick}></button>
                 </div>
                 <div className="side-menu-body">
                     <ul className="site-nav-wrap">
