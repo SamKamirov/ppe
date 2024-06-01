@@ -8,8 +8,6 @@ import {
     Period,
     PPE,
     Preview,
-    Range,
-    Rule,
     RuleReport,
     Sertificate,
     SetRule,
@@ -19,10 +17,10 @@ import {
 } from '../types/ppe';
 import {ContentTypes} from '../components/modals/source/const';
 import {SizesReport} from '../store/report-data/report-data';
-import {adaptHeightRangeToClient} from '../../server/utils/utils';
 
 type TPPEData = {ppe: TAddPPE};
 type TUploadPPE = {message: string};
+
 type SetRuleData = {
     ppes: PPE[];
     periods: Period[];
@@ -104,20 +102,16 @@ const uploadSertificate = createAsyncThunk<
     }
 );
 
-const fetchSizesReport = createAsyncThunk<
-    SizesReport[],
-    undefined,
-    TAsyncThunk
->(`${SliceNames.ReportData}/fetchSizesReport`, async (_agr, {extra: api}) => {
+const fetchSizesReport = createAsyncThunk<SizesReport[],undefined,TAsyncThunk>(
+    `${SliceNames.ReportData}/fetchSizesReport`,
+    async (_agr, {extra: api}) => {
     const {data} = await api.get('/reports/sizes');
     return data;
 });
 
-const fetchHeightRanges = createAsyncThunk<
-    HeightRanges[],
-    undefined,
-    TAsyncThunk
->(`${SliceNames.AppData}/fetchHeightRanges`, async (_arg, {extra: api}) => {
+const fetchHeightRanges = createAsyncThunk<HeightRanges[],undefined,TAsyncThunk>(
+    `${SliceNames.AppData}/fetchHeightRanges`,
+    async (_arg, {extra: api}) => {
     const {data} = await api.get('/ppes/height-ranges');
     return data;
 });
@@ -125,16 +119,14 @@ const fetchHeightRanges = createAsyncThunk<
 const fetchEmployees = createAsyncThunk<Employee[], undefined, TAsyncThunk>(
     `${SliceNames.AppData}/fetchEmployess`,
     async (_arg, {extra: api}) => {
-        const {data} = await api.get('/services');
+        const {data} = await api.get('/employee');
         return data;
     }
 );
 
-const fetchSetRuleAction = createAsyncThunk<
-    SetRuleData,
-    undefined,
-    TAsyncThunk
->(`${SliceNames.AppData}/fetchRuleSetData`, async (_arg, {extra: api}) => {
+const fetchSetRuleAction = createAsyncThunk<SetRuleData, undefined, TAsyncThunk>(
+    `${SliceNames.AppData}/fetchRuleSetData`,
+    async (_arg, {extra: api}) => {
     const {data} = await api.get('/services');
     return data;
 });

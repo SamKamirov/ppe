@@ -12,7 +12,9 @@ enum AppRoutes {
   RuleCheck = "reports/norm-check",
   PersonCard = "tools/person-card",
   Login = "login",
-  Profile = 'profile'
+  Profile = 'profile',
+  Employee = 'employee',
+  Info = 'info'
 }
 
 export const SliceNames = {

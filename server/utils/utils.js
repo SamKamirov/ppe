@@ -117,7 +117,7 @@ const adaptSizeRangeToClient = (response) => {
     waistSize: response.waist_interval,
     sizeType: response.size_type
   }
-}
+};
 
 module.exports = {
   isValidPPE,

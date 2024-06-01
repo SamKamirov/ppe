@@ -9,10 +9,6 @@ type Props = {
     tableRef?: Ref<HTMLTableElement>;
 }
 
-// const navbars = {
-//     NavbarTypes:  
-// };
-
 export const Navbar: FC<Props> = ({ type, tableRef }) => {
     switch (type) {
         case NavbarTypes.Index: return <PPENavbar />

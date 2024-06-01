@@ -22,6 +22,8 @@ import { Login } from "../../components/login/login";
 import { Profile } from "../../pages/profile/profile";
 import { Main } from "../../pages/main/main";
 import { PrivateRoute } from "../../pages/private-route/private-route";
+import { Employee } from "../../employee/employee";
+import { Info } from "../../pages/profile/info";
 
 export const App = () => (
   <Routes>
@@ -38,7 +40,10 @@ export const App = () => (
       <Route path={AppRoutes.Give} element={<Give />} />
       <Route path={AppRoutes.SetRules} element={<SetRule />} />
       <Route path={AppRoutes.PersonCard} element={<Tools />} />
-      <Route path={AppRoutes.Profile} element={<Profile />} />
+    </Route>
+    <Route path={AppRoutes.Profile} element={<Profile />}>
+      <Route path={AppRoutes.Info} element={<Info />} />
+      <Route path={AppRoutes.Employee} element={<Employee />} />
     </Route>
     <Route path={AppRoutes.Everything} element={<NotFound />} />
     <Route path={AppRoutes.Login} element={<Login />} />

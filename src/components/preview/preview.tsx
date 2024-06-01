@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch } from '../../app/hooks';
 import { TPreview } from '../../types/ppe';
-import { deletePPEAction, fetchPPEAction, setModalType } from '../../api/api-actions';
+import { fetchPPEAction, setModalType } from '../../api/api-actions';
 import { formatForUser } from './source';
 import { ContentTypes } from '../modals/source/const';
-import { getSelectedPPE } from '../../store/app-data/app-data-selectors';
 
 export const Preview: FC<TPreview> = ({ ppe }) => {
     const dispatch = useAppDispatch();

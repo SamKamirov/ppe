@@ -8,6 +8,7 @@ const users = require('./routes/users');
 // const email = require('./routes/email');
 const periods = require('./routes/periods');
 const sizes = require('./routes/sizes');
+const employees = require('./routes/employee');
 
 const PORT = 3000;
 
@@ -23,6 +24,7 @@ app.use('/api/v1/services', services)
 app.use('/api/v1/login', users);
 app.use('/api/v1/periods', periods);
 app.use('/api/v1/sizes', sizes);
+app.use('/api/v1/employee', employees);
 // app.use('/api/v1/email', email);
 
 app.listen(PORT, () => console.log(`Server is listening from port ${PORT}`));

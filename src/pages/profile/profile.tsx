@@ -1,12 +1,12 @@
 import React, { useEffect } from "react"
-import { Header } from "../../components/header/header"
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { getUser } from "../../store/user-process/user-process-selectors";
 import { getLoadingState } from "../../store/app-data/app-data-selectors";
 import { Loading } from "../../components/loading/loading";
 import { setMenuOpened } from "../../store/user-process/user-process-api-actions";
-import browserHistory from "../../browser-history";
-import { AppRoutes } from "../../../const";
+import { ProfileSideBar } from "./source/profile-sidebar";
+import { Outlet } from "react-router-dom";
+import { Header } from "../../components/header/header";
 
 export const Profile = () => {
     const user = useAppSelector(getUser);
@@ -22,11 +22,14 @@ export const Profile = () => {
     };
 
     return (
-        <section>
-            <div>
-                <h1>Пользователь</h1>
-                <h2>{user.username}</h2>
-            </div>
+        <section className="layout">
+            <Header />
+            <section className="row full-height">
+                <ProfileSideBar />
+                <div className='col px-0 d-flex flex-column justify-content-between'>
+                    <Outlet />
+                </div>
+            </section>
         </section>
     )
 };
