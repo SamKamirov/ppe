@@ -1,9 +1,9 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { setModalType, uploadPPEAction } from "../../api/api-actions";
+import { deletePPEAction, setModalType, uploadPPEAction } from "../../api/api-actions";
 import { TAddPPE } from "../../types/ppe";
 import { ContentTypes } from "./source/const";
-import { getPeriods, getSertificates, getSizeTypes } from "../../store/app-data/app-data-selectors";
+import { getPeriods, getSelectedPPE, getSertificates, getSizeTypes } from "../../store/app-data/app-data-selectors";
 
 export const AddPpeModal = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +23,10 @@ export const AddPpeModal = () => {
     unitType: ''
   });
 
-  const handleClose = () => dispatch(setModalType(ContentTypes.UNKNOWN));
+  const handleClose = () => {
+    dispatch(setModalType(ContentTypes.UNKNOWN));
+  };
+
   const handleChange = (e: ChangeEvent<HTMLFormElement>) => {
     const { name, value } = e.target;
     setFormState({

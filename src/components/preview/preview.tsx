@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { TPreview } from '../../types/ppe';
-import { fetchPPEAction, setModalType } from '../../api/api-actions';
+import { deletePPEAction, fetchPPEAction, setModalType } from '../../api/api-actions';
 import { formatForUser } from './source';
 import { ContentTypes } from '../modals/source/const';
+import { getSelectedPPE } from '../../store/app-data/app-data-selectors';
 
 export const Preview: FC<TPreview> = ({ ppe }) => {
     const dispatch = useAppDispatch();
@@ -12,7 +13,6 @@ export const Preview: FC<TPreview> = ({ ppe }) => {
 
     const handleClose = () => dispatch(fetchPPEAction(null));
     const handleDelete = () => dispatch(setModalType(ContentTypes.Confirm));
-
     const formattedReturnStatus = formatForUser(Number(toBeReturned));
     const formattedIsKit = formatForUser(Number(isKit));
 

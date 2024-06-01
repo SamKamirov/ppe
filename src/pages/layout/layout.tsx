@@ -27,9 +27,6 @@ export const RootLayout: FC<Props> = ({ children }) => {
     const user = useAppSelector(getUser);
     const location = useLocation();
 
-    console.log(location.pathname);
-
-
     if (isLoading) {
         return <Loading />
     };

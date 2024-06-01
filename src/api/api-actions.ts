@@ -64,13 +64,11 @@ const fetchPPEAction = createAsyncThunk<Preview, string | undefined | number, TA
     }
 );
 
-const deletePPEAction = createAsyncThunk<
-    void,
-    string | undefined | number,
-    TAsyncThunk
->(
+const deletePPEAction = createAsyncThunk<void, string | undefined | number, TAsyncThunk>(
     `${SliceNames.AppData}/deletePPE`,
     async (ppeId: string | undefined, {dispatch, extra: api}) => {
+        console.log(ppeId);
+        
         const {data} = await api.delete(`/ppes/${ppeId}`);
         dispatch(fetchPPEsAction());
         return data;
