@@ -23,9 +23,7 @@ export const RootLayout: FC<Props> = ({ children }) => {
     const isLoading = useAppSelector(getLoadingState);
     const modalContentType = useAppSelector(getModalContentType);
     const selectedPPE = useAppSelector(getSelectedPPE);
-    const menuOpened = useAppSelector(getMenuStatus);
     const user = useAppSelector(getUser);
-    const location = useLocation();
 
     if (isLoading) {
         return <Loading />
@@ -43,7 +41,7 @@ export const RootLayout: FC<Props> = ({ children }) => {
         <section className='layout'>
             <Header />
             <section className='row full-height'>
-                {!getIsProfile(location.pathname) && <SideBar />}
+                <SideBar />
                 <FullHeight>
                     <div className='col px-0 d-flex flex-column justify-content-between'>
                         {children}
@@ -53,7 +51,6 @@ export const RootLayout: FC<Props> = ({ children }) => {
             </section>
             <TContainer />
             {isModal(modalContentType) && <ModalLayout contentType={modalContentType} />}
-            {menuOpened && <SideMenu />}
         </section>
     );
 };

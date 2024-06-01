@@ -15,9 +15,11 @@ export const SideMenu = () => {
                     <button className="btn btn-close btn-lg" onClick={handleClick}></button>
                 </div>
                 <div className="side-menu-body">
-                    <ul className="site-nav-wrap">
-                        <li className="active">
-                            <Link to={AppRoutes.Profile} className="nav-link">Профиль</Link>
+                    <ul className="list-group">
+                        <li className="list-group-item list-group-item-action border-0 subsection-item">
+                            <Link to={AppRoutes.Root + AppRoutes.Profile} className="nav-link">
+                                Профиль
+                            </Link>
                         </li>
                     </ul>
                 </div>

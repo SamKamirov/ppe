@@ -1,12 +1,5 @@
-import React, { FC } from "react";
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from "react-router-dom";
-import { RootLayout } from "../../pages/layout/layout";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import { Handbook } from "../../pages/handbook/handbook";
 import { RuleCheck } from "../../pages/report/rule-check";
 import { NotFound } from "../../components/404";
