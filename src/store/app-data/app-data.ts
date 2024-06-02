@@ -32,6 +32,7 @@ import {
 import {
     checkAuthAction,
     loginAction,
+    logoutAction,
 } from '../user-process/user-process-api-actions';
 
 type AppDataInitialState = {

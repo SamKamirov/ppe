@@ -25,11 +25,7 @@ export const RootLayout: FC<Props> = ({ children }) => {
     const selectedPPE = useAppSelector(getSelectedPPE);
     const user = useAppSelector(getUser);
 
-    if (isLoading) {
-        return <Loading />
-    };
-
-    if (!user) {
+    if (isLoading || !user) {
         return <Loading />
     };
 

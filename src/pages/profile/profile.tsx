@@ -5,8 +5,9 @@ import { getLoadingState } from "../../store/app-data/app-data-selectors";
 import { Loading } from "../../components/loading/loading";
 import { setMenuOpened } from "../../store/user-process/user-process-api-actions";
 import { ProfileSideBar } from "./source/profile-sidebar";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { Header } from "../../components/header/header";
+import { AppRoutes } from "../../../const";
 
 export const Profile = () => {
     const user = useAppSelector(getUser);
@@ -17,8 +18,12 @@ export const Profile = () => {
         dispatch(setMenuOpened(false));
     }, [dispatch]);
 
-    if (isLoading || !user) {
+    if (isLoading) {
         return <Loading />
+    };
+
+    if (!user) {
+        return <Navigate to={AppRoutes.Root + AppRoutes.Login} />;
     };
 
     return (

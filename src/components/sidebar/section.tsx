@@ -9,7 +9,6 @@ type Props = {
 }
 
 export const Section: FC<Props> = ({ item }) => {
-
     return (
         <li className='list-group px-0 border-0 p-0'>
             <h4 className='list-item-title px-3 py-2 section'>{item.section}</h4>

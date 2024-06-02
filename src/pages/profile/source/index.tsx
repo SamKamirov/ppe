@@ -10,6 +10,7 @@ export const profileSideBarElements = [
             },
             {
                 title: 'Работники',
+                icon: 'bi bi-person-circle',
                 link: AppRoutes.Employee
             }
         ]
