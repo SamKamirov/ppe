@@ -4,16 +4,14 @@ type Props = {
     onClick: Dispatch<SetStateAction<boolean>>;
 }
 
-export const EmployeeModal = ({ onClick }: Props) => {
-    const handleClose = () => onClick(false);
-
+export const EmployeeModal = () => {
     return (
         <div className="modal fade show" role="dialog" id="modal">
             <div className="modal-dialog modal-lg">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h1 className="modal-title fs-5">Просмотр</h1>
-                        <button type="button" className="btn-close" aria-label="Close" onClick={handleClose}></button>
+                        <button type="button" className="btn-close" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
                         <form name="modal-form" id="modal-form" encType="multipart/form-data">
