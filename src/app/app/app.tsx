@@ -15,8 +15,8 @@ import { Login } from "../../components/login/login";
 import { Profile } from "../../pages/profile/profile";
 import { Main } from "../../pages/main/main";
 import { PrivateRoute } from "../../pages/private-route/private-route";
-import { Employee } from "../../employee/employee";
 import { Info } from "../../pages/profile/info";
+import { Employee } from "../../employee/employee";
 
 export const App = () => (
   <Routes>

@@ -3,7 +3,7 @@ import {SliceNames, SortTypes} from '../../const';
 import {TAsyncThunk} from '../types/state';
 import {
     AddSertificate,
-    Employee,
+    TEmployee,
     HeightRanges,
     Period,
     PPE,
@@ -24,7 +24,7 @@ type TUploadPPE = {message: string};
 type SetRuleData = {
     ppes: PPE[];
     periods: Period[];
-    employees: Employee[];
+    employees: TEmployee[];
     sertificates: Sertificate[];
 };
 
@@ -116,7 +116,7 @@ const fetchHeightRanges = createAsyncThunk<HeightRanges[],undefined,TAsyncThunk>
     return data;
 });
 
-const fetchEmployees = createAsyncThunk<Employee[], undefined, TAsyncThunk>(
+const fetchEmployees = createAsyncThunk<TEmployee[], undefined, TAsyncThunk>(
     `${SliceNames.AppData}/fetchEmployess`,
     async (_arg, {extra: api}) => {
         const {data} = await api.get('/employee');

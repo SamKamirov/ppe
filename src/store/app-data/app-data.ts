@@ -19,7 +19,7 @@ import {
 import {ContentTypes} from '../../components/modals/source/const';
 import {Nullable} from 'vitest';
 import {
-    Employee,
+    TEmployee,
     HeightRanges,
     Period,
     PPE,
@@ -42,7 +42,7 @@ type AppDataInitialState = {
     modalType: ContentTypes;
     sertificates: Nullable<Sertificate[]>;
     heightRanges: Nullable<HeightRanges[]>;
-    employees: Nullable<Employee[]>;
+    employees: Nullable<TEmployee[]>;
     periods: Nullable<Period[]>;
     sortingType: SortTypes;
     sizeRanges: Nullable<Size[]>;

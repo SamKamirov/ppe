@@ -3,16 +3,14 @@ const isValidPPE = (rest) => {
     fullname,
     shortname,
     lifeSpan,
-    sertificateId,
+    sertificateID,
     unitType } = rest;
 
-  console.log(!fullname || !shortname || !Number(sertificateId) || !(Number(lifeSpan) > 0) || !unitType)
-
-  if (!fullname || !shortname || !Number(sertificateId) || !(Number(lifeSpan) > 0) || !unitType) {
-    return false;
+  if (fullname.length > 0 && shortname.length > 0 && Number(sertificateID) && Number(lifeSpan) > 0 && unitType.length) {
+    return true;
   };
 
-  return true;
+  return false;
 };
 
 const adaptPPEToClient = (response) => {

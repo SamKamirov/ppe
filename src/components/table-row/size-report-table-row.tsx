@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useAppDispatch } from "../../app/hooks";
-import { Employee } from "../../types/ppe";
+import { TEmployee } from "../../types/ppe";
 import { SizesReport } from "../../store/report-data/report-data";
 
 type Props = {

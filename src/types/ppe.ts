@@ -83,7 +83,7 @@ export type Period = {
     frequency: string;
 };
 
-export type Employee = {
+export type TEmployee = {
     id: number;
     personellNumber: number;
     firstName: string;

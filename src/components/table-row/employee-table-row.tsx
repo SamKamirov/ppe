@@ -1,13 +1,16 @@
-import React from "react";
-import { Employee } from "../../types/ppe";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { TEmployee } from "../../types/ppe";
 
 type Props = {
-    employee: Employee;
+    employee: TEmployee;
+    onClick: Dispatch<SetStateAction<boolean>>;
 };
 
-export const EmployeeTableRow = ({ employee }: Props) => {
+export const EmployeeTableRow = ({ employee, onClick }: Props) => {
+    const handleClick = () => onClick(true);
+
     return (
-        <tr className='text-center table-row'>
+        <tr className='text-center table-row' onClick={handleClick}>
             <td className='text-center align-middle'>{employee.id}</td>
             <td className='text-center align-middle'>{employee.personellNumber}</td>
             <td className='text-center align-middle'>{employee.firstName}</td>
@@ -24,5 +27,5 @@ export const EmployeeTableRow = ({ employee }: Props) => {
             <td className='text-center align-middle'>{employee.headwearSize}</td>
             <td className='text-center align-middle'>{employee.gasMaskSize}</td>
         </tr>
-    )
-}
+    );
+};

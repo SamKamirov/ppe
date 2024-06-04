@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import { TableRowTypes } from "./source";
 import { PPETableRow } from "./ppe-table-row";
-import { Employee, PPE, RuleReport, Sertificate } from "../../types/ppe";
+import { TEmployee, PPE, RuleReport, Sertificate } from "../../types/ppe";
 import { SertificateTableRow } from "./act-table-row";
 import { SizeReportTableRow } from "./size-report-table-row";
 import { SizesReport } from "../../store/report-data/report-data";
@@ -14,15 +14,16 @@ type TTableRow = {
     sertificate?: Sertificate;
     sizeReportItem?: SizesReport
     rule?: RuleReport,
-    employee?: Employee;
+    employee?: TEmployee,
+    onClick?: Dispatch<SetStateAction<boolean>>;
 }
 
-export const TableRow: FC<TTableRow> = ({ type, ppe, sertificate, sizeReportItem, rule, employee }) => {
+export const TableRow: FC<TTableRow> = ({ type, ppe, sertificate, sizeReportItem, rule, employee, onClick }) => {
     switch (type) {
         case TableRowTypes.PPE: return <PPETableRow ppe={ppe} key={ppe.id} />
         case TableRowTypes.ACT: return <SertificateTableRow sertificate={sertificate} key={sertificate.id} />
         case TableRowTypes.SizeReport: return <SizeReportTableRow sizeItem={sizeReportItem} key={sizeReportItem.personellNumber} />
         case TableRowTypes.RuleReport: return <RuleReportTableRow rule={rule} key={rule.firstName} />
-        case TableRowTypes.Employee: return <EmployeeTableRow employee={employee} key={employee.id} />
+        case TableRowTypes.Employee: return <EmployeeTableRow employee={employee} onClick={onClick} key={employee.id} />
     }
 }
