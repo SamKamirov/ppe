@@ -7,7 +7,10 @@ import { logoutAction, setMenuOpened } from "../../store/user-process/user-proce
 export const SideMenu = () => {
     const dispatch = useAppDispatch();
     const handleClick = () => dispatch(setMenuOpened(false));
-    const handleLogout = () => dispatch(logoutAction());
+    const handleLogout = () => {
+        dispatch(logoutAction());
+        setMenuOpened(false);
+    };
 
     return (
         <section className="side-menu-wrapper">
@@ -18,7 +21,7 @@ export const SideMenu = () => {
                 <div className="side-menu-body">
                     <ul className="list-group">
                         <li className="list-group-item list-group-item-action border-0 p-0 subsection-item">
-                            <Link to={AppRoutes.Root + AppRoutes.Profile} className="nav-link m-0 p-2 px-3 d-flex align-items-center">
+                            <Link to={AppRoutes.Root + AppRoutes.Profile} className="nav-link m-0 p-2 px-3 d-flex align-items-center" onClick={handleClick}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                                     <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />

@@ -46,7 +46,6 @@ const getStructuralUnits = asyncWrapper(async (req, res) => {
 
 const getPositions = asyncWrapper(async (req, res) => {
     const positions = await pool.query('select * from positions');
-    console.log(positions.rows);
     res.status(200).json([...positions.rows]);
 });
 
