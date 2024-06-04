@@ -37,6 +37,11 @@ const insertRuleSet = asyncWrapper(async (req, res) => {
     );
 
     res.status(200).json({ message: 'Успешно!' })
+});
+
+const getStructuralUnits = asyncWrapper(async (req, res) => {
+    const structuralUnits = await pool.query('select * from structural_units');
+    res.status(200).json([...structuralUnits.rows])
 })
 
-module.exports = { getEmployees, getRuleSetData, insertRuleSet };
+module.exports = { getEmployees, getRuleSetData, insertRuleSet, getStructuralUnits };

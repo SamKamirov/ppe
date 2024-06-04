@@ -1,76 +1,91 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { fetchStructuralUnits, setModalType } from "../../api/api-actions";
+import { ContentTypes } from "../modals/source/const";
+import { getStructuralUnits } from "../../store/app-data/app-data-selectors";
 
 type Props = {
     onClick: Dispatch<SetStateAction<boolean>>;
 }
 
 export const EmployeeModal = () => {
+    const dispatch = useAppDispatch();
+    const handleClick = () => dispatch(setModalType(ContentTypes.UNKNOWN));
+    const structuralUnits = useAppSelector(getStructuralUnits);
+
+    useEffect(() => {
+        dispatch(fetchStructuralUnits());
+    }, [dispatch]);
+
     return (
         <div className="modal fade show" role="dialog" id="modal">
             <div className="modal-dialog modal-lg">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h1 className="modal-title fs-5">Просмотр</h1>
-                        <button type="button" className="btn-close" aria-label="Close"></button>
+                        <button type="button" className="btn-close" aria-label="Close" onClick={handleClick}></button>
                     </div>
                     <div className="modal-body">
                         <form name="modal-form" id="modal-form" encType="multipart/form-data">
                             <div className="input-group">
-                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Наименование полное</label>
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Персональный номер</label>
                                 <input type="text" className="form-control" id="fullname" name="fullname" />
                             </div>
                             <div className="input-group">
-                                <label htmlFor="shortname" className="input-group-text input-group-sm w-50">Наименование краткое</label>
-                                <input type="text" className="form-control" id="shortname" name="shortname" />
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Имя</label>
+                                <input type="text" className="form-control" id="fullname" name="fullname" />
                             </div>
                             <div className="input-group">
-                                <label htmlFor="lifeSpan" className="input-group-text input-group-sm w-50">Срок эксплуатации, мес</label>
-                                <input type="text" className="form-control" id="lifeSpan" name="lifeSpan" />
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Фамилия</label>
+                                <input type="text" className="form-control" id="fullname" name="fullname" />
                             </div>
                             <div className="input-group">
-                                <label htmlFor="sertificateID" className="input-group-text input-group-sm w-50">Сертификат соответствия</label>
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Отчество</label>
+                                <input type="text" className="form-control" id="fullname" name="fullname" />
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Структурное подразделение</label>
                                 <select className="form-select form-control" name="sertificateID" defaultValue={1}>
+                                    {structuralUnits && structuralUnits.map((unit) => <option key={unit.id} value={Number(unit.id)}>{unit.title}</option>)}
+                                </select>
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Должность</label>
+                                <input type="text" className="form-control" id="fullname" name="fullname" />
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Дата приёма на работу</label>
+                                <input type="text" className="form-control" id="fullname" name="fullname" />
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Дата смены должности</label>
+                                <input type="text" className="form-control" id="fullname" name="fullname" />
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Пол</label>
+                                <input type="text" className="form-control" id="fullname" name="fullname" />
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Рост</label>
+                                <input type="text" className="form-control" id="fullname" name="fullname" />
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Размер одежды</label>
+                                <input type="text" className="form-control" id="fullname" name="fullname" />
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Ращмер обуви</label>
+                                <input type="text" className="form-control" id="fullname" name="fullname" />
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Размер головного убора</label>
+                                <input type="text" className="form-control" id="fullname" name="fullname" />
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Размер противогаза</label>
+                                <input type="text" className="form-control" id="fullname" name="fullname" />
+                            </div>
 
-                                </select>
-                                <input type="type" className="form-control hidden" id="sertificateID" name="sertificateID" />
-                            </div>
-                            <div className="input-group">
-                                <label htmlFor="period" className="input-group-text input-group-sm w-50">Периодичность</label>
-                                <select className="form-select form-control" name="period" defaultValue={1}>
-
-                                </select>
-                                <input type="type" className="form-control hidden" id="period" name="period" />
-                            </div>
-                            <div className="input-group">
-                                <label htmlFor="toBeReturned" className="input-group-text input-group-sm w-50">Подлежит возврату</label>
-                                <select className="form-select form-control" aria-label="Default select example" name="toBeReturned" defaultValue={0}>
-                                    <option value={0}>Нет</option>
-                                    <option value={1}>Да</option>
-                                </select>
-                                <input type="type" className="form-control hidden" id="toBeReturned" name="toBeReturned" />
-                            </div>
-                            <div className="input-group">
-                                <label htmlFor="is-kit" className="input-group-text input-group-sm w-50">Комплект</label>
-                                <select className="form-select form-control" aria-label="Default select example" name="isKit" defaultValue={0}>
-                                    <option value={1}>Да</option>
-                                    <option value={0}>Нет</option>
-                                </select>
-                                <input type="text" className="form-control hidden" id="isKit" name="isKit" />
-                            </div>
-                            <div className="input-group">
-                                <label htmlFor="sizeType" className="input-group-text input-group-sm w-50">Тип размера</label>
-                                <select className="form-select form-control" aria-label="Default select example" name="sizeType" defaultValue={0}>
-
-                                </select>
-                                <input type="text" className="form-control hidden" id="sizeType" name="sizeType" />
-                            </div>
-                            <div className="input-group">
-                                <label htmlFor="unitType" className="input-group-text input-group-sm w-50">Единица измерения</label>
-                                <input type="text" className="form-control" id="unitType" name="unitType" />
-                            </div>
-                            <div className="modal-footer">
-                                <button type="submit" className="btn btn-primary">Сохранить</button>
-                            </div>
                         </form>
                     </div>
                 </div>

@@ -80,20 +80,14 @@ const setModalType = createAsyncThunk<ContentTypes, ContentTypes, TAsyncThunk>(
     }
 );
 
-const fetchSertificates = createAsyncThunk<
-    Sertificate[],
-    undefined,
-    TAsyncThunk
->(`${SliceNames.AppData}/fetchSertificates`, async (_arg, {extra: api}) => {
+const fetchSertificates = createAsyncThunk<Sertificate[], undefined, TAsyncThunk>(
+    `${SliceNames.AppData}/fetchSertificates`,
+    async (_arg, {extra: api}) => {
     const {data} = await api.get('/sertificates');
     return data;
 });
 
-const uploadSertificate = createAsyncThunk<
-    AddSertificate,
-    AddSertificate,
-    TAsyncThunk
->(
+const uploadSertificate = createAsyncThunk<AddSertificate,AddSertificate,TAsyncThunk>(
     `${SliceNames.AppData}/uploadSertificate`,
     async ({title}, {dispatch, extra: api}) => {
         const {data} = await api.post(`/sertificates`, {title});
@@ -177,6 +171,14 @@ const fetchSizeRanges = createAsyncThunk<Size[], undefined, TAsyncThunk>(
     }
 );
 
+const fetchStructuralUnits = createAsyncThunk<SizeType[], undefined, TAsyncThunk>(
+    `${SliceNames.AppData}/fetchStructuralUnits`,
+    async (_arg, {extra: api}) => {
+        const {data} = await api.get('/services/structuralUnits');
+        return data;
+    }
+);
+
 export {
     fetchPPEsAction,
     uploadPPEAction,
@@ -195,4 +197,5 @@ export {
     fetchPeriods,
     fetchSizesTypes,
     fetchSizeRanges,
+    fetchStructuralUnits
 };

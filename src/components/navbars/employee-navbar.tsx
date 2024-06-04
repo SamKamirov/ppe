@@ -7,8 +7,7 @@ export const EmployeeNavbar = () => {
     const dispatch = useAppDispatch();
     const handleClick = () => {
         dispatch(setModalType(ContentTypes.AddEmployee));
-        console.log('slkgfdflkgj')
-    }
+    };
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">

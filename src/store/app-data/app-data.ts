@@ -11,6 +11,7 @@ import {
     fetchSetRuleAction,
     fetchSizeRanges,
     fetchSizesTypes,
+    fetchStructuralUnits,
     setModalType,
     setRuleAction,
     setSorting,
@@ -47,6 +48,7 @@ type AppDataInitialState = {
     sortingType: SortTypes;
     sizeRanges: Nullable<Size[]>;
     sizeTypes: Nullable<SizeType[]>;
+    structuralUnits: Nullable<SizeType[]>
 };
 
 const initialState: AppDataInitialState = {
@@ -61,6 +63,7 @@ const initialState: AppDataInitialState = {
     sortingType: SortTypes.DEFAULT,
     sizeRanges: null,
     sizeTypes: null,
+    structuralUnits: null
 };
 
 const appData = createSlice({
@@ -148,7 +151,10 @@ const appData = createSlice({
             })
             .addCase(fetchSizeRanges.fulfilled, (state, action) => {
                 state.sizeRanges = action.payload;
-            });
+            })
+            .addCase(fetchStructuralUnits.fulfilled, (state, action) => {
+                state.structuralUnits = action.payload;
+            })
     },
 });
 
