@@ -42,6 +42,18 @@ const insertRuleSet = asyncWrapper(async (req, res) => {
 const getStructuralUnits = asyncWrapper(async (req, res) => {
     const structuralUnits = await pool.query('select * from structural_units');
     res.status(200).json([...structuralUnits.rows])
-})
+});
 
-module.exports = { getEmployees, getRuleSetData, insertRuleSet, getStructuralUnits };
+const getPositions = asyncWrapper(async (req, res) => {
+    const positions = await pool.query('select * from positions');
+    console.log(positions.rows);
+    res.status(200).json([...positions.rows]);
+});
+
+module.exports = {
+    getEmployees,
+    getRuleSetData,
+    insertRuleSet,
+    getStructuralUnits,
+    getPositions
+};

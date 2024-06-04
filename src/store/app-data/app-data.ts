@@ -5,6 +5,7 @@ import {
     fetchEmployees,
     fetchHeightRanges,
     fetchPeriods,
+    fetchPositions,
     fetchPPEAction,
     fetchPPEsAction,
     fetchSertificates,
@@ -48,7 +49,8 @@ type AppDataInitialState = {
     sortingType: SortTypes;
     sizeRanges: Nullable<Size[]>;
     sizeTypes: Nullable<SizeType[]>;
-    structuralUnits: Nullable<SizeType[]>
+    structuralUnits: Nullable<SizeType[]>,
+    positions: Nullable<SizeType[]>
 };
 
 const initialState: AppDataInitialState = {
@@ -63,7 +65,8 @@ const initialState: AppDataInitialState = {
     sortingType: SortTypes.DEFAULT,
     sizeRanges: null,
     sizeTypes: null,
-    structuralUnits: null
+    structuralUnits: null,
+    positions: null
 };
 
 const appData = createSlice({
@@ -154,6 +157,9 @@ const appData = createSlice({
             })
             .addCase(fetchStructuralUnits.fulfilled, (state, action) => {
                 state.structuralUnits = action.payload;
+            })
+            .addCase(fetchPositions.fulfilled, (state, action) => {
+                state.positions = action.payload;
             })
     },
 });

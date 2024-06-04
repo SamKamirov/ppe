@@ -14,6 +14,8 @@ const selectSizeType = (state: State) => state[SliceNames.AppData].sizeTypes;
 const selectSizeRanges = (state: State) => state[SliceNames.AppData].sizeRanges;
 const selectPPE = (state: State) => state[SliceNames.AppData].selectedPPE;
 const selectStructuralUnits = (state: State) => state[SliceNames.AppData].structuralUnits;
+const selectPositions = (state: State) => state[SliceNames.AppData].positions;
+
 
 export const getPPES = createSelector([selectPPEs], (ppes) => ppes);
 export const getSelectedPPE = createSelector([selectPPE],(selectedPPE) => selectedPPE);
@@ -27,3 +29,4 @@ export const getSortType = createSelector([selectSortType], (type) => type);
 export const getSizeTypes = createSelector([selectSizeType],(sizeTypes) => sizeTypes);
 export const getSizeRanges = createSelector([selectSizeRanges],(sizeRanges) => sizeRanges);
 export const getStructuralUnits = createSelector([selectStructuralUnits], (units) => units);
+export const getPositions = createSelector([selectPositions], (positions) => positions);

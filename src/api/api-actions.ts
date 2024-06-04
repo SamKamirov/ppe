@@ -179,6 +179,14 @@ const fetchStructuralUnits = createAsyncThunk<SizeType[], undefined, TAsyncThunk
     }
 );
 
+const fetchPositions = createAsyncThunk<SizeType[], undefined, TAsyncThunk>(
+    `${SliceNames.AppData}/fetchPositions`,
+    async (_arg, {extra: api}) => {
+        const {data} = await api.get('/services/positions');
+        return data;
+    }
+);
+
 export {
     fetchPPEsAction,
     uploadPPEAction,
@@ -197,5 +205,6 @@ export {
     fetchPeriods,
     fetchSizesTypes,
     fetchSizeRanges,
-    fetchStructuralUnits
+    fetchStructuralUnits,
+    fetchPositions
 };

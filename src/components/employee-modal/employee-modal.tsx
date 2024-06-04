@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { fetchStructuralUnits, setModalType } from "../../api/api-actions";
+import { fetchPositions, fetchStructuralUnits, setModalType } from "../../api/api-actions";
 import { ContentTypes } from "../modals/source/const";
-import { getStructuralUnits } from "../../store/app-data/app-data-selectors";
+import { getPositions, getStructuralUnits } from "../../store/app-data/app-data-selectors";
 
 type Props = {
     onClick: Dispatch<SetStateAction<boolean>>;
@@ -12,9 +12,11 @@ export const EmployeeModal = () => {
     const dispatch = useAppDispatch();
     const handleClick = () => dispatch(setModalType(ContentTypes.UNKNOWN));
     const structuralUnits = useAppSelector(getStructuralUnits);
+    const positions = useAppSelector(getPositions);
 
     useEffect(() => {
         dispatch(fetchStructuralUnits());
+        dispatch(fetchPositions());
     }, [dispatch]);
 
     return (
@@ -51,7 +53,9 @@ export const EmployeeModal = () => {
                             </div>
                             <div className="input-group">
                                 <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Должность</label>
-                                <input type="text" className="form-control" id="fullname" name="fullname" />
+                                <select className="form-select form-control" name="sertificateID" defaultValue={1}>
+                                    {positions && positions.map((positions) => <option key={positions.id} value={Number(positions.id)}>{positions.title}</option>)}
+                                </select>
                             </div>
                             <div className="input-group">
                                 <label htmlFor="fullname" className="input-group-text input-group-sm w-50">Дата приёма на работу</label>
