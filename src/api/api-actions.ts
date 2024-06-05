@@ -14,6 +14,8 @@ import {
     Size,
     SizeType,
     TAddPPE,
+    EmployeeAdd,
+    EmployeeUpload,
 } from '../types/ppe';
 import {ContentTypes} from '../components/modals/source/const';
 import {SizesReport} from '../store/report-data/report-data';
@@ -187,6 +189,13 @@ const fetchPositions = createAsyncThunk<SizeType[], undefined, TAsyncThunk>(
     }
 );
 
+const uploadEmployee = createAsyncThunk<void, EmployeeUpload, TAsyncThunk>(
+    `${SliceNames.AppData}/fetchPositions`,
+    async ({employee}, {extra: api}) => {
+        await api.post('/employee', employee);
+    }
+);
+
 export {
     fetchPPEsAction,
     uploadPPEAction,
@@ -206,5 +215,6 @@ export {
     fetchSizesTypes,
     fetchSizeRanges,
     fetchStructuralUnits,
-    fetchPositions
+    fetchPositions,
+    uploadEmployee
 };

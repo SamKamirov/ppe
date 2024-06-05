@@ -101,6 +101,9 @@ export type TEmployee = {
     gasMaskSize: string;
 };
 
+export type EmployeeAdd = Omit<TEmployee, 'id'>;
+export type EmployeeUpload = {employee: EmployeeAdd};
+
 export type RuleReport = {
     firstName: string;
     middleName: string;
