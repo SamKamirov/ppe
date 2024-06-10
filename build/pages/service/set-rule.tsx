@@ -4,6 +4,7 @@ import { getEmployees, getPeriods, getPPES, getSertificates } from "../../store/
 import { fetchSetRuleAction, setRuleAction } from "../../api/api-actions";
 import { Rule } from "../../types/ppe";
 import { Errors, sendClientErrorMessage } from "../../utils/send-error-message";
+import { setEndDate } from "./source";
 
 export const SetRule = () => {
     const dispatch = useAppDispatch();
@@ -43,7 +44,11 @@ export const SetRule = () => {
         };
 
         dispatch(setRuleAction({ setRuleItem: ruleState }))
-    }
+    };
+
+    const handleInputChange = () => {
+        setEndDate({ date: ruleState.dateStart, period: ruleState.period })
+    };
 
     return (
         <section>
@@ -71,7 +76,7 @@ export const SetRule = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="dateStart" className="form-label">Дата начала</label>
-                            <input type="date" className="form-control" name="dateStart" />
+                            <input type="date" className="form-control" name="dateStart" onChange={handleInputChange} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="dateEnd" className="form-label">Дата окончания</label>

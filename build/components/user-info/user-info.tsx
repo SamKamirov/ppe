@@ -1,24 +1,25 @@
-import { AppRoutes } from "../../../const";
+import { useLocation } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
-import { logoutAction } from "../../store/user-process/user-process-api-actions";
+import { getIsProfile } from "../../pages/layout/source";
+import { setMenuOpened } from "../../store/user-process/user-process-api-actions";
 import { User } from "../../types/state"
-import React, { FC, Fragment } from "react"
+import React, { FC } from "react"
 
 type Props = {
     user: User;
-}
+};
 
 export const UserInfo: FC<Props> = ({ user }) => {
     const dispatch = useAppDispatch();
-
-    const handleLogout = () => {
-        dispatch(logoutAction());
-    };
+    const location = useLocation();
+    const handleClick = () => dispatch(setMenuOpened(true));
 
     return (
         <div className="d-flex align-items-center gap-3">
-            <a className="nav-link active" href={AppRoutes.Profile}>{user.username}</a>
-            <button className="btn btn-outline-success btn-enter" type="button" onClick={handleLogout}>Выход</button>
+            {!getIsProfile(location.pathname) && <p className="nav-link active m-0">{user.username}</p>}
+            <button className='btn' onClick={handleClick}>
+                <img src="./burger-menu.svg" alt="burger-menu-image" width={45} />
+            </button>
         </div>
     )
 };

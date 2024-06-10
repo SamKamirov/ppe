@@ -1,48 +1,73 @@
+import {Nullable} from 'vitest';
+
 export type PPE = {
     id: number;
     fullname: string;
     shortname: string;
     lifeSpan: number;
+    sertificateID: number;
+    period: number;
     toBeReturned: number;
     isKit: number;
     sizeType: number;
     unitType: string;
 };
 
+export type Preview = {
+    id: number;
+    fullname: string;
+    shortname: string;
+    lifeSpan: number;
+    sertificate: string;
+    frequency: string;
+    period: string;
+    toBeReturned: number;
+    isKit: number;
+    sizeType: string;
+    unitType: string;
+}
+
 export type Range = {
-    fullTitle: string;
-    min_size: string;
-    max_size: string;
+    chestSize: string;
+    waistSize: string;
+    neckSize: string;
+    letterReference: string;
+    localSize: string;
+    chestInterval: string;
+    waistInterval: string;
+    sizeType: string;
 };
 
 export type SetRule = {
-    setRuleItem: Rule
-}
+    setRuleItem: Rule;
+};
 
 export type Rule = {
     ppe: string;
     period: string;
-    amount: number,
+    amount: number;
     dateStart: Date;
-    dateEnd: Date,
-    employee: string,
+    dateEnd: Date;
+    employee: string;
     sertificate: string;
 };
 
-export type TRange = { range: Range };
+export type TRange = {range: Range};
 
-export type TPreview = {ppe: PPE};
+export type TPreview = {ppe: Preview};
 
 export type AppProps = {ppes: PPE[]};
 
 export type TRow = {ppe: PPE};
 
-export type TAddPPE = Omit<PPE, "id">;
+export type TPeriodsTableRow = {period: Period}
+
+export type TAddPPE = Omit<PPE, 'id'>;
 
 export type Sertificate = {
     id: number;
     title: string;
-}
+};
 
 export type AddSertificate = Omit<Sertificate, 'id'>;
 
@@ -56,9 +81,9 @@ export type HeightRanges = {
 export type Period = {
     id: number;
     frequency: string;
-}
+};
 
-export type Employee = {
+export type TEmployee = {
     id: number;
     personellNumber: number;
     firstName: string;
@@ -76,11 +101,31 @@ export type Employee = {
     gasMaskSize: string;
 };
 
+export type EmployeeAdd = Omit<TEmployee, 'id'>;
+export type EmployeeUpload = {employee: EmployeeAdd};
+
 export type RuleReport = {
     firstName: string;
     middleName: string;
     lastName: string;
     structuralUnit: number;
     position: number;
-    fullname: string;   
+    fullname: string;
+};
+
+export type SizeType = {
+    id: number;
+    title: string;
+};
+
+export type Size = {
+    id: number;
+    chestSize: Nullable<string>;
+    waistSize: Nullable<string>;
+    neckSize: Nullable<string>;
+    letterReference: Nullable<string>;
+    localSize: Nullable<string>;
+    chestInterval: Nullable<string>;
+    waistInterval: Nullable<string>;
+    sizeType: Nullable<string>;
 };

@@ -10,6 +10,7 @@ import { Header } from "../../components/header/header";
 import { AppRoutes } from "../../../const";
 import { isModal } from "../handbook/source";
 import { ModalLayout } from "../../components/modals/modal-layout";
+import { TContainer } from "../../../build/components/toast-container/toast-constainer";
 
 export const Profile = () => {
     const user = useAppSelector(getUser);
@@ -39,6 +40,7 @@ export const Profile = () => {
                 </div>
             </section>
             {isModal(modalContentType) && <ModalLayout contentType={modalContentType} />}
+            <TContainer />
         </section>
     )
 };

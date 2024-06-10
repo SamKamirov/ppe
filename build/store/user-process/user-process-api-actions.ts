@@ -27,4 +27,11 @@ export const logoutAction = createAsyncThunk<void, undefined, TAsyncThunk>(
     async (_arg) => {
         dropToken();
     }
+);
+
+export const setMenuOpened = createAsyncThunk<boolean, boolean, TAsyncThunk>(
+    `${SliceNames.UserProcess}/setMenuOpened`,
+    async (_arg) => {
+        return _arg;
+    }
 )

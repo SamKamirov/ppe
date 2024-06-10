@@ -20,10 +20,7 @@ import { Employee } from "../../employee/employee";
 
 export const App = () => (
   <Routes>
-    <Route path={AppRoutes.Root} element={
-      <PrivateRoute>
-        <Main />
-      </PrivateRoute>}>
+    <Route element={<PrivateRoute />}>
       <Route index element={<Handbook />} />
       <Route path={AppRoutes.Using} element={<Using />} />
       <Route path={AppRoutes.Periods} element={<Periods />} />

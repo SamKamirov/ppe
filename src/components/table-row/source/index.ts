@@ -3,5 +3,6 @@ export enum TableRowTypes {
     ACT = 'ACT',
     SizeReport = 'SizeReport',
     RuleReport = 'RuleReport',
-    Employee = 'Employee'
+    Employee = 'Employee',
+    Give = "Give"
 }

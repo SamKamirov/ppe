@@ -7,6 +7,7 @@ import { SizeReportTableRow } from "./size-report-table-row";
 import { SizesReport } from "../../store/report-data/report-data";
 import { RuleReportTableRow } from "./rule-report-table-row";
 import { EmployeeTableRow } from "./employee-table-row";
+import { GiveTableRow } from "./give-table-row";
 
 type TTableRow = {
     type: TableRowTypes;
@@ -25,5 +26,6 @@ export const TableRow: FC<TTableRow> = ({ type, ppe, sertificate, sizeReportItem
         case TableRowTypes.SizeReport: return <SizeReportTableRow sizeItem={sizeReportItem} key={sizeReportItem.personellNumber} />
         case TableRowTypes.RuleReport: return <RuleReportTableRow rule={rule} key={rule.firstName} />
         case TableRowTypes.Employee: return <EmployeeTableRow employee={employee} onClick={onClick} key={employee.id} />
+        case TableRowTypes.Give: return <GiveTableRow />
     }
 }

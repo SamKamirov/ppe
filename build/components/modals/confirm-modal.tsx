@@ -8,7 +8,10 @@ export const ConfirmModal = () => {
     const selectedPPE = useAppSelector(getSelectedPPE);
     const { id, fullname } = selectedPPE;
     const dispatch = useAppDispatch();
-    const handleClose = () => dispatch(setModalType(ContentTypes.UNKNOWN));
+    const handleClose = () => {
+        dispatch(deletePPEAction(id));
+        dispatch(setModalType(ContentTypes.UNKNOWN));
+    };
 
     return (
         <div className="modal fade show" role="dialog" id="modal">

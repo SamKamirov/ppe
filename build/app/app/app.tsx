@@ -1,12 +1,5 @@
-import React, { FC } from "react";
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from "react-router-dom";
-import { RootLayout } from "../../pages/layout/layout";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import { Handbook } from "../../pages/handbook/handbook";
 import { RuleCheck } from "../../pages/report/rule-check";
 import { NotFound } from "../../components/404";
@@ -22,31 +15,27 @@ import { Login } from "../../components/login/login";
 import { Profile } from "../../pages/profile/profile";
 import { Main } from "../../pages/main/main";
 import { PrivateRoute } from "../../pages/private-route/private-route";
-import { useAppSelector } from "../hooks";
-import { getAuthStatus, getUser } from "../../store/user-process/user-process-selectors";
+import { Info } from "../../pages/profile/info";
+import { Employee } from "../../employee/employee";
 
-export const App = () => {
-  const user = useAppSelector(getUser);
-
-  return (
-    <Routes>
-      <Route path={AppRoutes.Root} element={
-        <PrivateRoute user={user}>
-          <Main />
-        </PrivateRoute>}>
-        <Route index element={<Handbook />} />
-        <Route path={AppRoutes.Using} element={<Using />} />
-        <Route path={AppRoutes.Periods} element={<Periods />} />
-        <Route path={AppRoutes.Ranges} element={<Ranges />} />
-        <Route path={AppRoutes.RuleCheck} element={<RuleCheck />} />
-        <Route path={AppRoutes.Sizes} element={<Sizes />} />
-        <Route path={AppRoutes.Give} element={<Give />} />
-        <Route path={AppRoutes.SetRules} element={<SetRule />} />
-        <Route path={AppRoutes.PersonCard} element={<Tools />} />
-        <Route path={AppRoutes.Profile} element={<Profile />} />
-      </Route>
-      <Route path={AppRoutes.Everything} element={<NotFound />} />
-      <Route path={AppRoutes.Login} element={<Login />} />
-    </Routes>
-  )
-}
+export const App = () => (
+  <Routes>
+    <Route element={<PrivateRoute />}>
+      <Route index element={<Handbook />} />
+      <Route path={AppRoutes.Using} element={<Using />} />
+      <Route path={AppRoutes.Periods} element={<Periods />} />
+      <Route path={AppRoutes.Ranges} element={<Ranges />} />
+      <Route path={AppRoutes.RuleCheck} element={<RuleCheck />} />
+      <Route path={AppRoutes.Sizes} element={<Sizes />} />
+      <Route path={AppRoutes.Give} element={<Give />} />
+      <Route path={AppRoutes.SetRules} element={<SetRule />} />
+      <Route path={AppRoutes.PersonCard} element={<Tools />} />
+    </Route>
+    <Route path={AppRoutes.Profile} element={<Profile />}>
+      <Route path={AppRoutes.Info} element={<Info />} />
+      <Route path={AppRoutes.Employee} element={<Employee />} />
+    </Route>
+    <Route path={AppRoutes.Everything} element={<NotFound />} />
+    <Route path={AppRoutes.Login} element={<Login />} />
+  </Routes>
+);

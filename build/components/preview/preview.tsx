@@ -1,21 +1,17 @@
 import React, { FC } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch } from '../../app/hooks';
 import { TPreview } from '../../types/ppe';
 import { fetchPPEAction, setModalType } from '../../api/api-actions';
 import { formatForUser } from './source';
-import { ConfirmModal } from '../modals/confirm-modal';
 import { ContentTypes } from '../modals/source/const';
-import { getHeightRanges } from '../../store/app-data/app-data-selectors';
 
 export const Preview: FC<TPreview> = ({ ppe }) => {
     const dispatch = useAppDispatch();
 
-    const { fullname, unitType, lifeSpan, isKit, sizeType, toBeReturned } = ppe;
-    const { maxHeight, minHeight } = useAppSelector(getHeightRanges).find((item) => item.id === sizeType);
+    const { fullname, unitType, lifeSpan, isKit, frequency, sizeType, toBeReturned } = ppe;
 
     const handleClose = () => dispatch(fetchPPEAction(null));
     const handleDelete = () => dispatch(setModalType(ContentTypes.Confirm));
-
     const formattedReturnStatus = formatForUser(Number(toBeReturned));
     const formattedIsKit = formatForUser(Number(isKit));
 
@@ -40,12 +36,16 @@ export const Preview: FC<TPreview> = ({ ppe }) => {
                             <label className="form-control text-break">{formattedReturnStatus}</label>
                         </li>
                         <li className="input-group">
+                            <label className="form-control">Периодичность</label>
+                            <label className="form-control text-break">{frequency}</label>
+                        </li>
+                        <li className="input-group">
                             <label className="form-control">Комплект</label>
                             <label className="form-control text-break">{formattedIsKit}</label>
                         </li>
                         <li className="input-group">
                             <label className="form-control">Тип размера</label>
-                            <label className="form-control text-break">от {minHeight} до {maxHeight}</label>
+                            <label className="form-control text-break">{sizeType}</label>
                         </li>
                         <li className="input-group">
                             <label className="form-control">Единица измерения</label>

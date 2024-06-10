@@ -24,9 +24,9 @@ export const Handbook = () => {
         dispatch(fetchSizesTypes());
     }, [dispatch]);
 
-    if (!sortedPPEs) {
-        return <Loading />
-    };
+    // if (!sortedPPEs) {
+    //     return <Loading />
+    // };
 
     return (
         <section>
@@ -35,7 +35,7 @@ export const Handbook = () => {
             <table className='table table-striped' ref={contentTable}>
                 <HandbookHeaders />
                 <tbody className='table-group-divider'>
-                    {sortedPPEs.map((ppe) => <TableRow type={TableRowTypes.PPE} ppe={ppe} key={ppe.id} />)}
+                    {sortedPPEs && sortedPPEs.map((ppe) => <TableRow type={TableRowTypes.PPE} ppe={ppe} key={ppe.id} />)}
                 </tbody>
             </table>
         </section >

@@ -1,17 +1,30 @@
-import React, { FC, ReactNode } from "react";
-import { Navigate } from "react-router-dom";
+import React, { FC, ReactNode, useEffect } from "react";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { AppRoutes } from "../../../const";
 import { useAppSelector } from "../../app/hooks";
 import { getUser } from "../../store/user-process/user-process-selectors";
+import { Main } from "../main/main";
+import { RootLayout } from "../layout/layout";
+import { TContainer } from "../../components/toast-container/toast-constainer";
 
 type Props = {
     children: ReactNode;
 };
 
-export const PrivateRoute: FC<Props> = ({ children }) => {
+export const PrivateRoute = () => {
+    const navigate = useNavigate();
     const user = useAppSelector(getUser);
 
+    useEffect(() => {
+        if (!user) {
+            navigate(AppRoutes.Login);
+        };
+    });
+
     return (
-        user ? children : <Navigate to={AppRoutes.Login} />
+        <RootLayout>
+            <Outlet />
+            <TContainer />
+        </RootLayout>
     );
 };

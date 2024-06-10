@@ -24,7 +24,6 @@ app.use('/api/v1/services', services)
 app.use('/api/v1/login', users);
 app.use('/api/v1/periods', periods);
 
-
 app.use('/api/v1/sizes', sizes);
 app.use('/api/v1/employee', employees);
 // app.use('/api/v1/email', email);

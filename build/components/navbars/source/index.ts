@@ -12,7 +12,8 @@ export enum NavbarTypes {
     PPEUsing = 'PPEUsing',
     SizesReport = 'SizesReport',
     RuleCheck = 'RuleCheck',
-    Give = 'Give'
+    Give = 'Give',
+    Employee = 'Employee'
 }
 
 export const saveToFile = ({currentRef, title}: TSaveToFile) => {

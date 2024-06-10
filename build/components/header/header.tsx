@@ -1,12 +1,14 @@
 import React from "react";
 import { AppRoutes } from "../../../const";
 import { useAppSelector } from "../../app/hooks";
-import { getUser } from "../../store/user-process/user-process-selectors";
+import { getMenuStatus, getUser } from "../../store/user-process/user-process-selectors";
 import { UserInfo } from "../user-info/user-info";
 import { LoginButton } from "../login-button/login-button";
+import { SideMenu } from "../side-menu/side-menu";
 
 export const Header = () => {
     const user = useAppSelector(getUser);
+    const menuOpened = useAppSelector(getMenuStatus);
 
     return (
         <header className="row logo d-flex">
@@ -18,6 +20,7 @@ export const Header = () => {
                     {user ? <UserInfo user={user} /> : <LoginButton />}
                 </div>
             </nav>
+            {menuOpened && <SideMenu />}
         </header>
     )
 };

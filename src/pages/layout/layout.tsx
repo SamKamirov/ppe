@@ -25,12 +25,8 @@ export const RootLayout: FC<Props> = ({ children }) => {
     const selectedPPE = useAppSelector(getSelectedPPE);
     const user = useAppSelector(getUser);
 
-    if (isLoading || !user) {
+    if (isLoading) {
         return <Loading />
-    };
-
-    if (!user) {
-        return <Navigate to={AppRoutes.Login} />
     };
 
     return (
@@ -45,7 +41,6 @@ export const RootLayout: FC<Props> = ({ children }) => {
                     {selectedPPE && <Preview ppe={selectedPPE} />}
                 </FullHeight>
             </section>
-            <TContainer />
             {isModal(modalContentType) && <ModalLayout contentType={modalContentType} />}
         </section>
     );
