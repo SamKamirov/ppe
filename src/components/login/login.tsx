@@ -6,15 +6,15 @@ import { AppRoutes } from "../../../const";
 import { getUser } from "../../store/user-process/user-process-selectors";
 
 export const Login = () => {
+    const user = useAppSelector(getUser);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const user = useAppSelector(getUser);
 
     useEffect(() => {
         if (user) {
             navigate(AppRoutes.Root);
         }
-    }, [user, navigate])
+    }, [user])
 
     const loginRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);

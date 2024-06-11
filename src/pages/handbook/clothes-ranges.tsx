@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { RangesHeaders } from '../../components/ranges/ranges-headers';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-// import { ranges } from '../../mocks/ranges';
 import { RangesTableRow } from '../../components/ranges/ranges-table-row';
 import { fetchPPEAction, fetchSizeRanges } from '../../api/api-actions';
 import { getSizeRanges } from '../../store/app-data/app-data-selectors';

@@ -5,25 +5,15 @@ import { FullHeight } from '../../components/full-height';
 import { useAppSelector } from '../../app/hooks';
 import { getLoadingState, getModalContentType, getSelectedPPE } from '../../store/app-data/app-data-selectors';
 import { Loading } from '../../components/loading/loading';
-import { TContainer } from '../../components/toast-container/toast-constainer';
 import { isModal } from '../handbook/source';
 import { ModalLayout } from '../../components/modals/modal-layout';
 import { Preview } from '../../components/preview';
-import { getMenuStatus, getUser } from '../../store/user-process/user-process-selectors';
-import { SideMenu } from '../../components/side-menu/side-menu';
-import { Navigate, useLocation } from 'react-router-dom';
-import { AppRoutes } from '../../../const';
-import { getIsProfile } from './source';
+import { Outlet } from 'react-router-dom';
 
-type Props = {
-    children: ReactNode;
-};
-
-export const RootLayout: FC<Props> = ({ children }) => {
+export const RootLayout = () => {
     const isLoading = useAppSelector(getLoadingState);
     const modalContentType = useAppSelector(getModalContentType);
     const selectedPPE = useAppSelector(getSelectedPPE);
-    const user = useAppSelector(getUser);
 
     if (isLoading) {
         return <Loading />
@@ -36,7 +26,7 @@ export const RootLayout: FC<Props> = ({ children }) => {
                 <SideBar />
                 <FullHeight>
                     <div className='col px-0 d-flex flex-column justify-content-between'>
-                        {children}
+                        <Outlet />
                     </div>
                     {selectedPPE && <Preview ppe={selectedPPE} />}
                 </FullHeight>

@@ -1,5 +1,6 @@
 const asyncWrapper = require("../async");
 const { pool } = require("../connection");
+const { getEmployeesQuery } = require("../queries/employee");
 const { adaptEmployeeToClient } = require("../utils/utils");
 
 const isValidEmployee = (employee) => {
@@ -11,7 +12,7 @@ const isValidEmployee = (employee) => {
 }
 
 const getEmployees = asyncWrapper(async (req, res) => {
-    const response = await pool.query('select * from employee');
+    const response = await pool.query(getEmployeesQuery);
     const adapted = response.rows ? response.rows.map(adaptEmployeeToClient) : null;
     res.status(200).json([...adapted]);
 });

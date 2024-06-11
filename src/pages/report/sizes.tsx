@@ -18,7 +18,6 @@ export const Sizes = () => {
 
     const sizes = useAppSelector(getSizesReport);
 
-
     if (!sizes) {
         return <Loading />
     };

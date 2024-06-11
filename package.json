@@ -9,8 +9,6 @@
     "url": "git+https://github.com/SamKamirov/ppe.git"
   },
   "scripts": {
-    "build:tailwind": "tailwindcss build ./public/css/index.css -o ./public/css/output.css",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --mode development",
     "pm2": "pm2 start ./build/bundle.js --watch=true",
     "build": "webpack --mode development",

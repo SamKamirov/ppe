@@ -13,7 +13,6 @@ import { ModalLayout } from "../../components/modals/modal-layout";
 import { TContainer } from "../../../build/components/toast-container/toast-constainer";
 
 export const Profile = () => {
-    const user = useAppSelector(getUser);
     const isLoading = useAppSelector(getLoadingState);
     const dispatch = useAppDispatch();
     const modalContentType = useAppSelector(getModalContentType);
@@ -26,10 +25,6 @@ export const Profile = () => {
         return <Loading />
     };
 
-    if (!user) {
-        return <Navigate to={AppRoutes.Root + AppRoutes.Login} />;
-    };
-
     return (
         <section className="layout">
             <Header />
@@ -40,7 +35,6 @@ export const Profile = () => {
                 </div>
             </section>
             {isModal(modalContentType) && <ModalLayout contentType={modalContentType} />}
-            <TContainer />
         </section>
     )
 };

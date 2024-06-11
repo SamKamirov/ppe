@@ -13,29 +13,34 @@ import { Give } from "../../pages/report/give";
 import { Tools } from "../../pages/tools/tools";
 import { Login } from "../../components/login/login";
 import { Profile } from "../../pages/profile/profile";
-import { Main } from "../../pages/main/main";
 import { PrivateRoute } from "../../pages/private-route/private-route";
 import { Info } from "../../pages/profile/info";
 import { Employee } from "../../employee/employee";
+import { RootLayout } from "../../pages/layout/layout";
 
-export const App = () => (
-  <Routes>
-    <Route element={<PrivateRoute />}>
-      <Route index element={<Handbook />} />
-      <Route path={AppRoutes.Using} element={<Using />} />
-      <Route path={AppRoutes.Periods} element={<Periods />} />
-      <Route path={AppRoutes.Ranges} element={<Ranges />} />
-      <Route path={AppRoutes.RuleCheck} element={<RuleCheck />} />
-      <Route path={AppRoutes.Sizes} element={<Sizes />} />
-      <Route path={AppRoutes.Give} element={<Give />} />
-      <Route path={AppRoutes.SetRules} element={<SetRule />} />
-      <Route path={AppRoutes.PersonCard} element={<Tools />} />
-    </Route>
-    <Route path={AppRoutes.Profile} element={<Profile />}>
-      <Route path={AppRoutes.Info} element={<Info />} />
-      <Route path={AppRoutes.Employee} element={<Employee />} />
-    </Route>
-    <Route path={AppRoutes.Everything} element={<NotFound />} />
-    <Route path={AppRoutes.Login} element={<Login />} />
-  </Routes>
-);
+
+export const App = () => {
+  return (
+    <Routes>
+      <Route path={AppRoutes.Login} element={<Login />} />
+      <Route element={<PrivateRoute />}>
+        <Route element={<RootLayout />}>
+          <Route index element={<Handbook />} />
+          <Route path={AppRoutes.Using} element={<Using />} />
+          <Route path={AppRoutes.Periods} element={<Periods />} />
+          <Route path={AppRoutes.Ranges} element={<Ranges />} />
+          <Route path={AppRoutes.RuleCheck} element={<RuleCheck />} />
+          <Route path={AppRoutes.Sizes} element={<Sizes />} />
+          <Route path={AppRoutes.Give} element={<Give />} />
+          <Route path={AppRoutes.SetRules} element={<SetRule />} />
+          <Route path={AppRoutes.PersonCard} element={<Tools />} />
+        </Route>
+        <Route path={AppRoutes.Profile} element={<Profile />}>
+          <Route path={AppRoutes.Info} element={<Info />} />
+          <Route path={AppRoutes.Employee} element={<Employee />} />
+        </Route>
+      </Route>
+      <Route path={AppRoutes.Everything} element={<NotFound />} />
+    </Routes>
+  );
+}
